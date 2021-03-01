@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayContentItem" representedClassName="DayContentItem" syncable="YES">
+        <attribute name="dateString" optional="YES" attributeType="String"/>
+        <attribute name="isLearnDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="monthString" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ItemDemo" representedClassName="ItemDemo" syncable="YES" codeGenerationType="class">
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="LearningWordItem" representedClassName="LearningWordItem" syncable="YES">
+        <attribute name="isSynced" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="nextReviewDay" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reviewTimes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="todayReviewCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wordContent" optional="YES" attributeType="String"/>
+        <attribute name="wordID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wordStatus" optional="YES" attributeType="String"/>
+        <relationship name="sourceWord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WordItem" inverseName="learningStatus" inverseEntity="WordItem"/>
+    </entity>
+    <entity name="ToDoItem" representedClassName="ToDoItem" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createDateString" optional="YES" attributeType="String"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="todoContent" optional="YES" attributeType="String"/>
+        <attribute name="todoID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="WordItem" representedClassName="WordItem" syncable="YES">
+        <attribute name="bncLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="collinsLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="exampleSentences" optional="YES" attributeType="String"/>
+        <attribute name="frqLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isSynced" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latestSearchDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="oxfordLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="phonetic_EN" optional="YES" attributeType="String"/>
+        <attribute name="phonetic_US" optional="YES" attributeType="String"/>
+        <attribute name="searchCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="starLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="translation" optional="YES" attributeType="String"/>
+        <attribute name="wordContent" optional="YES" attributeType="String"/>
+        <attribute name="wordExchanges" optional="YES" attributeType="String"/>
+        <attribute name="wordID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wordNote" optional="YES" attributeType="String"/>
+        <attribute name="wordTags" optional="YES" attributeType="String"/>
+        <relationship name="learningStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LearningWordItem" inverseName="sourceWord" inverseEntity="LearningWordItem"/>
+    </entity>
+    <elements>
+        <element name="DayContentItem" positionX="9" positionY="153" width="128" height="74"/>
+        <element name="ItemDemo" positionX="0" positionY="0" width="128" height="44"/>
+        <element name="LearningWordItem" positionX="9" positionY="144" width="128" height="149"/>
+        <element name="WordItem" positionX="0" positionY="9" width="128" height="314"/>
+        <element name="ToDoItem" positionX="9" positionY="153" width="128" height="104"/>
+    </elements>
+</model>
