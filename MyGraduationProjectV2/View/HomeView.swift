@@ -160,9 +160,11 @@ struct CalendarListHeader: View {
 
 struct ToDoPartHeader: View {
     @Binding var showContent:Bool
+    var text:String = "待办事项"
     
     var body: some View {
         HStack {
+            Text(text).offset(x: -5, y: 0)
             Spacer()
             Button(action: {
                 showContent.toggle()
