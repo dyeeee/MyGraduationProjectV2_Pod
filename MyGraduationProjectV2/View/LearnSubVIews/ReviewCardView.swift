@@ -15,7 +15,6 @@ struct ReviewCardView: View {
     @StateObject var wordVM:WordViewModel
     
     @State var afterUnknown:Bool = false
-    
     @Binding var todayReviewCount:Int
     
     

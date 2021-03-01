@@ -49,23 +49,23 @@ struct LearningView: View {
                                 Rectangle()
                                     .frame(width: progressWidth/CGFloat(self.learnWordVM.todayAllCount)*CGFloat(todayNewCount), height: 25, alignment: .center)
                                     .foregroundColor(Color(.systemBlue))
-                                Text("\(todayNewCount)")
+                                Text(todayNewCount != 0 ? "\(todayNewCount)" : "")
                                 
                             }
                             ZStack {
                                 Rectangle()
                                     .frame(width: progressWidth/CGFloat(self.learnWordVM.todayAllCount)*CGFloat(todayReviewCount), height: 25, alignment: .center)
                                     .foregroundColor(Color(.systemGreen))
-                                Text("\(todayReviewCount)")
+                                Text(todayReviewCount != 0 ? "\(todayReviewCount)" : "")
                             }
                         }
                         ZStack(alignment:.trailing) {
                             RoundedRectangle(cornerRadius: 5.0, style: .continuous)
                                 .stroke()
                                 .frame(width: progressWidth, height: 25, alignment: .center)
-                            Text("\(self.learnWordVM.todayAllCount)")
-                                .fontWeight(.semibold)
-                                .padding(.trailing,5)
+                            Text("剩余: \(self.learnWordVM.todayAllCount - todayReviewCount - todayNewCount)")
+                                
+                                .padding(.trailing,4)
                         }
                     }.clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
                     Spacer()

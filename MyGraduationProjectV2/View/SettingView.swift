@@ -21,7 +21,7 @@ struct SettingView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("账号")){
+                Section(header: Text("账号及同步")){
                     
                     NavigationLink(
                         destination: PersonalView(userVM: self.userVM).hiddenTabBar(),
@@ -47,9 +47,22 @@ struct SettingView: View {
                     
                     
                     
-                }.onAppear(perform: {
+                }
+                .onAppear(perform: {
                     self.userVM.vertifyLocalSession()
                 })
+                
+                Section(header:Text("词典设置")){
+                    Text("启动汉英查询")
+                    NavigationLink(
+                        destination: Text("test"),
+                        label: {
+                            HStack {
+                                Image(systemName: "plus.rectangle.on.rectangle")
+                                Text("自动展开内容")
+                            }
+                        })
+                }
                 
                 Section(header: Text("外观设置")){
                     NavigationLink(

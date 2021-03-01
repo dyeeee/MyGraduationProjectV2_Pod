@@ -19,6 +19,8 @@ struct UserInfoView: View {
     
     @State var uploadAlert = false
     
+    @State var tabIndex = 0
+    
     var body: some View {
         List {
             VStack {
@@ -35,7 +37,7 @@ struct UserInfoView: View {
                 }
             }
             
-            Section(header:Text("云同步设置")){
+            Section(header:Text("云同步")){
                 HStack{
                     NavigationLink(
                         destination: Text("Destination"),
@@ -57,25 +59,153 @@ struct UserInfoView: View {
                     .foregroundColor(Color(.systemBlue))
                 }
                 
-                VStack(alignment:.leading){
-                    HStack{
-                        Text("学习中的课本: \(UD_learningBook)")
-                        Spacer()
-                        Text("共\(UD_allWordNum)词")
+                HStack {
+                    
+                    VStack {
+                        
+                        Image(systemName: "house.fill")
                     }
-                    HStack{
-                        Text("学习中: \(UD_learningWordNum); ")
-                        Text("已掌握: \(UD_knownWordNum); ")
-                        Text("未学习: \(UD_unlearnedWordNum); ")
+                    Spacer()
+                    Divider()
+                    VStack(alignment:.leading){
+                        HStack {
+
+                            VStack {
+                                Text("课本")
+    //                            Text("《\(UD_learningBook)》")
+                                Text("大学英语六级")
+                            }.frame(width: UIScreen.main.bounds.width*0.32)
+                            Divider()
+                            VStack {
+                                Text("单词数量")
+    //                            Text("《\(UD_learningBook)》")
+                                Text("\(UD_allWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.32)
+
+                        }
+                        HStack{
+                            VStack {
+                                Text("学习中")
+                                Text("\(UD_learningWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("已掌握")
+                                Text("\(UD_knownWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("未学习")
+                                Text("\(UD_unlearnedWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+
+                        }
+                        
+                        HStack{
+                            VStack {
+                                Text("生词本")
+                                Text("261")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("待办事件")
+                                Text("8")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("查询历史")
+                                Text("43")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+
+                        }
+                        
+                    }.font(.subheadline)
+                    .foregroundColor(Color(.systemGray))
+                    Divider()
+                }
+                
+                
+                HStack {
+                    
+                    VStack {
+                        
+                        Image(systemName: "icloud.fill")
                     }
-                    HStack{
-                        Text("生词本单词数量: 261")
-                    }
-                    HStack{
-                        Text("待办事件数量: 8")
-                    }
-                }.font(.subheadline)
-                .foregroundColor(Color(.systemGray))
+                    Spacer()
+                    Divider()
+                    VStack(alignment:.leading){
+                        
+                        HStack {
+
+                            VStack {
+                                Text("课本")
+    //                            Text("《\(UD_learningBook)》")
+                                Text("大学英语六级")
+                            }.frame(width: UIScreen.main.bounds.width*0.32)
+                            Divider()
+                            VStack {
+                                Text("单词数量")
+    //                            Text("《\(UD_learningBook)》")
+                                Text("\(UD_allWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.32)
+
+                        }
+                        HStack{
+                            VStack {
+                                Text("学习中")
+                                Text("\(UD_learningWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("已掌握")
+                                Text("\(UD_knownWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("未学习")
+                                Text("\(UD_unlearnedWordNum)")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+
+                        }
+                        
+                        HStack{
+                            VStack {
+                                Text("生词本")
+                                Text("261")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("待办事件")
+                                Text("8")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+                            Divider()
+                            VStack {
+                                Text("查询历史")
+                                Text("43")
+                            }.frame(width: UIScreen.main.bounds.width*0.2)
+
+                        }
+                        
+                    }.font(.subheadline)
+                    .foregroundColor(Color(.systemGray))
+                    Divider()
+                }
+                
+
+                
+//                Picker(selection: self.$tabIndex, label: Text("Picker"), content:
+//                        {
+//                            Text("星级").tag(0)
+//                            Text("字母").tag(1)
+//                            Text("笔记").tag(2)
+//                        })
+//                    .pickerStyle(SegmentedPickerStyle())
+//                    .background(Color(.systemBackground))
+                
+//                TabView{
+//
+//                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
             }
             
             Section{

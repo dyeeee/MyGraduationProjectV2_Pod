@@ -225,7 +225,7 @@ struct NotebookListView: View {
                     }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     
                 }
-                .navigationTitle("Notebook")
+                .navigationTitle("生词本")
                 .navigationBarColor(.systemGroupedBackground)
                 //.tabBarColor(.systemGroupedBackground)
                 
