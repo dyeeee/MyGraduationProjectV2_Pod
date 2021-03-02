@@ -15,6 +15,8 @@ struct SettingView: View {
     @AppStorage("UD_isLogged") var UD_isLogged = true
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     
+    @State var ECOn = false
+    
     @State var deleteNoteAlert = false
     @State var deleteHistoryAlert = false
     
@@ -53,7 +55,10 @@ struct SettingView: View {
                 })
                 
                 Section(header:Text("词典设置")){
-                    Text("启动汉英查询")
+                    HStack {
+                        Image(systemName: "c.square")
+                       Toggle("启动汉英查询", isOn: $ECOn)
+                    }
                     NavigationLink(
                         destination: Text("test"),
                         label: {
