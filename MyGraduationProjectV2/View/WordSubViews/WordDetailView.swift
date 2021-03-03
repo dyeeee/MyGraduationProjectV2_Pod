@@ -23,7 +23,7 @@ struct WordDetailView: View {
     
     @State var showTrans = true
     @State var showExchange = true
-    @State var showExampleSentences = false
+    @State var showExampleSentences = true
     @State var showNote = true
     @State var showNoteSaveButton = false
     
@@ -206,7 +206,16 @@ struct WordDetailView: View {
                                         Button(action: {
                                             self.hideKeyboard()
                                             wordItem.wordNote = self.wordNote
-                                            self.wordVM.saveToPersistentStoreAndRefresh(.notebook)
+                                            
+                                            if wordItem.starLevel == 0 && wordNote != "" {
+                                                wordItem.starLevel = 1
+                                                wordItem.isSynced = false
+                                            }
+                                            
+                                            //延迟保存
+                                            timeRemaining = 1
+                                            startTimer()
+                                            
                                             self.showNoteSaveButton = false
                                         }, label: {
                                             VStack {
@@ -241,6 +250,7 @@ struct WordDetailView: View {
                                     //TextField("",text: self.$wordNote) //可自动上滚，不能多行
                                     .onChange(of: self.wordNote, perform: { value in
                                         self.showNoteSaveButton = true
+                                        
                                     })
                                 //这是为了自动扩充editor的高度
                                 Text(self.wordNote).opacity(0).padding(.all, 8)

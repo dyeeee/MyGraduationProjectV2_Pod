@@ -26,6 +26,8 @@ struct WordListView: View {
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var searching = false
     
+    @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
+    
     
     var body: some View {
         //        NavigationView{
@@ -88,6 +90,7 @@ struct WordListView: View {
                             .onAppear(perform: {
                                 item.latestSearchDate = Date()
                                 item.searchCount = item.searchCount + 1
+                                UD_searchHistoryCount += 1
                             })
                     )
                     {

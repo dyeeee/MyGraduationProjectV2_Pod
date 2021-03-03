@@ -47,6 +47,13 @@ class UserViewModel : ObservableObject{
     //云端校验
     @Published var isLocalSessionVertified:Bool = false
     
+    @Published var Cloud_learningBook = ""
+    @Published var Cloud_allWordNum = 0
+    @Published var Cloud_unlearnedWordNum = 0
+    @Published var Cloud_learningWordNum = 0
+    @Published var Cloud_knownWordNum = 0
+    @Published var Cloud_searchHistoryCount = 0
+    
     
     // Loading Screen...
     @Published var isLoading = false
@@ -275,6 +282,37 @@ class UserViewModel : ObservableObject{
 
     }
     
+    func downloadFromCloud() {
+        if isLocalSessionVertified {
+            let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
+            let query = LCQuery(className: "UserInfo")
+            query.whereKey("user", .equalTo("\(user)"))
+
+            
+            //查询得到的话则更新，一个用户保留一条数据
+            if  query.count().intValue != 0 {
+                _ = query.getFirst { result in
+                    switch result {
+                    case .success(object: let userInfo):
+                        print("已有该用户数据在云端")
+                        //更新
+                        do {
+                            
+
+
+                        }
+                        catch {
+                            print(error)
+                        }
+                    case .failure(error: let error):
+                        print("未有该用户的数据在云端: \(error)")
+                    }
+                }
+            }
+            
+        
+    }
+    }
     
     func currentUserInfo() -> String {
         if let user = LCApplication.default.currentUser {
@@ -288,6 +326,32 @@ class UserViewModel : ObservableObject{
         }
     }
     
+    func currentUserInfo_UserInfo() {
+        if isLocalSessionVertified {
+            let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
+            let query = LCQuery(className: "UserInfo")
+            query.whereKey("user", .equalTo("\(user)"))
+
+            
+            //查询得到的话则更新，一个用户保留一条数据
+            if  query.count().intValue != 0 {
+                _ = query.getFirst { result in
+                    switch result {
+                    case .success(object: let userInfo):
+                        print("已有该用户数据在云端")
+                        //更新展示的数据
+                        self.Cloud_learningBook = userInfo.get("learningBook")?.stringValue ?? "无课本"
+                        
+                    case .failure(error: let error):
+                        print("未有该用户的数据在云端: \(error)")
+                    }
+                }
+            }
+            
+        
+    }
+    }
+    
     func vertifyLocalSession() {
         //判断本地的session是否能登录成功
         let UD_userSession = UserDefaults.standard.string(forKey: "UD_userSession")
@@ -298,6 +362,8 @@ class UserViewModel : ObservableObject{
                 // 登录成功
                 print("Session云端验证成功: \(user)")
                 self.isLocalSessionVertified = true
+                
+            
             case .failure(error: let error):
                 // session token 无效
                 print("Session云端验证失败: \(error)")
@@ -305,6 +371,7 @@ class UserViewModel : ObservableObject{
             }
         }
     }
+    
     
     
     

@@ -57,6 +57,7 @@ struct SettingView: View {
                 Section(header:Text("词典设置")){
                     HStack {
                         Image(systemName: "c.square")
+                            .font(.title2)
                        Toggle("启动汉英查询", isOn: $ECOn)
                     }
                     NavigationLink(

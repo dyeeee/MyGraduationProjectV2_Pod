@@ -17,6 +17,8 @@ struct UserInfoView: View {
     @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量，存在UD里
     @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量，存在UD里
     
+    @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
+    
     @State var uploadAlert = false
     
     @State var tabIndex = 0
@@ -47,16 +49,36 @@ struct UserInfoView: View {
                 }
                 
                 HStack {
-                    Text("上传当前学习进度")
-                    Spacer()
-                    Button(action: {
-                        self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum])
-                    }, label: {
-                        Image(systemName: "link.icloud.fill")
+                    HStack {
                         
-                    }).buttonStyle(PlainButtonStyle())
-                    .font(.title2)
-                    .foregroundColor(Color(.systemBlue))
+
+                        Button(action: {
+                            self.userVM.downloadFromCloud()
+                        }, label: {
+                            Text("下载云记录")
+                                .font(.headline)
+                            Image(systemName: "icloud.and.arrow.down")
+                            
+                            
+                        }).buttonStyle(PlainButtonStyle())
+                        .font(.title2)
+                        .foregroundColor(Color(.systemBlue))
+                    }
+                    Spacer()
+                    Divider()
+                    Spacer()
+                    HStack {
+                        Button(action: {
+                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum])
+                        }, label: {
+                            Text("上传本地记录")
+                                .font(.headline)
+                            Image(systemName: "icloud.and.arrow.up")
+                            
+                        }).buttonStyle(PlainButtonStyle())
+                        .font(.title2)
+                        .foregroundColor(Color(.systemBlue))
+                    }
                 }
                 
                 HStack {
@@ -73,7 +95,7 @@ struct UserInfoView: View {
                             VStack {
                                 Text("课本")
     //                            Text("《\(UD_learningBook)》")
-                                Text("大学英语六级")
+                                Text("\(UD_learningBook)")
                             }.frame(width: UIScreen.main.bounds.width*0.32)
                             Divider()
                             VStack {
@@ -114,7 +136,7 @@ struct UserInfoView: View {
                             Divider()
                             VStack {
                                 Text("查询历史")
-                                Text("43")
+                                Text("\(UD_searchHistoryCount)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
 
                         }
@@ -140,7 +162,7 @@ struct UserInfoView: View {
                             VStack {
                                 Text("课本")
     //                            Text("《\(UD_learningBook)》")
-                                Text("大学英语六级")
+                                Text("\(userVM.Cloud_learningBook)")
                             }.frame(width: UIScreen.main.bounds.width*0.32)
                             Divider()
                             VStack {
@@ -181,7 +203,7 @@ struct UserInfoView: View {
                             Divider()
                             VStack {
                                 Text("查询历史")
-                                Text("43")
+                                Text("\(UD_searchHistoryCount)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
 
                         }
@@ -193,18 +215,7 @@ struct UserInfoView: View {
                 
 
                 
-//                Picker(selection: self.$tabIndex, label: Text("Picker"), content:
-//                        {
-//                            Text("星级").tag(0)
-//                            Text("字母").tag(1)
-//                            Text("笔记").tag(2)
-//                        })
-//                    .pickerStyle(SegmentedPickerStyle())
-//                    .background(Color(.systemBackground))
                 
-//                TabView{
-//
-//                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
             
@@ -228,6 +239,9 @@ struct UserInfoView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("账号")
         .navigationBarHidden(false)
+        .onAppear(perform: {
+            userVM.currentUserInfo_UserInfo()
+        })
     }
 }
 

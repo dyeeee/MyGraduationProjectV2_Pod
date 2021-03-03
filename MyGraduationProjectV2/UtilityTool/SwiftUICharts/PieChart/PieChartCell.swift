@@ -57,7 +57,7 @@ public struct PieChartCell : View {
             
             if(showValue){
                 VStack {
-                    if(data[legendIndex] != 0){
+                    if(data[legendIndex] >= data.reduce(0,{$0 + $1}) * 0.05 ) {
                     Text("\(legendList[legendIndex])")
                         Text("\(Int(data[legendIndex]))")
                     }

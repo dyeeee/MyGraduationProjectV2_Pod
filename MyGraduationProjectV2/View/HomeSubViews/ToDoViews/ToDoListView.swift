@@ -75,12 +75,20 @@ struct ToDoListView: View {
                                                 .foregroundColor(Color(.systemGreen))
                                             Image(systemName:"circle")
                                                 .foregroundColor(Color(.systemGray))
-                                        }.font(.title2)
+                                        }.font(.title3)
                                     }).buttonStyle(PlainButtonStyle())
                                     
                                     
                                     Text("\(item.todoContent ?? "noContent")")
-                                        .foregroundColor(item.done ? Color(.systemGray3) : Color(.black))
+                                        .foregroundColor(item.done ? Color(.systemGray3) : Color("systemBlack"))
+                                        
+                                        .strikethrough(item.done ? true:false, color: Color(.systemGray))
+                                        .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(item.createDate?.dateToString(format: "yyyy-MM-dd HH:mm") ?? "noContent")")
+                                        .foregroundColor(Color(.systemGray))
                                         
                                         .strikethrough(item.done ? true:false, color: Color(.systemGray))
                                         .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
