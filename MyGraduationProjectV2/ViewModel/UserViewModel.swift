@@ -278,6 +278,9 @@ class UserViewModel : ObservableObject{
                 print(error)
             }
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){ [self] in
+                self.currentUserInfo_UserInfo()}
         }
 
     }
@@ -317,7 +320,7 @@ class UserViewModel : ObservableObject{
     func currentUserInfo() -> String {
         if let user = LCApplication.default.currentUser {
             // 跳到首页
-            print("获取到当前用户")
+            //print("获取到当前用户")
             return user.email?.value ?? "获取邮箱失败"
         } else {
             // 显示注册或登录页面
@@ -326,6 +329,7 @@ class UserViewModel : ObservableObject{
         }
     }
     
+    //刷新界面显示的云端数据
     func currentUserInfo_UserInfo() {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
@@ -338,9 +342,17 @@ class UserViewModel : ObservableObject{
                 _ = query.getFirst { result in
                     switch result {
                     case .success(object: let userInfo):
-                        print("已有该用户数据在云端")
+                        //print("已有该用户数据在云端")
                         //更新展示的数据
                         self.Cloud_learningBook = userInfo.get("learningBook")?.stringValue ?? "无课本"
+                        let Cloud_wordStatusList_LC = userInfo.get("wordStatusList") as? LCArray
+                        let Cloud_wordStatusList = Cloud_wordStatusList_LC?.arrayValue
+                        //print(Cloud_wordStatusList)
+                        
+                        self.Cloud_allWordNum = Int(Cloud_wordStatusList![0] as! Double)
+                        self.Cloud_knownWordNum = Int(Cloud_wordStatusList![1] as! Double)
+                        self.Cloud_learningWordNum = Int(Cloud_wordStatusList![2] as! Double)
+                        self.Cloud_unlearnedWordNum = Int(Cloud_wordStatusList![3] as! Double)
                         
                     case .failure(error: let error):
                         print("未有该用户的数据在云端: \(error)")

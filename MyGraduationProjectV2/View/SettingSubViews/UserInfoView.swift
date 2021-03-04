@@ -168,24 +168,24 @@ struct UserInfoView: View {
                             VStack {
                                 Text("单词数量")
     //                            Text("《\(UD_learningBook)》")
-                                Text("\(UD_allWordNum)")
+                                Text("\(userVM.Cloud_allWordNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.32)
 
                         }
                         HStack{
                             VStack {
                                 Text("学习中")
-                                Text("\(UD_learningWordNum)")
+                                Text("\(userVM.Cloud_learningWordNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
                                 Text("已掌握")
-                                Text("\(UD_knownWordNum)")
+                                Text("\(userVM.Cloud_knownWordNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
                                 Text("未学习")
-                                Text("\(UD_unlearnedWordNum)")
+                                Text("\(userVM.Cloud_unlearnedWordNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
 
                         }
@@ -203,7 +203,7 @@ struct UserInfoView: View {
                             Divider()
                             VStack {
                                 Text("查询历史")
-                                Text("\(UD_searchHistoryCount)")
+                                Text("\(0)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
 
                         }

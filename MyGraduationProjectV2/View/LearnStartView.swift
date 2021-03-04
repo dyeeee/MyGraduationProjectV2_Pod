@@ -17,6 +17,7 @@ struct LearnStartView: View {
     
     @State var selectedTag: String?
     
+    @AppStorage("UD_learningBook") var UD_learningBook = ""
     @AppStorage("UD_allWordNum") var UD_allWordNum = 1 //单词总量，存在UD里
     @AppStorage("UD_unlearnedWordNum") var UD_unlearnedWordNum = 0 //未学习的总量
     @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量
@@ -40,7 +41,7 @@ struct LearnStartView: View {
                         
                         VStack(alignment: .leading,spacing:10){
                             HStack {
-                                Text("雅思词汇").font(.headline)
+                                Text("\(UD_learningBook)").font(.headline)
                                 Spacer()
                                 Text("Day \(UD_learnDayCount)")
                                     .font(.headline)
