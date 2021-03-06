@@ -41,6 +41,8 @@ class UserViewModel : ObservableObject{
     @AppStorage("UD_userSession") var UD_userSession = ""
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     
+    @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
+    
     //本地校验
     @AppStorage("UD_isLogged") var UD_isLogged = false
     
@@ -52,6 +54,9 @@ class UserViewModel : ObservableObject{
     @Published var Cloud_unlearnedWordNum = 0
     @Published var Cloud_learningWordNum = 0
     @Published var Cloud_knownWordNum = 0
+    
+    @Published var Cloud_noteBookNum = 0
+    @Published var Cloud_todoNum = 0
     @Published var Cloud_searchHistoryCount = 0
     
     
@@ -209,7 +214,7 @@ class UserViewModel : ObservableObject{
     //        }
     //    }
     
-    func uploadUserInfo(learningBook:String,wordStatusList:[Int]) {
+    func uploadUserInfo(learningBook:String,wordStatusList:[Int],noteBookNum:Int,todoNum:Int = 6,searchHistoryCount:Int) {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
             let query = LCQuery(className: "UserInfo")
@@ -232,6 +237,12 @@ class UserViewModel : ObservableObject{
                             //print(learningBook)
                             try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                             try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
+                            
+                            try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
+                            try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
+                            try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                            
+                            
                             
                             userInfo.save() { (result) in
                                 switch result {
@@ -263,6 +274,10 @@ class UserViewModel : ObservableObject{
                 try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                 try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
                 
+                try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
+                try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
+                try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                
                 // 将对象保存到云端
                 _ = userInfo.save { result in
                     switch result {
@@ -280,17 +295,17 @@ class UserViewModel : ObservableObject{
             }
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){ [self] in
-                self.currentUserInfo_UserInfo()}
+                self.showCurrentUserInfo()}
         }
 
     }
     
+    //从云端同步数据
     func downloadFromCloud() {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
             let query = LCQuery(className: "UserInfo")
             query.whereKey("user", .equalTo("\(user)"))
-
             
             //查询得到的话则更新，一个用户保留一条数据
             if  query.count().intValue != 0 {
@@ -300,7 +315,6 @@ class UserViewModel : ObservableObject{
                         print("已有该用户数据在云端")
                         //更新
                         do {
-                            
                             print("Sync Test")
 
                         }
@@ -330,7 +344,7 @@ class UserViewModel : ObservableObject{
     }
     
     //刷新界面显示的云端数据
-    func currentUserInfo_UserInfo() {
+    func showCurrentUserInfo() {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
             let query = LCQuery(className: "UserInfo")
@@ -353,6 +367,11 @@ class UserViewModel : ObservableObject{
                         self.Cloud_knownWordNum = Int(Cloud_wordStatusList![1] as! Double)
                         self.Cloud_learningWordNum = Int(Cloud_wordStatusList![2] as! Double)
                         self.Cloud_unlearnedWordNum = Int(Cloud_wordStatusList![3] as! Double)
+                        
+                        self.Cloud_noteBookNum = userInfo.get("noteBookNum")?.intValue ?? 0
+                        self.Cloud_todoNum = userInfo.get("todoNum")?.intValue ?? 0
+                        self.Cloud_searchHistoryCount = userInfo.get("searchHistoryCount")?.intValue ?? 0
+                        
                         
                     case .failure(error: let error):
                         print("未有该用户的数据在云端: \(error)")

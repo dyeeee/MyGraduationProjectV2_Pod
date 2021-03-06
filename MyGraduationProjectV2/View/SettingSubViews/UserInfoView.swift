@@ -9,6 +9,11 @@ import SwiftUI
 
 struct UserInfoView: View {
     @StateObject var userVM:UserViewModel
+    
+    @StateObject var wordVM:WordViewModel
+    
+    
+    
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     
     @AppStorage("UD_learningBook") var UD_learningBook = ""
@@ -17,6 +22,7 @@ struct UserInfoView: View {
     @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量，存在UD里
     @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量，存在UD里
     
+    @AppStorage("UD_noteWordNum") var UD_noteWordNum = 0
     @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
     
     @State var uploadAlert = false
@@ -54,6 +60,9 @@ struct UserInfoView: View {
 
                         Button(action: {
                             self.userVM.downloadFromCloud()
+                            
+                            self.wordVM.downloadFromCloud()
+                            
                         }, label: {
                             Text("下载云记录")
                                 .font(.headline)
@@ -69,7 +78,10 @@ struct UserInfoView: View {
                     Spacer()
                     HStack {
                         Button(action: {
-                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum])
+                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum],noteBookNum: UD_noteWordNum,searchHistoryCount: UD_searchHistoryCount)
+                            
+                            wordVM.uploadToCloud()
+                            
                         }, label: {
                             Text("上传本地记录")
                                 .font(.headline)
@@ -126,7 +138,7 @@ struct UserInfoView: View {
                         HStack{
                             VStack {
                                 Text("生词本")
-                                Text("261")
+                                Text("\(UD_noteWordNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
@@ -193,17 +205,17 @@ struct UserInfoView: View {
                         HStack{
                             VStack {
                                 Text("生词本")
-                                Text("261")
+                                Text("\(userVM.Cloud_noteBookNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
                                 Text("待办事件")
-                                Text("8")
+                                Text("\(userVM.Cloud_todoNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
                                 Text("查询历史")
-                                Text("\(0)")
+                                Text("\(userVM.Cloud_searchHistoryCount)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
 
                         }
@@ -240,7 +252,7 @@ struct UserInfoView: View {
         .navigationTitle("账号")
         .navigationBarHidden(false)
         .onAppear(perform: {
-            userVM.currentUserInfo_UserInfo()
+            userVM.showCurrentUserInfo()
         })
     }
 }
@@ -248,7 +260,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserInfoView(userVM: UserViewModel())
+            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel())
         }
     }
 }

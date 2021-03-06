@@ -59,6 +59,7 @@ class LearnWordViewModel: ObservableObject{
         //return [learningWordNum,knownWordNum,unlearnedWordNum]
     }
     
+    //今天要学习的单词
     func getTodayList(newWordNum:Int,learnDayCount:Int,byOnAppear:Bool = false) {
         
         getTodayNewWordItems(num:newWordNum,learnDayCount:learnDayCount)
@@ -135,6 +136,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //显示单词列表
     func getAllItems() {
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -153,6 +155,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //显示单词列表
     func getLearningWordItems() {
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -171,6 +174,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //显示单词列表
     func getKnownWordItems() {
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -189,6 +193,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //显示单词列表
     func getUnlearnedWordItems() {
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -250,6 +255,7 @@ class LearnWordViewModel: ObservableObject{
         return LearningWordItem(context: viewContext)
     }
     
+    //选择单词书
     func selectLearnBook(bookName:String = "cet4",isKeep:Bool = true){
         isLoading = true
         //如果需要保留已掌握的单词(第一次的时候BookChangeVIew页面不提示=不保留（isKeep=false）)
@@ -362,6 +368,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //从CoreData家在单词
     func preloadLearningWordFromCoreData(bookName:String = "cet4") {
         deleteAll()
         let container = PersistenceController.shared.container
@@ -425,6 +432,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
+    //从CSV家在单词（弃用）
     func preloadLearningWordFromCSV() {
         let container = PersistenceController.shared.container
         let csvTool = CSVTools()
@@ -565,6 +573,7 @@ class LearnWordViewModel: ObservableObject{
         item.isSynced = false
         if item.todayReviewCount == 2{
             item.reviewTimes = item.reviewTimes + 1
+            //艾宾浩斯曲线设置学习日期
             switch item.reviewTimes {
             case 1:
                 item.nextReviewDay = Int16(UD_learnDayCount + 1)

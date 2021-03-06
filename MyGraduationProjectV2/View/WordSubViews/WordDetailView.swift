@@ -344,7 +344,9 @@ struct WordDetailView: View {
                     //执行保存操作
                     wordVM.saveToPersistentStoreAndRefresh(.notebook)
                     stopTimer()
-                    wordVM.uploadToCloud()
+                    
+                    //先把自动上传关了
+                    //wordVM.uploadToCloud()
                 }
             }
             .onAppear() {

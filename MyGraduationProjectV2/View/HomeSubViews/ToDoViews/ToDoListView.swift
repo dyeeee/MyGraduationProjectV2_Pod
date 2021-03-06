@@ -126,6 +126,11 @@ struct ToDoListView: View {
                         }) {
                             Label("删除已完成", systemImage: "trash.fill")
                         }
+                        Button(action: {
+                            self.todoVM.deleteAllToDoItem()
+                        }) {
+                            Label("删除全部", systemImage: "trash.fill")
+                        }
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }

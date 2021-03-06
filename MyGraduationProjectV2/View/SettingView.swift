@@ -14,6 +14,7 @@ struct SettingView: View {
     
     @AppStorage("UD_isLogged") var UD_isLogged = true
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
+    @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
     
     @State var ECOn = false
     
@@ -26,7 +27,7 @@ struct SettingView: View {
                 Section(header: Text("账号及同步")){
                     
                     NavigationLink(
-                        destination: PersonalView(userVM: self.userVM).hiddenTabBar(),
+                        destination: PersonalView(userVM: self.userVM, wordVM: self.wordVM).hiddenTabBar(),
                         label: {
                             VStack {
                                 if (UD_isLogged && self.userVM.isLocalSessionVertified) {
@@ -98,6 +99,7 @@ struct SettingView: View {
                     
                     Button(action: {
                         self.deleteHistoryAlert = true
+                        UD_searchHistoryCount = 0
                     }, label: {
                         HStack {
                             Image(systemName: "trash")

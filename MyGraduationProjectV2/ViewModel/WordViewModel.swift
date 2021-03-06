@@ -22,6 +22,9 @@ class WordViewModel: ObservableObject{
     
     @Published var isSyncing = false
     
+    @AppStorage("UD_noteWordNum") var UD_noteWordNum = 0
+    
+    
     enum ListName {
         case item
         case searchResult
@@ -84,6 +87,7 @@ class WordViewModel: ObservableObject{
         
         do {
             list = try viewContext.fetch(fetchRequest)
+            UD_noteWordNum = list.count
         } catch {
             NSLog("Error fetching tasks: \(error)")
             
@@ -166,6 +170,7 @@ class WordViewModel: ObservableObject{
             item.starLevel = 0
             item.wordNote = ""
         }
+        UD_noteWordNum = 0
         saveToPersistentStoreAndRefresh(.notebook)
     }
     
@@ -368,6 +373,7 @@ class WordViewModel: ObservableObject{
                 // 延迟保存优化性能，添加timer优化后可以考虑删掉
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.getGroupedItems()
+                    
                 }
             }else{
                 self.getAllItems()
@@ -425,6 +431,7 @@ class WordViewModel: ObservableObject{
                             print(wordItem_lean.objectId?.value ?? "0")
                             let updateItem = LCObject(className: "WordItem", objectId: "\(wordItem_lean.objectId?.value ?? "0")")
                             try updateItem.set("starLevel", value: LCNumber(integerLiteral: Int(wordItem.starLevel)))
+                            try updateItem.set("searchCount", value: LCNumber(integerLiteral: Int(wordItem.searchCount)))
                             try updateItem.set("wordNote", value: LCString(wordItem.wordNote ?? "noNote"))
                             try updateItem.set("isDownloaded", value: LCBool(false))
                             objects.append(updateItem)  //需要更新的对象传入数组
@@ -448,6 +455,7 @@ class WordViewModel: ObservableObject{
                     try wordItem_lean.set("wordID", value: LCNumber(integerLiteral: Int(wordItem.wordID)))
                     try wordItem_lean.set("wordContent", value: LCString(wordItem.wordContent ?? "noContent"))
                     try wordItem_lean.set("starLevel", value: LCNumber(integerLiteral: Int(wordItem.starLevel)))
+                    try wordItem_lean.set("searchCount", value: LCNumber(integerLiteral: Int(wordItem.searchCount)))
                     try wordItem_lean.set("wordNote", value: LCString(wordItem.wordNote ?? "noNote"))
                     try wordItem_lean.set("isDownloaded", value: LCBool(false))
                     
@@ -506,9 +514,12 @@ class WordViewModel: ObservableObject{
                     do {
                         tmpList = try viewContext.fetch(fetchRequest)
                         if tmpList.count > 0 {
-                            print(tmpList[0].wordContent ?? "noContent")
+                            //print(tmpList[0].wordContent ?? "noContent")
                             tmpList[0].starLevel = Int16(wordItem_cloud.get("starLevel")?.intValue ?? 0)
+                            tmpList[0].searchCount = Int16(wordItem_cloud.get("searchCount")?.intValue ?? 0)
+                            
                             tmpList[0].wordNote = wordItem_cloud.get("wordNote")?.stringValue
+                            
                             tmpList[0].isSynced = true
                             
                             //云端状态
@@ -520,6 +531,7 @@ class WordViewModel: ObservableObject{
                     }
                 }
                 self.saveToPersistentStoreAndRefresh(.notebook)
+                self.getHistoryItems()
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5){
                 // 保存数组

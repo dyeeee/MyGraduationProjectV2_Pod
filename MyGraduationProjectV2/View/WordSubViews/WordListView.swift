@@ -90,7 +90,10 @@ struct WordListView: View {
                             .onAppear(perform: {
                                 item.latestSearchDate = Date()
                                 item.searchCount = item.searchCount + 1
-                                UD_searchHistoryCount += 1
+                                item.isSynced = false
+                                UD_searchHistoryCount = UD_searchHistoryCount + 1
+                                
+                                print("历史记录数量\(UD_searchHistoryCount)")
                             })
                     )
                     {
