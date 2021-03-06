@@ -301,7 +301,7 @@ class UserViewModel : ObservableObject{
                         //更新
                         do {
                             
-                            print("dosth here")
+                            print("Sync Test")
 
                         }
                         catch {
