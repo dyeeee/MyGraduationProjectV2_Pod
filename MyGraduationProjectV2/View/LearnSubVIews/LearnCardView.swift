@@ -35,22 +35,43 @@ struct LearnCardView: View {
                     Spacer()
                 }
                 
-                    VStack {
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.clear)
-                            .overlay(Rectangle().frame(height:6)
-                                        .foregroundColor(Color.blue.opacity(0.8))
-                                        .offset(x:0,y:12))
-                    }.overlay(
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                    )
+                HStack {
+                    VStack(alignment:.leading) {
+                        HStack {
+                            VStack {
+                                    Text(self.learningWordItem.wordContent ?? "noContent")
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.clear)
+                                        .overlay(Rectangle().frame(height:6)
+                                                    .foregroundColor(Color.blue.opacity(0.8))
+                                                    .offset(x:0,y:12))
+                                }.overlay(
+                                    Text(self.learningWordItem.wordContent ?? "noContent")
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                            )
+                            Spacer()
+                            Button(action: {}, label: {
+                                VStack {
+                                    Text("已掌握")
+                                        .font(.callout)
+                                        .padding(2)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 2.0)
+                                                .stroke())
+                                }.foregroundColor(Color("CalendarOnColor"))
+                            })
+                        }
+                        
+                        WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 18)
+                            .padding(.top, -5)
+                    }
                     
-                    WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 18)
-                        .padding(.top, -5)
+                    Spacer()
+                }.padding([.leading,.trailing],20)
+                    
+                    
                 Divider()
                 VStack(alignment:.leading) {
                     WordTranslationView(wordTranslastion: self.learningWordItem.sourceWord?.translation ?? "no Trans", wordDefinition: self.learningWordItem.sourceWord?.definition ?? "no Def")

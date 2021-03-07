@@ -40,35 +40,54 @@ struct ReviewCardView2: View {
                     //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
                 }
                 else{
-                    VStack {
-                        //                            Text("\(self.learningWordItem.todayReviewCount)")
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.clear)
-                        //                            .overlay(Rectangle().frame(height:6)
-                        //                                        .foregroundColor(Color.blue.opacity(0.8))
-                        //                                        .offset(x:0,y:18))
-                    }.overlay(
-                        //                        Text(self.learningWordItem.wordContent ?? "noContent")
-                        //                            .font(.largeTitle)
-                        //                            .fontWeight(.bold)
-                        TextField("Input", text: $text)
-                            .autocapitalization(.none)
-                            .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .onChange(of: text, perform: { text in
-                                if text == self.learningWordItem.wordContent{
-                                    correctWord = true
-                                }else{
-                                    correctWord = false
-                                }
-                            })
-                    )
-                    .padding([.top],10)
+                    HStack {
+                        VStack(alignment:.leading) {
+                            HStack {
+                                VStack {
+                                    //                            Text("\(self.learningWordItem.todayReviewCount)")
+                                    Text(self.learningWordItem.wordContent ?? "noContent")
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.clear)
+                                    //                            .overlay(Rectangle().frame(height:6)
+                                    //                                        .foregroundColor(Color.blue.opacity(0.8))
+                                    //                                        .offset(x:0,y:18))
+                                }.overlay(
+                                    TextField("Input", text: $text)
+                                        .autocapitalization(.none)
+                                        .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .onChange(of: text, perform: { text in
+                                            if text == self.learningWordItem.wordContent{
+                                                correctWord = true
+                                            }else{
+                                                correctWord = false
+                                            }
+                                        })
+                                )
+                                .padding([.top],10)
+                                
+                                Spacer()
+                                Button(action: {}, label: {
+                                    VStack {
+                                        Text("已掌握")
+                                            .font(.callout)
+                                            .padding(2)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 2.0)
+                                                    .stroke())
+                                    }.foregroundColor(Color("CalendarOnColor"))
+                                })
+                            }
+                            
+                            WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 18)
+                                .padding(.top, -5)
+                        }
+                        
+                        Spacer()
+                    }.padding([.leading,.trailing],20)
                     
-                    WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 20)
-                        .padding(.top, -5)
+
                     Divider()
                     
                     VStack(alignment:.leading){

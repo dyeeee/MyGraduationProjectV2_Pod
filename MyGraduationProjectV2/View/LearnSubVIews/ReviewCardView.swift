@@ -31,6 +31,7 @@ struct ReviewCardView: View {
                     todayReviewCountView(reviewCount: self.learningWordItem.todayReviewCount)
                         .padding(.top,15)
                     Spacer()
+                   
                 }
                 
                 if afterUnknown {
@@ -38,24 +39,42 @@ struct ReviewCardView: View {
                     //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
                 }
                 else{
-                    VStack {
-                        //                            Text("\(self.learningWordItem.todayReviewCount)")
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.clear)
-                            .overlay(Rectangle().frame(height:6)
-                                        .foregroundColor(Color.blue.opacity(0.8))
-                                        .offset(x:0,y:12))
-                    }.overlay(
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                    )
-                    .padding([.top],10)
+                    HStack {
+                        VStack(alignment:.leading) {
+                            HStack {
+                                VStack {
+                                        Text(self.learningWordItem.wordContent ?? "noContent")
+                                            .font(.largeTitle)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.clear)
+                                            .overlay(Rectangle().frame(height:6)
+                                                        .foregroundColor(Color.blue.opacity(0.8))
+                                                        .offset(x:0,y:12))
+                                    }.overlay(
+                                        Text(self.learningWordItem.wordContent ?? "noContent")
+                                            .font(.largeTitle)
+                                            .fontWeight(.bold)
+                                )
+                                Spacer()
+                                Button(action: {}, label: {
+                                    VStack {
+                                        Text("已掌握")
+                                            .font(.callout)
+                                            .padding(2)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 2.0)
+                                                    .stroke())
+                                    }.foregroundColor(Color("CalendarOnColor"))
+                                })
+                            }
+                            
+                            WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 18)
+                                .padding(.top, -5)
+                        }
+                        
+                        Spacer()
+                    }.padding([.leading,.trailing],20)
                     
-                    WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 20)
-                        .padding(.top, -5)
                     
                     Divider()
                     
@@ -65,7 +84,7 @@ struct ReviewCardView: View {
                             .foregroundColor(Color("WordSentencesColor"))
                         
                         WordExampleSentencesView(wordContent: self.learningWordItem.wordContent!, wordExampleSentences: self.learningWordItem.sourceWord?.exampleSentences ?? "noEXP",maxLine:2,showCH:false)
-                    }.padding([.leading,.trailing],30)
+                    }.padding([.leading,.trailing],20)
                 }
                 
                 
@@ -177,24 +196,37 @@ struct todayReviewCountView: View {
     var reviewCount:Int16
     
     var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 5.0, style: .continuous)
-                .fill(Color(.systemGray4))
-                .opacity(0.3)
-                .frame(width: 90, height: 20, alignment: .center)
+        HStack {
+//            VStack {
+//                Text("今日记忆次数")
+//                    .font(.caption)
+//                    .padding(2)
+//                    .padding([.top,.bottom],1)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 2.0)
+//                            .stroke())
+//            }.foregroundColor(Color(.systemTeal))
             
-            
-            HStack(spacing:3) {
-                ForEach(0..<2,id:\.self){
-                    num in
-                    RoundedRectangle(cornerRadius: 5.0, style: .continuous)
-                        .fill(num < reviewCount ? Color(.systemGreen) : Color(.systemGray3))
-                        .frame(width: 35, height: 10, alignment: .center)
+            ZStack{
+                RoundedRectangle(cornerRadius: 5.0, style: .continuous)
+                    .fill(Color(.systemGray4))
+                    .opacity(0.3)
+                    .frame(width: 90, height: 20, alignment: .center)
+                
+                
+                HStack(spacing:3) {
+                    ForEach(0..<2,id:\.self){
+                        num in
+                        RoundedRectangle(cornerRadius: 5.0, style: .continuous)
+                            .fill(num < reviewCount ? Color(.systemGreen) : Color(.systemGray3))
+                            .frame(width: 35, height: 10, alignment: .center)
+                    }
+                    
                 }
+                //Text("\(reviewCount)")
+                
                 
             }
-            //Text("\(reviewCount)")
-            
             
         }
         
