@@ -69,7 +69,7 @@
 		D086245125D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244D25D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift */; };
 		D086245225D11FD400A49D38 /* LearningWordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244E25D11FD400A49D38 /* LearningWordItem+CoreDataProperties.swift */; };
 		D086245B25D1256700A49D38 /* LearnSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086245A25D1256700A49D38 /* LearnSetView.swift */; };
-		D08CA51025F48FFE009ED4AF /* ReviewCard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08CA50F25F48FFE009ED4AF /* ReviewCard2.swift */; };
+		D08CA51025F48FFE009ED4AF /* ReviewCardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08CA50F25F48FFE009ED4AF /* ReviewCardView2.swift */; };
 		D098847525D2223A006909CA /* AnimationTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098847425D2223A006909CA /* AnimationTestView.swift */; };
 		D0B59E7E25CC2AD400639AE3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E7D25CC2AD400639AE3 /* LoadingView.swift */; };
 		D0B59E8125CC2AF200639AE3 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */; };
@@ -164,7 +164,7 @@
 		D086244D25D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearningWordItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D086244E25D11FD400A49D38 /* LearningWordItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearningWordItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D086245A25D1256700A49D38 /* LearnSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSetView.swift; sourceTree = "<group>"; };
-		D08CA50F25F48FFE009ED4AF /* ReviewCard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard2.swift; sourceTree = "<group>"; };
+		D08CA50F25F48FFE009ED4AF /* ReviewCardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCardView2.swift; sourceTree = "<group>"; };
 		D098847425D2223A006909CA /* AnimationTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTestView.swift; sourceTree = "<group>"; };
 		D0B59E7D25CC2AD400639AE3 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				D01D7F3425CFD48B005EFE71 /* LearnCardView.swift */,
 				D0D162DC25F4B40E00B70CE3 /* ReviewCardRouterView.swift */,
 				D01D7F3525CFD48C005EFE71 /* ReviewCardView.swift */,
-				D08CA50F25F48FFE009ED4AF /* ReviewCard2.swift */,
+				D08CA50F25F48FFE009ED4AF /* ReviewCardView2.swift */,
 				D086245A25D1256700A49D38 /* LearnSetView.swift */,
 				D0E0299E25DFAC1500273151 /* BookChangeView.swift */,
 			);
@@ -643,7 +643,7 @@
 				D0B59E7E25CC2AD400639AE3 /* LoadingView.swift in Sources */,
 				D086245125D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift in Sources */,
 				D086245B25D1256700A49D38 /* LearnSetView.swift in Sources */,
-				D08CA51025F48FFE009ED4AF /* ReviewCard2.swift in Sources */,
+				D08CA51025F48FFE009ED4AF /* ReviewCardView2.swift in Sources */,
 				D0F5B02225C80FB9004ACB65 /* StringTools.swift in Sources */,
 				D0BC0F9D25E13DAD00FC47D9 /* ToDoItem+CoreDataClass.swift in Sources */,
 				D00FFA2C25CE5958001B0311 /* NotebookListView.swift in Sources */,

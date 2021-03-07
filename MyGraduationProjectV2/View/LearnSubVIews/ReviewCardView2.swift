@@ -46,13 +46,13 @@ struct ReviewCardView2: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.clear)
-//                            .overlay(Rectangle().frame(height:6)
-//                                        .foregroundColor(Color.blue.opacity(0.8))
-//                                        .offset(x:0,y:18))
+                        //                            .overlay(Rectangle().frame(height:6)
+                        //                                        .foregroundColor(Color.blue.opacity(0.8))
+                        //                                        .offset(x:0,y:18))
                     }.overlay(
-//                        Text(self.learningWordItem.wordContent ?? "noContent")
-//                            .font(.largeTitle)
-//                            .fontWeight(.bold)
+                        //                        Text(self.learningWordItem.wordContent ?? "noContent")
+                        //                            .font(.largeTitle)
+                        //                            .fontWeight(.bold)
                         TextField("Input", text: $text)
                             .autocapitalization(.none)
                             .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
@@ -72,7 +72,7 @@ struct ReviewCardView2: View {
                     Divider()
                     
                     VStack(alignment:.leading){
-
+                        
                         HStack {
                             WordTranslationView(wordTranslastion: self.learningWordItem.sourceWord?.translation ?? "no Trans", wordDefinition: self.learningWordItem.sourceWord?.definition ?? "no Def")
                             Spacer()
@@ -97,11 +97,14 @@ struct ReviewCardView2: View {
                 
                 
                 Spacer()
-                VStack(alignment:.leading){
-                    Text("输入正确的单词")
-                        .font(.callout)
-                        .foregroundColor(Color("WordSentencesColor"))
-                }.padding([.leading,.trailing],30)
+                if(!afterUnknown){
+                    VStack(alignment:.leading){
+                        Text("输入正确的单词")
+                            .font(.callout)
+                            .foregroundColor(Color("WordSentencesColor"))
+                    }.padding([.leading,.trailing],30)
+                }
+                
                 Divider()
                 // 底部按钮
                 HStack {
@@ -159,9 +162,9 @@ struct ReviewCardView2: View {
                                             .font(.title3)
                                         Text("认识").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .body))
                                     } .foregroundColor(correctWord ? Color(.systemGreen) : Color(.systemGray))
-                                    .disabled(correctWord ? false : true)
+                                    
                                 }
-                            })
+                            }).disabled(correctWord ? false : true)
                         }
                     }
                     if(afterUnknown){
@@ -170,7 +173,7 @@ struct ReviewCardView2: View {
                             Button(action: {
                                 self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                                 self.afterUnknown = false
-                                self.learnWordVM.nextCard_Review(item: self.learningWordItem)
+                                
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)

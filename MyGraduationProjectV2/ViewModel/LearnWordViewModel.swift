@@ -594,6 +594,7 @@ class LearnWordViewModel: ObservableObject{
         }else{
             // 没有完成两次认识，就继续添加到队列中
             self.todayReviewWordList.append(item)
+            self.showItems(list:self.todayReviewWordList)
         }
         saveToPersistentStore()
         print("\(item.wordContent ?? "noContent")复习")

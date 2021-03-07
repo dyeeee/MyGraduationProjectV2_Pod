@@ -18,11 +18,14 @@ struct ReviewCardRouterView: View {
     var cardType = 2
     
     var body: some View {
-        if cardType == 1 {
+        ZStack{
+            if learningWordItem.todayReviewCount == 0 {
             ReviewCardView(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
-        }else if cardType == 2{
+        }else if learningWordItem.todayReviewCount == 1{
             ReviewCardView2(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
-        }
+        }}.onAppear(perform: {
+            
+        })
     }
 }
 
