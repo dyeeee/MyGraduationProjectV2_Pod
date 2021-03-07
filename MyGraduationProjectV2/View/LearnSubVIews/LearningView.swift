@@ -79,7 +79,7 @@ struct LearningView: View {
             }
             //今日复习进度条
             
-            //新词+学习卡片
+            //新词
             ZStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -102,7 +102,7 @@ struct LearningView: View {
                 //复习的单词
                 ForEach(self.learnWordVM.todayReviewWordList.reversed(), id: \.self) {
                     wordItem in
-                    ReviewCardView(learningWordItem: wordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
+                    ReviewCardRouterView(learningWordItem: wordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
                 }.zIndex(2)
                 
                 //新学的单词

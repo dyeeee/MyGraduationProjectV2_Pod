@@ -12,6 +12,7 @@ struct WordExampleSentencesView: View {
     @State var wordExampleSentences:String = "After the encirclement of the German 9th Flak Division at Stalingrad it was the only Axis AA defence unit in the area.<br>在德国第9高炮师陷入斯大林格勒的包围圈后，罗马尼亚防空部队成为轴心国在该地区唯一的防空部队了。<br>Oh, and I should also mention that this mouse is said to last around nine months on two AA batteries.<br>噢，我应该还告诉你，这个鼠标用两节AA电池可以利用差不多九个月。<br>Hammering on this topic reminds me how I once sent a patient to AA who told me that those meetings ruined him as an alcoholic.<br>谈这个话题时，我想起了我送一个病人去匿名戒酒者协会时，他说这个聚会差点把他当酗酒者给毁了。"
     var maxLine = 3
     @State var showCH:Bool = true
+    var color = Color(.systemBlue)
     
     
     
@@ -92,7 +93,7 @@ struct WordExampleSentencesView: View {
                                                     .stroke())
                                     }.foregroundColor(Color("WordSentencesColor"))
                                     .offset(x: 0, y: 5)
-                                    HighlightPartlyView(fullString: self.dealExampleSentences_EN(str: self.wordExampleSentences)[num], wordContent: self.wordContent)
+                                    HighlightPartlyView(fullString: self.dealExampleSentences_EN(str: self.wordExampleSentences)[num], wordContent: self.wordContent,color: color)
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
 //                            ZStack {

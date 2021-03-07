@@ -1,15 +1,15 @@
 //
-//  ReviewCardView.swift
-//  MyStudyCard
+//  ReviewCard2.swift
+//  MyGraduationProjectV2
 //
-//  Created by YES on 2021/1/5.
+//  Created by YES on 2021/3/7.
 //
 
 import SwiftUI
 
 
 //一张复习卡片
-struct ReviewCardView: View {
+struct ReviewCardView2: View {
     @StateObject var learningWordItem:LearningWordItem
     @StateObject var learnWordVM: LearnWordViewModel
     @StateObject var wordVM:WordViewModel
@@ -17,6 +17,8 @@ struct ReviewCardView: View {
     @State var afterUnknown:Bool = false
     @Binding var todayReviewCount:Int  //绑定外部视图的今日进度统计
     
+    @State var text = ""
+    @State var correctWord = false
     
     var body: some View {
         //        if showThisCard {
@@ -44,18 +46,38 @@ struct ReviewCardView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.clear)
-                            .overlay(Rectangle().frame(height:6)
-                                        .foregroundColor(Color.blue.opacity(0.8))
-                                        .offset(x:0,y:12))
+//                            .overlay(Rectangle().frame(height:6)
+//                                        .foregroundColor(Color.blue.opacity(0.8))
+//                                        .offset(x:0,y:18))
                     }.overlay(
-                        Text(self.learningWordItem.wordContent ?? "noContent")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
+//                        Text(self.learningWordItem.wordContent ?? "noContent")
+//                            .font(.largeTitle)
+//                            .fontWeight(.bold)
+                        TextField("Input", text: $text)
+                            .autocapitalization(.none)
+                            .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .onChange(of: text, perform: { text in
+                                if text == self.learningWordItem.wordContent{
+                                    correctWord = true
+                                }else{
+                                    correctWord = false
+                                }
+                            })
                     )
                     .padding([.top],10)
                     
                     WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 20)
                         .padding(.top, -5)
+                    Divider()
+                    
+                    VStack(alignment:.leading){
+
+                        HStack {
+                            WordTranslationView(wordTranslastion: self.learningWordItem.sourceWord?.translation ?? "no Trans", wordDefinition: self.learningWordItem.sourceWord?.definition ?? "no Def")
+                            Spacer()
+                        }
+                    }.padding([.leading,.trailing],30)
                     
                     Divider()
                     
@@ -64,13 +86,22 @@ struct ReviewCardView: View {
                             .font(.callout)
                             .foregroundColor(Color("WordSentencesColor"))
                         
-                        WordExampleSentencesView(wordContent: self.learningWordItem.wordContent!, wordExampleSentences: self.learningWordItem.sourceWord?.exampleSentences ?? "noEXP",maxLine:2,showCH:false)
+                        WordExampleSentencesView(wordContent: self.learningWordItem.wordContent!, wordExampleSentences: self.learningWordItem.sourceWord?.exampleSentences ?? "noEXP",maxLine:1,showCH:true,color: Color(.clear))
                     }.padding([.leading,.trailing],30)
+                    
+                    Spacer()
+                    
+                    
                 }
                 
                 
                 
                 Spacer()
+                VStack(alignment:.leading){
+                    Text("输入正确的单词")
+                        .font(.callout)
+                        .foregroundColor(Color("WordSentencesColor"))
+                }.padding([.leading,.trailing],30)
                 Divider()
                 // 底部按钮
                 HStack {
@@ -127,7 +158,8 @@ struct ReviewCardView: View {
                                             .renderingMode(.template)
                                             .font(.title3)
                                         Text("认识").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .body))
-                                    } .foregroundColor(Color(.systemGreen))
+                                    } .foregroundColor(correctWord ? Color(.systemGreen) : Color(.systemGray))
+                                    .disabled(correctWord ? false : true)
                                 }
                             })
                         }
@@ -138,6 +170,7 @@ struct ReviewCardView: View {
                             Button(action: {
                                 self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                                 self.afterUnknown = false
+                                self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -173,35 +206,7 @@ struct ReviewCardView: View {
 }
 
 
-struct todayReviewCountView: View {
-    var reviewCount:Int16
-    
-    var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 5.0, style: .continuous)
-                .fill(Color(.systemGray4))
-                .opacity(0.3)
-                .frame(width: 90, height: 20, alignment: .center)
-            
-            
-            HStack(spacing:3) {
-                ForEach(0..<2,id:\.self){
-                    num in
-                    RoundedRectangle(cornerRadius: 5.0, style: .continuous)
-                        .fill(num < reviewCount ? Color(.systemGreen) : Color(.systemGray3))
-                        .frame(width: 35, height: 10, alignment: .center)
-                }
-                
-            }
-            //Text("\(reviewCount)")
-            
-            
-        }
-        
-    }
-}
-
-struct ReviewCardView_Previews: PreviewProvider {
+struct ReviewCardView2_Previews: PreviewProvider {
     static var previews: some View {
         let wordItem = WordItem(context: PersistenceController.preview.container.viewContext)
         wordItem.wordID = 24543
@@ -247,7 +252,7 @@ struct ReviewCardView_Previews: PreviewProvider {
                 }
                 
                 ZStack {
-                    ReviewCardView(learningWordItem: learnWord, learnWordVM: LearnWordViewModel(), wordVM: WordViewModel(),afterUnknown: false, todayReviewCount: .constant(0))
+                    ReviewCardView2(learningWordItem: learnWord, learnWordVM: LearnWordViewModel(), wordVM: WordViewModel(),afterUnknown: false, todayReviewCount: .constant(0))
                         //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
                         .overlay(
                             RoundedRectangle(cornerRadius: 25.0, style: .continuous)

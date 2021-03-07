@@ -555,22 +555,24 @@ class LearnWordViewModel: ObservableObject{
         self.todayNewWordList.remove(at: 0)
         print("新词\(item.wordContent ?? "noContent")学习完成")
         item.wordStatus = "learning"
-        item.isSynced = false
+        item.isSynced = false  //需要同步
         saveToPersistentStore()
         self.showItems(list:self.todayNewWordList)
         
         //最后再来加载复习的单词页面，优化性能表现
         //复习的词也可以分批加载处理，后续再优化（先获取完整列表，再分批载入视图中）
         if todayNewWordList.count == 2 {
-            DispatchQueue.main.asyncAfter(deadline:DispatchTime.now() + 0.1) {
-                self.getTodayReviewWordItems(learnDayCount: 1)
+            DispatchQueue.main.asyncAfter(deadline:DispatchTime.now() + 0.1) { [self] in
+                self.getTodayReviewWordItems(learnDayCount: self.UD_learnDayCount)
             }
         }
     }
     
     func nextCard_Review(item:LearningWordItem) {
+        //移除这个单词
         self.todayReviewWordList.remove(at: 0)
         item.isSynced = false
+        //todayReviewCount 记录每次学习是否认识
         if item.todayReviewCount == 2{
             item.reviewTimes = item.reviewTimes + 1
             //艾宾浩斯曲线设置学习日期

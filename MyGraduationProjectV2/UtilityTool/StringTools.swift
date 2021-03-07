@@ -16,10 +16,10 @@ public func dealTrans(_ rawTrans:String) -> String {
     
     
     
-    let pattern2 = "n(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+    let pattern2 = "\n(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
     let regex2 = try! Regex(pattern2)
     //替换所有匹配项
-    let out2 = regex2.replacingMatches(in: out1, with: "n[$1.] ")
+    let out2 = regex2.replacingMatches(in: out1, with: "\n[$1.] ")
     
     //        //输出结果
     //        print("原始的字符串：", rawTrans)
