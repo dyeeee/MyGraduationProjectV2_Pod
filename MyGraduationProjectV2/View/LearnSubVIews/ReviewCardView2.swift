@@ -68,7 +68,18 @@ struct ReviewCardView2: View {
                                 .padding([.top],10)
                                 
                                 Spacer()
-                                Button(action: {}, label: {
+                                Button(action: {
+                                    self.learningWordItem.todayReviewCount = 2
+                                    self.learningWordItem.reviewTimes = -1
+                                    
+                                    self.learnWordVM.nextCard_Review(item: self.learningWordItem)
+                                    
+                                    if self.learningWordItem.todayReviewCount == 2{
+                                        //绑定的外部页面（进度）次数统计+1
+                                        self.todayReviewCount =  self.todayReviewCount + 1
+                                        
+                                    }
+                                }, label: {
                                     VStack {
                                         Text("已掌握")
                                             .font(.callout)

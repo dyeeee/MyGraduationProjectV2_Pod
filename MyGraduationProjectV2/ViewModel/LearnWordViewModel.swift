@@ -118,6 +118,10 @@ class LearnWordViewModel: ObservableObject{
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
         let pre =  NSPredicate(format: "nextReviewDay == %@", "\(learnDayCount)")
+//        let pre2 =  NSPredicate(format: "wordStatus != known")
+//
+//        let combinePre = NSCompoundPredicate(type: .and, subpredicates: [pre1, pre2])
+
         //fetchRequest.fetchLimit = 6
         fetchRequest.predicate = pre
         fetchRequest.sortDescriptors = [sort]
@@ -551,10 +555,10 @@ class LearnWordViewModel: ObservableObject{
     }
     
     
-    func nextCard_Learn(item:LearningWordItem) {
+    func nextCard_Learn(item:LearningWordItem,wordStatus:String = "learning") {
         self.todayNewWordList.remove(at: 0)
         print("新词\(item.wordContent ?? "noContent")学习完成")
-        item.wordStatus = "learning"
+        item.wordStatus = wordStatus
         item.isSynced = false  //需要同步
         saveToPersistentStore()
         self.showItems(list:self.todayNewWordList)

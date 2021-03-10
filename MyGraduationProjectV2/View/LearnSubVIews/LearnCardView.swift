@@ -12,7 +12,7 @@ struct LearnCardView: View {
     @StateObject var learnWordVM: LearnWordViewModel
     @StateObject var wordVM:WordViewModel
     
-    @Binding var todayNewWord:Int
+    @Binding var todayNewCount:Int
     
     var body: some View {
         ZStack(alignment:.center) {
@@ -52,16 +52,20 @@ struct LearnCardView: View {
                                         .fontWeight(.bold)
                             )
                             Spacer()
-                            Button(action: {}, label: {
-                                VStack {
-                                    Text("已掌握")
-                                        .font(.callout)
-                                        .padding(2)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 2.0)
-                                                .stroke())
-                                }.foregroundColor(Color("CalendarOnColor"))
-                            })
+//                            Button(action: {
+//                                self.learningWordItem.nextReviewDay = -1
+//                                self.learnWordVM.nextCard_Learn(item: self.learningWordItem,wordStatus: "known")
+//                                self.todayNewCount = self.todayNewCount + 1
+//                            }, label: {
+//                                VStack {
+//                                    Text("已掌握")
+//                                        .font(.callout)
+//                                        .padding(2)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 2.0)
+//                                                .stroke())
+//                                }.foregroundColor(Color("CalendarOnColor"))
+//                            })
                         }
                         
                         WordPhoneticView(phonetic_EN: self.learningWordItem.sourceWord?.phonetic_EN ?? "no phonetic_EN", phonetic_US: self.learningWordItem.sourceWord?.phonetic_US ?? "no phonetic_US",fontSize: 18)
@@ -101,7 +105,7 @@ struct LearnCardView: View {
                                 //Spacer()
                                 Button(action: {
                                     self.learnWordVM.nextCard_Learn(item: self.learningWordItem)
-                                    self.todayNewWord = self.todayNewWord + 1
+                                    self.todayNewCount = self.todayNewCount + 1
                                 }, label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -177,7 +181,7 @@ struct LearnCardView_Previews: PreviewProvider {
                 }
                 
                 ZStack {
-                    LearnCardView(learningWordItem: learnWord, learnWordVM: LearnWordViewModel(), wordVM: WordViewModel(), todayNewWord: .constant(0))
+                    LearnCardView(learningWordItem: learnWord, learnWordVM: LearnWordViewModel(), wordVM: WordViewModel(), todayNewCount: .constant(0))
                     //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25.0, style: .continuous)

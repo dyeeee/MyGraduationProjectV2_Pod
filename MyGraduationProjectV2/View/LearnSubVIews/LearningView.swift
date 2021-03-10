@@ -108,7 +108,7 @@ struct LearningView: View {
                 //新学的单词
                 ForEach(self.learnWordVM.todayNewWordList.reversed(), id: \.self) {
                     wordItem in
-                    LearnCardView(learningWordItem: wordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayNewWord: self.$todayNewCount)
+                    LearnCardView(learningWordItem: wordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayNewCount: self.$todayNewCount)
                 }.zIndex(3)
             }
             //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
