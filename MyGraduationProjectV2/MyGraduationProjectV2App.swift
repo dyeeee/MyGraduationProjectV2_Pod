@@ -27,6 +27,7 @@ struct MyGraduationProjectV2App: App {
         
         //设置今天是学习的第几天
         setLearnDay()
+        
     }
     
     var body: some Scene {

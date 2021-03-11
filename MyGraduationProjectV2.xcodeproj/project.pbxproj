@@ -75,6 +75,23 @@
 		D0B59E8125CC2AF200639AE3 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */; };
 		D0B59E8425CC2AF900639AE3 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8325CC2AF900639AE3 /* LogInView.swift */; };
 		D0B59E8725CC2B0A00639AE3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8625CC2B0A00639AE3 /* UserViewModel.swift */; };
+		D0BB802225FA3E00004E5406 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0BB7FC225FA2085004E5406 /* WidgetKit.framework */; };
+		D0BB802325FA3E00004E5406 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0BB7FC425FA2085004E5406 /* SwiftUI.framework */; };
+		D0BB802625FA3E00004E5406 /* MyWordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB802525FA3E00004E5406 /* MyWordWidget.swift */; };
+		D0BB802925FA3E01004E5406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BB802825FA3E01004E5406 /* Assets.xcassets */; };
+		D0BB802B25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */; };
+		D0BB802C25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */; };
+		D0BB802F25FA3E01004E5406 /* MyWordWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BB802125FA3E00004E5406 /* MyWordWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0BB804025FA4E6F004E5406 /* WidgetWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */; };
+		D0BB804525FA5279004E5406 /* WidgetWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */; };
+		D0BB804E25FA5DA2004E5406 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5AFFD25C80982004ACB65 /* Persistence.swift */; };
+		D0BB805125FA5EE0004E5406 /* MyGraduationProjectV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F5AFFF25C80982004ACB65 /* MyGraduationProjectV2.xcdatamodeld */; };
+		D0BB806A25FA617E004E5406 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB806925FA617E004E5406 /* WidgetViewModel.swift */; };
+		D0BB808325FA6752004E5406 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB806925FA617E004E5406 /* WidgetViewModel.swift */; };
+		D0BB808825FA67E4004E5406 /* WordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244B25D11FD400A49D38 /* WordItem+CoreDataClass.swift */; };
+		D0BB808B25FA67E7004E5406 /* WordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244C25D11FD400A49D38 /* WordItem+CoreDataProperties.swift */; };
+		D0BB808E25FA67F0004E5406 /* LearningWordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244D25D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift */; };
+		D0BB809125FA67F3004E5406 /* LearningWordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244E25D11FD400A49D38 /* LearningWordItem+CoreDataProperties.swift */; };
 		D0BC0F9C25E13DAD00FC47D9 /* ToDoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0F9B25E13DA600FC47D9 /* ToDoItem+CoreDataProperties.swift */; };
 		D0BC0F9D25E13DAD00FC47D9 /* ToDoItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0F9A25E13DA600FC47D9 /* ToDoItem+CoreDataClass.swift */; };
 		D0BC0FA025E13DC600FC47D9 /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0F9F25E13DC600FC47D9 /* ToDoViewModel.swift */; };
@@ -99,6 +116,30 @@
 		D0F5B02B25C81014004ACB65 /* Common_Wrods_Small.csv in Resources */ = {isa = PBXBuildFile; fileRef = D0F5B02A25C81014004ACB65 /* Common_Wrods_Small.csv */; };
 		D0F5B02E25C8101F004ACB65 /* IELTS_Words_wordonly.csv in Resources */ = {isa = PBXBuildFile; fileRef = D0F5B02D25C8101F004ACB65 /* IELTS_Words_wordonly.csv */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0BB802D25FA3E01004E5406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0F5AFE925C80982004ACB65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0BB802025FA3E00004E5406;
+			remoteInfo = MyWordWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0BB7FD525FA2086004E5406 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D0BB802F25FA3E01004E5406 /* MyWordWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		555222970D293782C86D960D /* Pods_MyGraduationProjectV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGraduationProjectV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +211,18 @@
 		D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		D0B59E8325CC2AF900639AE3 /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		D0B59E8625CC2B0A00639AE3 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D0BB7FC225FA2085004E5406 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D0BB7FC425FA2085004E5406 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D0BB801525FA3DB1004E5406 /* MyWidgetExtension copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MyWidgetExtension copy-Info.plist"; path = "/Users/yes/Documents/毕业设计/MyGraduationProjectV2/MyWidgetExtension copy-Info.plist"; sourceTree = "<absolute>"; };
+		D0BB802125FA3E00004E5406 /* MyWordWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MyWordWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BB802525FA3E00004E5406 /* MyWordWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWordWidget.swift; sourceTree = "<group>"; };
+		D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MyWordWidget.intentdefinition; sourceTree = "<group>"; };
+		D0BB802825FA3E01004E5406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0BB802A25FA3E01004E5406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWordView.swift; sourceTree = "<group>"; };
+		D0BB804B25FA5513004E5406 /* MyWordWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyWordWidgetExtension.entitlements; sourceTree = "<group>"; };
+		D0BB805B25FA5F7A004E5406 /* MyGraduationProjectV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyGraduationProjectV2.entitlements; sourceTree = "<group>"; };
+		D0BB806925FA617E004E5406 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
 		D0BC0F9A25E13DA600FC47D9 /* ToDoItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D0BC0F9B25E13DA600FC47D9 /* ToDoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D0BC0F9F25E13DC600FC47D9 /* ToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
@@ -200,6 +253,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D0BB801E25FA3E00004E5406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0BB802325FA3E00004E5406 /* SwiftUI.framework in Frameworks */,
+				D0BB802225FA3E00004E5406 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0F5AFEE25C80982004ACB65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,6 +419,19 @@
 			path = CalendarView;
 			sourceTree = "<group>";
 		};
+		D0BB802425FA3E00004E5406 /* MyWordWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D0BB806925FA617E004E5406 /* WidgetViewModel.swift */,
+				D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */,
+				D0BB802525FA3E00004E5406 /* MyWordWidget.swift */,
+				D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */,
+				D0BB802825FA3E01004E5406 /* Assets.xcassets */,
+				D0BB802A25FA3E01004E5406 /* Info.plist */,
+			);
+			path = MyWordWidget;
+			sourceTree = "<group>";
+		};
 		D0BC0F9125E13C0000FC47D9 /* ToDoViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,11 +444,14 @@
 			isa = PBXGroup;
 			children = (
 				D0F5AFF325C80982004ACB65 /* MyGraduationProjectV2 */,
+				D0BB804B25FA5513004E5406 /* MyWordWidgetExtension.entitlements */,
+				D0BB802425FA3E00004E5406 /* MyWordWidget */,
 				D0F5AFF225C80982004ACB65 /* Products */,
 				D0F5B00925C80A75004ACB65 /* README.md */,
 				D069133625D3E34A008E1725 /* Images */,
 				8BBF8E2B1D4D5E38BBD9E5EA /* Pods */,
 				F5CFBD470A9E24A1523079FA /* Frameworks */,
+				D0BB801525FA3DB1004E5406 /* MyWidgetExtension copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -381,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				D0F5AFF125C80982004ACB65 /* MyGraduationProjectV2.app */,
+				D0BB802125FA3E00004E5406 /* MyWordWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -388,6 +467,7 @@
 		D0F5AFF325C80982004ACB65 /* MyGraduationProjectV2 */ = {
 			isa = PBXGroup;
 			children = (
+				D0BB805B25FA5F7A004E5406 /* MyGraduationProjectV2.entitlements */,
 				D0F5AFF425C80982004ACB65 /* MyGraduationProjectV2App.swift */,
 				D0F5B00C25C80DB7004ACB65 /* HomeTabView.swift */,
 				D0F5B00F25C80E30004ACB65 /* Model */,
@@ -501,6 +581,8 @@
 			isa = PBXGroup;
 			children = (
 				555222970D293782C86D960D /* Pods_MyGraduationProjectV2.framework */,
+				D0BB7FC225FA2085004E5406 /* WidgetKit.framework */,
+				D0BB7FC425FA2085004E5406 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -508,6 +590,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D0BB802025FA3E00004E5406 /* MyWordWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0BB803025FA3E01004E5406 /* Build configuration list for PBXNativeTarget "MyWordWidgetExtension" */;
+			buildPhases = (
+				D0BB801D25FA3E00004E5406 /* Sources */,
+				D0BB801E25FA3E00004E5406 /* Frameworks */,
+				D0BB801F25FA3E00004E5406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyWordWidgetExtension;
+			productName = MyWordWidgetExtension;
+			productReference = D0BB802125FA3E00004E5406 /* MyWordWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D0F5AFF025C80982004ACB65 /* MyGraduationProjectV2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0F5B00525C80982004ACB65 /* Build configuration list for PBXNativeTarget "MyGraduationProjectV2" */;
@@ -517,10 +616,12 @@
 				D0F5AFEE25C80982004ACB65 /* Frameworks */,
 				D0F5AFEF25C80982004ACB65 /* Resources */,
 				AAC3D3441F64C430135E571B /* [CP] Embed Pods Frameworks */,
+				D0BB7FD525FA2086004E5406 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D0BB802E25FA3E01004E5406 /* PBXTargetDependency */,
 			);
 			name = MyGraduationProjectV2;
 			productName = MyGraduationProjectV2;
@@ -536,6 +637,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					D0BB802025FA3E00004E5406 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					D0F5AFF025C80982004ACB65 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -555,11 +659,20 @@
 			projectRoot = "";
 			targets = (
 				D0F5AFF025C80982004ACB65 /* MyGraduationProjectV2 */,
+				D0BB802025FA3E00004E5406 /* MyWordWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D0BB801F25FA3E00004E5406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0BB802925FA3E01004E5406 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0F5AFEF25C80982004ACB65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -618,6 +731,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D0BB801D25FA3E00004E5406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0BB809125FA67F3004E5406 /* LearningWordItem+CoreDataProperties.swift in Sources */,
+				D0BB802B25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */,
+				D0BB804025FA4E6F004E5406 /* WidgetWordView.swift in Sources */,
+				D0BB802625FA3E00004E5406 /* MyWordWidget.swift in Sources */,
+				D0BB808E25FA67F0004E5406 /* LearningWordItem+CoreDataClass.swift in Sources */,
+				D0BB808325FA6752004E5406 /* WidgetViewModel.swift in Sources */,
+				D0BB804E25FA5DA2004E5406 /* Persistence.swift in Sources */,
+				D0BB805125FA5EE0004E5406 /* MyGraduationProjectV2.xcdatamodeld in Sources */,
+				D0BB808B25FA67E7004E5406 /* WordItem+CoreDataProperties.swift in Sources */,
+				D0BB808825FA67E4004E5406 /* WordItem+CoreDataClass.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0F5AFED25C80982004ACB65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -657,10 +787,12 @@
 				D01D7F4625D032CA005EFE71 /* HomeView.swift in Sources */,
 				D069132625D39370008E1725 /* BarChartCell.swift in Sources */,
 				D0F5B01925C80F5A004ACB65 /* RegexTools.swift in Sources */,
+				D0BB802C25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */,
 				D01D7F3825CFD48C005EFE71 /* LearnCardView.swift in Sources */,
 				D0F5B00125C80982004ACB65 /* MyGraduationProjectV2.xcdatamodeld in Sources */,
 				D069132425D39370008E1725 /* BarChartRow.swift in Sources */,
 				D069134825D40CD0008E1725 /* Day.swift in Sources */,
+				D0BB806A25FA617E004E5406 /* WidgetViewModel.swift in Sources */,
 				D01D7F3925CFD48C005EFE71 /* ReviewCardView.swift in Sources */,
 				D069132F25D39370008E1725 /* LineChartView.swift in Sources */,
 				D0BC0FA325E145BE00FC47D9 /* ToDoListView.swift in Sources */,
@@ -673,6 +805,7 @@
 				D00FFA2125CE52EF001B0311 /* WordTranslationView.swift in Sources */,
 				D0B59E8425CC2AF900639AE3 /* LogInView.swift in Sources */,
 				D0E0299F25DFAC1500273151 /* BookChangeView.swift in Sources */,
+				D0BB804525FA5279004E5406 /* WidgetWordView.swift in Sources */,
 				D069135425D40CEC008E1725 /* MonthView.swift in Sources */,
 				D0F5B02525C80FC9004ACB65 /* UserDefaultTools.swift in Sources */,
 				D034634E25C84BAE0088AB3D /* DarkModeSettingView.swift in Sources */,
@@ -711,7 +844,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D0BB802E25FA3E01004E5406 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0BB802025FA3E00004E5406 /* MyWordWidgetExtension */;
+			targetProxy = D0BB802D25FA3E01004E5406 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D0BB803125FA3E01004E5406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MyWordWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F8JMQ7GKF7;
+				INFOPLIST_FILE = MyWordWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2.MyWordWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0BB803225FA3E01004E5406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MyWordWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F8JMQ7GKF7;
+				INFOPLIST_FILE = MyWordWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2.MyWordWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D0F5B00325C80982004ACB65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -832,8 +1017,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E47CEB852AF96C3636D9EF4 /* Pods-MyGraduationProjectV2.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyGraduationProjectV2/MyGraduationProjectV2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MyGraduationProjectV2/Preview Content\"";
 				DEVELOPMENT_TEAM = F8JMQ7GKF7;
@@ -855,8 +1042,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE167B15BC30DBC61B06C5AB /* Pods-MyGraduationProjectV2.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyGraduationProjectV2/MyGraduationProjectV2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MyGraduationProjectV2/Preview Content\"";
 				DEVELOPMENT_TEAM = F8JMQ7GKF7;
@@ -877,6 +1066,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D0BB803025FA3E01004E5406 /* Build configuration list for PBXNativeTarget "MyWordWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0BB803125FA3E01004E5406 /* Debug */,
+				D0BB803225FA3E01004E5406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D0F5AFEC25C80982004ACB65 /* Build configuration list for PBXProject "MyGraduationProjectV2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct HomeTabView: View {
     @State var selectedTab: TabSelection = .page1
@@ -63,6 +64,10 @@ struct HomeTabView: View {
                     self.appearanceVM.colorScheme = getStoredScheme()
                     print("----解决自动切换深色模式的onAppear----")
                 })
+                .onAppear(perform: {
+                    WidgetCenter.shared.reloadAllTimelines()
+                    print("----刷新Widget的onAppear----")
+                })
                 .tabItem {
                     Image(systemName: "gearshape.2.fill")
                     Text("设置")
@@ -70,6 +75,7 @@ struct HomeTabView: View {
                 .tag(TabSelection.page5)
         }
         .preferredColorScheme(self.appearanceVM.colorScheme)
+        
         //.accentColor(.red)
         //.navigationBarColor(.systemGroupedBackground)
     }

@@ -31,7 +31,18 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
+        // 新增
+        let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.yes.MyGraduationProjectV2")!
+        let storeURL = containerURL.appendingPathComponent("DataModel.sqlite")
+        let description = NSPersistentStoreDescription(url: storeURL)
+        // 
+        
         container = NSPersistentContainer(name: "MyGraduationProjectV2")
+        
+        // 新增
+        container.persistentStoreDescriptions = [description]
+        //
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
