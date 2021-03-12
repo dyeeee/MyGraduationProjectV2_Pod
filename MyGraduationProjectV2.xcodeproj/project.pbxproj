@@ -34,6 +34,19 @@
 		D034634A25C845560088AB3D /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034634925C845560088AB3D /* PersonalView.swift */; };
 		D034634E25C84BAE0088AB3D /* DarkModeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034634D25C84BAE0088AB3D /* DarkModeSettingView.swift */; };
 		D034635125C85E970088AB3D /* AppearanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034635025C85E970088AB3D /* AppearanceViewModel.swift */; };
+		D04D0CA125FB073B00FC606E /* WidgetWordView_Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D0CA025FB073B00FC606E /* WidgetWordView_Medium.swift */; };
+		D04D0CA225FB073B00FC606E /* WidgetWordView_Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D0CA025FB073B00FC606E /* WidgetWordView_Medium.swift */; };
+		D04D0CA725FB0C9500FC606E /* RegexTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5B01825C80F5A004ACB65 /* RegexTools.swift */; };
+		D04D0CAB25FB1EBD00FC606E /* WidgetWordVIew_Large.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D0CAA25FB1EBD00FC606E /* WidgetWordVIew_Large.swift */; };
+		D04D0CAC25FB1EBD00FC606E /* WidgetWordVIew_Large.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D0CAA25FB1EBD00FC606E /* WidgetWordVIew_Large.swift */; };
+		D04D0CAF25FB28BC00FC606E /* WordExampleSentencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FFA1225CE52EF001B0311 /* WordExampleSentencesView.swift */; };
+		D04D0CB225FB28F300FC606E /* HighlightPartly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FFA1525CE52EF001B0311 /* HighlightPartly.swift */; };
+		D04D0CB825FB39D100FC606E /* widget-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB525FB39D100FC606E /* widget-3.png */; };
+		D04D0CB925FB39D100FC606E /* widget-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB525FB39D100FC606E /* widget-3.png */; };
+		D04D0CBA25FB39D100FC606E /* widget-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB625FB39D100FC606E /* widget-2.png */; };
+		D04D0CBB25FB39D100FC606E /* widget-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB625FB39D100FC606E /* widget-2.png */; };
+		D04D0CBC25FB39D100FC606E /* widget-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB725FB39D100FC606E /* widget-1.png */; };
+		D04D0CBD25FB39D100FC606E /* widget-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CB725FB39D100FC606E /* widget-1.png */; };
 		D069132325D39370008E1725 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131025D3936F008E1725 /* BarChartView.swift */; };
 		D069132425D39370008E1725 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131125D3936F008E1725 /* BarChartRow.swift */; };
 		D069132525D39370008E1725 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131225D3936F008E1725 /* LabelView.swift */; };
@@ -82,8 +95,8 @@
 		D0BB802B25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */; };
 		D0BB802C25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */; };
 		D0BB802F25FA3E01004E5406 /* MyWordWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BB802125FA3E00004E5406 /* MyWordWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D0BB804025FA4E6F004E5406 /* WidgetWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */; };
-		D0BB804525FA5279004E5406 /* WidgetWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */; };
+		D0BB804025FA4E6F004E5406 /* WidgetWordView_Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView_Small.swift */; };
+		D0BB804525FA5279004E5406 /* WidgetWordView_Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB803E25FA4E6F004E5406 /* WidgetWordView_Small.swift */; };
 		D0BB804E25FA5DA2004E5406 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5AFFD25C80982004ACB65 /* Persistence.swift */; };
 		D0BB805125FA5EE0004E5406 /* MyGraduationProjectV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F5AFFF25C80982004ACB65 /* MyGraduationProjectV2.xcdatamodeld */; };
 		D0BB806A25FA617E004E5406 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB806925FA617E004E5406 /* WidgetViewModel.swift */; };
@@ -170,6 +183,11 @@
 		D034634925C845560088AB3D /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
 		D034634D25C84BAE0088AB3D /* DarkModeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSettingView.swift; sourceTree = "<group>"; };
 		D034635025C85E970088AB3D /* AppearanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewModel.swift; sourceTree = "<group>"; };
+		D04D0CA025FB073B00FC606E /* WidgetWordView_Medium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWordView_Medium.swift; sourceTree = "<group>"; };
+		D04D0CAA25FB1EBD00FC606E /* WidgetWordVIew_Large.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWordVIew_Large.swift; sourceTree = "<group>"; };
+		D04D0CB525FB39D100FC606E /* widget-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widget-3.png"; sourceTree = "<group>"; };
+		D04D0CB625FB39D100FC606E /* widget-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widget-2.png"; sourceTree = "<group>"; };
+		D04D0CB725FB39D100FC606E /* widget-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widget-1.png"; sourceTree = "<group>"; };
 		D069131025D3936F008E1725 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D069131125D3936F008E1725 /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		D069131225D3936F008E1725 /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
@@ -219,7 +237,7 @@
 		D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MyWordWidget.intentdefinition; sourceTree = "<group>"; };
 		D0BB802825FA3E01004E5406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0BB802A25FA3E01004E5406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWordView.swift; sourceTree = "<group>"; };
+		D0BB803E25FA4E6F004E5406 /* WidgetWordView_Small.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWordView_Small.swift; sourceTree = "<group>"; };
 		D0BB804B25FA5513004E5406 /* MyWordWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyWordWidgetExtension.entitlements; sourceTree = "<group>"; };
 		D0BB805B25FA5F7A004E5406 /* MyGraduationProjectV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyGraduationProjectV2.entitlements; sourceTree = "<group>"; };
 		D0BB806925FA617E004E5406 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
@@ -394,6 +412,9 @@
 			isa = PBXGroup;
 			children = (
 				D069133825D3E3E9008E1725 /* home_light.jpg */,
+				D04D0CB725FB39D100FC606E /* widget-1.png */,
+				D04D0CB625FB39D100FC606E /* widget-2.png */,
+				D04D0CB525FB39D100FC606E /* widget-3.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -423,7 +444,9 @@
 			isa = PBXGroup;
 			children = (
 				D0BB806925FA617E004E5406 /* WidgetViewModel.swift */,
-				D0BB803E25FA4E6F004E5406 /* WidgetWordView.swift */,
+				D0BB803E25FA4E6F004E5406 /* WidgetWordView_Small.swift */,
+				D04D0CA025FB073B00FC606E /* WidgetWordView_Medium.swift */,
+				D04D0CAA25FB1EBD00FC606E /* WidgetWordVIew_Large.swift */,
 				D0BB802525FA3E00004E5406 /* MyWordWidget.swift */,
 				D0BB802725FA3E00004E5406 /* MyWordWidget.intentdefinition */,
 				D0BB802825FA3E01004E5406 /* Assets.xcassets */,
@@ -670,6 +693,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0BB802925FA3E01004E5406 /* Assets.xcassets in Resources */,
+				D04D0CBD25FB39D100FC606E /* widget-1.png in Resources */,
+				D04D0CBB25FB39D100FC606E /* widget-2.png in Resources */,
+				D04D0CB925FB39D100FC606E /* widget-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,11 +703,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04D0CB825FB39D100FC606E /* widget-3.png in Resources */,
 				D0F5AFFC25C80982004ACB65 /* Preview Assets.xcassets in Resources */,
+				D04D0CBA25FB39D100FC606E /* widget-2.png in Resources */,
 				D0F5B02E25C8101F004ACB65 /* IELTS_Words_wordonly.csv in Resources */,
 				D0F5AFF925C80982004ACB65 /* Assets.xcassets in Resources */,
 				D0F5B02825C8100F004ACB65 /* Common_Words_3Sentences.csv in Resources */,
 				D0F5B02B25C81014004ACB65 /* Common_Wrods_Small.csv in Resources */,
+				D04D0CBC25FB39D100FC606E /* widget-1.png in Resources */,
 				D069133925D3E3E9008E1725 /* home_light.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,14 +765,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0BB809125FA67F3004E5406 /* LearningWordItem+CoreDataProperties.swift in Sources */,
+				D04D0CA225FB073B00FC606E /* WidgetWordView_Medium.swift in Sources */,
 				D0BB802B25FA3E01004E5406 /* MyWordWidget.intentdefinition in Sources */,
-				D0BB804025FA4E6F004E5406 /* WidgetWordView.swift in Sources */,
+				D0BB804025FA4E6F004E5406 /* WidgetWordView_Small.swift in Sources */,
+				D04D0CB225FB28F300FC606E /* HighlightPartly.swift in Sources */,
+				D04D0CAC25FB1EBD00FC606E /* WidgetWordVIew_Large.swift in Sources */,
 				D0BB802625FA3E00004E5406 /* MyWordWidget.swift in Sources */,
 				D0BB808E25FA67F0004E5406 /* LearningWordItem+CoreDataClass.swift in Sources */,
 				D0BB808325FA6752004E5406 /* WidgetViewModel.swift in Sources */,
+				D04D0CA725FB0C9500FC606E /* RegexTools.swift in Sources */,
 				D0BB804E25FA5DA2004E5406 /* Persistence.swift in Sources */,
 				D0BB805125FA5EE0004E5406 /* MyGraduationProjectV2.xcdatamodeld in Sources */,
 				D0BB808B25FA67E7004E5406 /* WordItem+CoreDataProperties.swift in Sources */,
+				D04D0CAF25FB28BC00FC606E /* WordExampleSentencesView.swift in Sources */,
 				D0BB808825FA67E4004E5406 /* WordItem+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,6 +787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0BC0FA025E13DC600FC47D9 /* ToDoViewModel.swift in Sources */,
+				D04D0CA125FB073B00FC606E /* WidgetWordView_Medium.swift in Sources */,
 				D0D162DD25F4B40E00B70CE3 /* ReviewCardRouterView.swift in Sources */,
 				D069132825D39370008E1725 /* PieChartRow.swift in Sources */,
 				D034635125C85E970088AB3D /* AppearanceViewModel.swift in Sources */,
@@ -804,8 +839,9 @@
 				D0B59E8125CC2AF200639AE3 /* UserInfoView.swift in Sources */,
 				D00FFA2125CE52EF001B0311 /* WordTranslationView.swift in Sources */,
 				D0B59E8425CC2AF900639AE3 /* LogInView.swift in Sources */,
+				D04D0CAB25FB1EBD00FC606E /* WidgetWordVIew_Large.swift in Sources */,
 				D0E0299F25DFAC1500273151 /* BookChangeView.swift in Sources */,
-				D0BB804525FA5279004E5406 /* WidgetWordView.swift in Sources */,
+				D0BB804525FA5279004E5406 /* WidgetWordView_Small.swift in Sources */,
 				D069135425D40CEC008E1725 /* MonthView.swift in Sources */,
 				D0F5B02525C80FC9004ACB65 /* UserDefaultTools.swift in Sources */,
 				D034634E25C84BAE0088AB3D /* DarkModeSettingView.swift in Sources */,

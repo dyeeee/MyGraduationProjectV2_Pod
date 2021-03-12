@@ -62,3 +62,53 @@ class WidgetWordModel {
         }
     }
 }
+
+
+func dealEN_Widget(_ en:String) -> String {
+    var enString = "/"
+    enString.append(en)
+    enString.append("/")
+    return enString
+}
+
+//a. 抽象的, 深奥的\nn. 摘要, 抽象概念\nvt. 摘要, 提炼, 使抽象化\n[计] 摘录; 摘要; 抽象
+
+public func dealTrans_Widget(_ rawTrans:String) -> String {
+    let pattern1 = "^(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+    let regex1 = try! Regex(pattern1)
+    
+    //只替换第1个匹配项
+    let out1 = regex1.replacingMatches(in: rawTrans, with: "[$1.] ", count: 1)
+    
+    
+    
+    let pattern2 = "n(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+    let regex2 = try! Regex(pattern2)
+    //替换所有匹配项
+    let out2 = regex2.replacingMatches(in: out1, with: "n[$1.] ")
+    
+    //        //输出结果
+    //        print("原始的字符串：", rawTrans)
+    //        print("替换第1个匹配项：", out1)
+    //        print("替换所有匹配项：", out2)
+    
+    let result = out2.replacingOccurrences(of: "\\n", with: "\n")
+    return result
+}
+
+func getTagsList_Widget(str:String,limit:Int = 4) -> [String] {
+    var tagsString = str
+    tagsString = tagsString.replacingOccurrences(of: "zk", with: "中")
+    tagsString = tagsString.replacingOccurrences(of: "gk", with: "高")
+    tagsString = tagsString.replacingOccurrences(of: "cet4", with: "四")
+    tagsString = tagsString.replacingOccurrences(of: "cet6", with: "六")
+    tagsString = tagsString.replacingOccurrences(of: "ky", with: "研")
+    //tagsString = tagsString.replacingOccurrences(of: "toefl", with: "TOL")
+    tagsString = tagsString.uppercased()
+    var tagsList:[String] = tagsString.components(separatedBy: " ")
+    if tagsList.count > limit{
+        tagsList = Array(tagsList.prefix(limit))
+        tagsList.append("...")
+    }
+    return tagsList
+}

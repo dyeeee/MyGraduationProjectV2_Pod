@@ -54,7 +54,7 @@ struct Provider: TimelineProvider {
 
 struct PlaceholderView:View {
     var body: some View{
-        WidgetWordView(widgetWord: widgetData[0])
+        WidgetWordView_Small(widgetWord: widgetData[0])
     }
 }
 
@@ -68,16 +68,18 @@ struct WidgetEntryView:View {
         switch family {
         case .systemSmall:
             ZStack {
-                WidgetWordView(widgetWord: entry.word)
+                WidgetWordView_Small(widgetWord: entry.word)
                 //Text(entry.date, style: .timer)
+            }
+        case .systemMedium:
+            ZStack {
+                WidgetWordView_Medium(widgetWord: entry.word)
             }
         default:
             ZStack {
-                VStack {
-                    WidgetWordView(widgetWord: entry.word)
+                WidgetWordVIew_Large(widgetWord: entry.word)
                     
-                    Text("test")
-                }
+
                 //Text(entry.date, style: .timer)
             }
         }
@@ -98,7 +100,7 @@ struct MyWordWidget: Widget {
         }
         .configurationDisplayName("E-Word")
         .description("添加学习卡片小组件\n随时学习新单词")
-        .supportedFamilies([.systemSmall,.systemMedium])
+        .supportedFamilies([.systemSmall,.systemMedium,.systemLarge])
 
     }
     

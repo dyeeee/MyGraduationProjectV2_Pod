@@ -12,6 +12,14 @@
 
 ## Screenshot
 
+### Widget
+<div align=center>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2/blob/main/Images/widget-3.png" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2/blob/main/Images/widget-2.png" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2/blob/main/Images/widget-1.png" width="240"/>
+</div>
+
+### Main
 <div align=center>
 <img src="https://github.com/dyeeee/MyGraduationProjectV2/blob/main/Images/home_light.jpg" width="240"/>
 </div>

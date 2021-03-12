@@ -111,7 +111,7 @@ struct WordExampleSentencesView: View {
 //                            }
                             }
                                 Divider()
-                            }
+                        }
                         
                     }.font(.callout)
         }
