@@ -17,7 +17,6 @@
 <img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_3.jpg" width="240"/>
 <img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_2.jpg" width="240"/>
 <img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_1.jpg" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/home_light.jpg" width="240"/>
 </div>
 
 ### Main
