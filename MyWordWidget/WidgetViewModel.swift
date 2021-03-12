@@ -28,7 +28,7 @@ struct WidgetWord: Identifiable{
 
 let widgetData = [WidgetWordModel(seed: 0).wordList[0],WidgetWordModel(seed: 1).wordList[1],WidgetWordModel(seed: 2).wordList[2],WidgetWordModel(seed: 3).wordList[3],WidgetWordModel(seed: 4).wordList[4]]
 
-let previewData = [WidgetWord(wordContent: "abstract", phonetic_EN: "'æbstrækt", wordTags:"gk cet4 cet6 ky toefl ielts gre",definition: "v. consider a concept without thinking of a specific example; consider abstractly or theoretically\nv. consider apart from a particular case or instance\nv. give an abstract (of)\na. existing only in the mind; separated from embodiment", translation: "a. 抽象的, 深奥的\nn. 摘要, 抽象概念\nvt. 摘要, 提炼, 使抽象化\n[计] 摘录; 摘要; 抽象", exampleSentences: "Someone once told me a vivid and silly visualization can help people to understand an abstract concept. Let's see if it works. . .<br>曾有人告诉我一个明晰而无聊的可视物能帮助人们理解抽象的理论，让我们来看看当它工作时……<br>Abstract: traditional chinese medicine, known as an ancient medical science is marked by its obscurity and difficulty in terms of theory.")]
+let previewData = [WidgetWord(wordContent: "abstract", phonetic_EN: "'æbstrækt", wordTags:"gk cet4 cet6 ky toefl ielts gre",definition: "v. consider a concept without thinking of a specific example; consider abstractly or theoretically\n[v.] consider apart from a particular case or instance\n[v.] give an abstract (of)\n[a.] existing only in the mind; separated from embodiment", translation: "[a.] 抽象的, 深奥的\n[n.] 摘要, 抽象概念\n[vt.] 摘要, 提炼", exampleSentences: "Someone once told me a vivid and silly visualization can help people to understand an abstract concept. Let's see if it works.<br>曾经有人告诉我，生动而简单的可视化可以帮助人们理解抽象概念。让我们看看它是否有效。")]
 
 class WidgetWordModel {
     var wordList:[WidgetWord] = []
