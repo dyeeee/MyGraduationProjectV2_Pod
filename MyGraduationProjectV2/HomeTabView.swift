@@ -93,5 +93,7 @@ enum TabSelection {
 struct HomeTabView_Previews: PreviewProvider {
     static var previews: some View {
         HomeTabView()
+            .environment(\.locale, .init(identifier: "zh"))
+        //zh中文 en英文
     }
 }

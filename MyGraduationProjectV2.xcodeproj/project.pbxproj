@@ -47,6 +47,8 @@
 		D04D0CD125FB3BA000FC606E /* widget_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CCC25FB3BA000FC606E /* widget_3.jpg */; };
 		D04D0CD225FB3BA000FC606E /* widget_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CCD25FB3BA000FC606E /* widget_1.jpg */; };
 		D04D0CD325FB3BA000FC606E /* widget_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CCD25FB3BA000FC606E /* widget_1.jpg */; };
+		D04D0CE625FBA64900FC606E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CE925FBA64900FC606E /* Localizable.strings */; };
+		D04D0CE725FBA64900FC606E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04D0CE925FBA64900FC606E /* Localizable.strings */; };
 		D069132325D39370008E1725 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131025D3936F008E1725 /* BarChartView.swift */; };
 		D069132425D39370008E1725 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131125D3936F008E1725 /* BarChartRow.swift */; };
 		D069132525D39370008E1725 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069131225D3936F008E1725 /* LabelView.swift */; };
@@ -188,6 +190,7 @@
 		D04D0CCB25FB3BA000FC606E /* widget_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_2.jpg; sourceTree = "<group>"; };
 		D04D0CCC25FB3BA000FC606E /* widget_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_3.jpg; sourceTree = "<group>"; };
 		D04D0CCD25FB3BA000FC606E /* widget_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_1.jpg; sourceTree = "<group>"; };
+		D04D0CE825FBA64900FC606E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D069131025D3936F008E1725 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D069131125D3936F008E1725 /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		D069131225D3936F008E1725 /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 		D0F5AFE825C80982004ACB65 = {
 			isa = PBXGroup;
 			children = (
+				D04D0CE925FBA64900FC606E /* Localizable.strings */,
 				D0F5AFF325C80982004ACB65 /* MyGraduationProjectV2 */,
 				D0BB804B25FA5513004E5406 /* MyWordWidgetExtension.entitlements */,
 				D0BB802425FA3E00004E5406 /* MyWordWidget */,
@@ -675,6 +679,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = D0F5AFE825C80982004ACB65;
 			productRefGroup = D0F5AFF225C80982004ACB65 /* Products */;
@@ -692,6 +697,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04D0CE725FBA64900FC606E /* Localizable.strings in Resources */,
 				D04D0CCF25FB3BA000FC606E /* widget_2.jpg in Resources */,
 				D0BB802925FA3E01004E5406 /* Assets.xcassets in Resources */,
 				D04D0CD125FB3BA000FC606E /* widget_3.jpg in Resources */,
@@ -708,6 +714,7 @@
 				D0F5B02E25C8101F004ACB65 /* IELTS_Words_wordonly.csv in Resources */,
 				D0F5AFF925C80982004ACB65 /* Assets.xcassets in Resources */,
 				D0F5B02825C8100F004ACB65 /* Common_Words_3Sentences.csv in Resources */,
+				D04D0CE625FBA64900FC606E /* Localizable.strings in Resources */,
 				D04D0CCE25FB3BA000FC606E /* widget_2.jpg in Resources */,
 				D0F5B02B25C81014004ACB65 /* Common_Wrods_Small.csv in Resources */,
 				D04D0CD225FB3BA000FC606E /* widget_1.jpg in Resources */,
@@ -888,6 +895,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		D04D0CE925FBA64900FC606E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D04D0CE825FBA64900FC606E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		D0BB803125FA3E01004E5406 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -904,8 +922,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2.MyWordWidget;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.yes.MyGraduationProjectV2.mac.MyWordWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -926,8 +946,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2.MyWordWidget;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.yes.MyGraduationProjectV2.mac.MyWordWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1068,7 +1090,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.yes.MyGraduationProjectV2.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1093,7 +1117,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yes.MyGraduationProjectV2;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.yes.MyGraduationProjectV2.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

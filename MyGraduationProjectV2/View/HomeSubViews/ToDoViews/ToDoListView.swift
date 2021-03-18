@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToDoListView: View {
     @StateObject var todoVM:ToDoViewModel
-    
+    @Environment(\.presentationMode) var presentationMode
     @State var showCreate = true
     @State var showUndoneOnly = false
     @State var text = ""
@@ -133,6 +133,16 @@ struct ToDoListView: View {
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
+                            .font(.title3)
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName:"xmark.circle")
+                            .font(.title3)
                     }
                 }
             }

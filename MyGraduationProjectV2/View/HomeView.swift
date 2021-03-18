@@ -14,7 +14,7 @@ struct HomeView: View {
     
     @Binding var selectedTab:TabSelection
     @AppStorage("UD_isLastLearnDone") var UD_isLastLearnDone = false
-    
+    @AppStorage("UD_learningBook") var UD_learningBook = "测试"
     @State var showCalendar = true
     
     @State var showAllToDo = false
@@ -73,7 +73,10 @@ struct HomeView: View {
                     else{
                         VStack{
                             HStack {
-                                Text("学习中的单词书：雅思词汇")
+                                HStack(spacing:0) {
+                                    Text("学习中的单词书: ")
+                                    Text(NSLocalizedString("\(UD_learningBook)", comment: ""))
+                                }
                                 Spacer()
                             }.font(.subheadline)
                             LineView(data: [0,1,2,3,4], title: "Line chart", legend: "Full screen")
@@ -133,12 +136,12 @@ struct HomeView_Previews: PreviewProvider {
 
 struct CalendarListHeader: View {
     var img:String = "scroll.fill"
-    var text:String = "近期学习状况"
+    //var text:String = "近期学习状况"
     @Binding var showContent:Bool
     
     var body: some View {
         HStack {
-            Text(text).offset(x: -5, y: 0)
+            Text("近期学习状况").offset(x: -5, y: 0)
             Spacer()
                 //Text("show")
                 HStack(spacing:5) {
@@ -160,11 +163,11 @@ struct CalendarListHeader: View {
 
 struct ToDoPartHeader: View {
     @Binding var showContent:Bool
-    var text:String = "待办事项"
+    //var text:String = "待办事项"
     
     var body: some View {
         HStack {
-            Text(text).offset(x: -5, y: 0)
+            Text("待办事项").offset(x: -5, y: 0)
             Spacer()
             Button(action: {
                 showContent.toggle()

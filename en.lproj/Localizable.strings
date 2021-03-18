@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  MyGraduationProjectV2
+
+  Created by YES on 2021/3/12.
+  
+*/
+
+"摘要" = "Info";
+"学习" = "Learn";
+"生词本" = "Notebook";
+"词典" = "Dictionary";
+"设置" = "Setting";
+
+
+// HomeView
+"今日学习" = "Today's progress";
+"今日学习未完成" = "Not completed today";
+"前往学习" = "Start Learning";
+"近期学习状况" = "Recently Record";
+"切换至进度" = "Switch to Progress";
+"切换至日历" = "Switch to Calendar";
+"待办事项" = "ToDo List";
+"显示所有待办" = "Show all todos";
+"学习中的单词书: " = "Learning Book: ";
+//"学习中的单词书: 测试" = "Learning Book: testbook";
+"测试" = "test";
+
+
+//
