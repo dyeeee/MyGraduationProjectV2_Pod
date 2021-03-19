@@ -32,12 +32,12 @@ public struct CalendarView: View {
                         Text("Add")
                     })
                 }
-                WeekdaysView()
+                //WeekdaysView()
             }
             ScrollView {
                     ForEach(0..<self.monthsToDisplay) {
                         num in
-                        MonthView(dayContentVM: DayContentViewModel(), month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: self.selectableDays))
+                        MonthView(dayContentVM: DayContentViewModel(), screenWidth: .constant(UIScreen.main.bounds.width), month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: self.selectableDays))
                     }
 
             }

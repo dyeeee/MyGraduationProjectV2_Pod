@@ -17,6 +17,8 @@ struct HomeTabView: View {
     @StateObject var appearanceVM:AppearanceViewModel = AppearanceViewModel()
     @StateObject var userVM = UserViewModel()
     
+    @State public var orientation = UIDevice.current.orientation
+    
     init() {
         UITabBar.appearance().barTintColor = UIColor.systemGroupedBackground
     }
@@ -55,9 +57,8 @@ struct HomeTabView: View {
                     Text("词典")
                 }
                 .tag(TabSelection.page4)
+
             
-//            ShowAllWordsView(wordListViewModel: wordListViewModel)
-            //LearningWordListVIew()
             SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM)
                 .onAppear(perform: {
                     //勉强解决自动切换的问题
@@ -76,6 +77,12 @@ struct HomeTabView: View {
         }
         .preferredColorScheme(self.appearanceVM.colorScheme)
         
+        //更改方向
+        .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+            self.orientation = UIDevice.current.orientation
+            }
+        }
         //.accentColor(.red)
         //.navigationBarColor(.systemGroupedBackground)
     }

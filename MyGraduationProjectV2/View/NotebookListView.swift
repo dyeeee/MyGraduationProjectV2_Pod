@@ -24,6 +24,10 @@ struct NotebookListView: View {
     
     @State var SyncingAnimate = false
     
+    @State var orientation = UIDevice.current.orientation
+    var labelSpacing = 3
+    
+    
     var body: some View {
         NavigationView{
             ScrollViewReader { reader in
@@ -44,8 +48,9 @@ struct NotebookListView: View {
                     TabView(selection: self.$noteTypeIndex){
                         VStack {
                             //定位到对应id的星级按钮
-                            HStack {
-                                Image(systemName: "scroll.fill")
+                            HStack() {
+                                //Image(systemName: "scroll.fill")
+                                
                                 Button(action: {
                                     withAnimation{
                                         reader.scrollTo(5)
@@ -87,7 +92,9 @@ struct NotebookListView: View {
                                 })
                                 Spacer()
                             }
-                            .padding(.leading,10)
+                            .padding(.top,2)
+                            .padding(.bottom,-5)
+                             .padding(.leading,10)
                             .foregroundColor(Color("WordLevelsColor"))
                             
                             //Text("test")
@@ -135,7 +142,25 @@ struct NotebookListView: View {
                         VStack {
                             //定位到对应id的字母按钮
                             HStack {
-                                Image(systemName: "scroll.fill")
+                                //Image(systemName: "scroll.fill")
+                                //Spacer()
+                                if (Device.deviceType == .iPad && (orientation.isPortrait)){
+                                    HStack(spacing:5){
+                                        ForEach(self.alphaList,id:\.self){
+                                            char in
+                                            Button(action: {
+                                                withAnimation{
+                                                    reader.scrollTo(char.uppercased())
+                                                }
+                                            }, label: {
+                                                FilterLabel(text:char)
+                                            })
+                                            
+                                        }
+                                        Spacer()
+                                    }
+                                }
+                                else {
                                 VStack(spacing:2.5) {
                                     HStack(spacing:5){
                                         
@@ -170,6 +195,9 @@ struct NotebookListView: View {
                                         Spacer()
                                     }
                                 }
+                                }
+                                //Spacer()
+                                
                             }
                             .padding(.leading,10)
                             .foregroundColor(Color("WordLevelsColor"))
@@ -256,9 +284,30 @@ struct NotebookListView: View {
                     }
                 }
             }
+        }        //更改方向
+        .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                self.orientation = UIDevice.current.orientation
+            }
+        }
+        .onAppear(perform: {
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 0){
+                orientation = UIDevice.current.orientation
+            }
+            //print(orientation.rawValue)
+        })
+        .ifIs(Device.deviceType == .iPhone){
+            $0.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .ifIs(Device.deviceType == .iPad && (orientation.isPortrait)){
+            $0.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .ifIs(Device.deviceType == .iPad && orientation.isLandscape){
+            $0.navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
         
     }
+    
     
 }
 

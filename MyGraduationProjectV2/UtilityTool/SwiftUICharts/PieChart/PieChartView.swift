@@ -16,7 +16,7 @@ public struct PieChartView : View {
     public var formSize:CGSize
     public var dropShadow: Bool
     public var valueSpecifier:String
-    
+    @State var screenWidth = UIScreen.main.bounds.width
     @State var stateData: [Double] = [0,0,0]
     @State private var showValue = false
     @State private var currentValue: Double = 0 {
@@ -107,7 +107,7 @@ public struct PieChartView : View {
                     Spacer()
                     PieChartRow(data: data, backgroundColor: self.style.backgroundColor, accentColor: self.style.accentColor, showValue: $showValue, currentValue: $currentValue)
                         .foregroundColor(self.style.accentColor)
-                        .frame(width: UIScreen.main.bounds.width - 150, height: self.formSize.height)
+                        .frame(width: screenWidth - 150, height: self.formSize.height)
                     Spacer()
                 }
 //                    .offset(y:self.legend != nil ? 0 : -10)
@@ -119,6 +119,11 @@ public struct PieChartView : View {
                 
             }
         }
+        .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                self.screenWidth = UIScreen.main.bounds.width
+            }
+          }
     }
     
     func getLegend(currentValue:Double) -> String {

@@ -16,6 +16,7 @@ import MobileCoreServices
 struct WordDetailView: View {
     @StateObject var wordItem:WordItem
     @StateObject var wordVM: WordViewModel
+    @State var orientation = UIDevice.current.orientation
     
     @State var wordNote:String = ""
     
@@ -273,6 +274,7 @@ struct WordDetailView: View {
                 }
                 
             }
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
                     self.wordVM.saveToPersistentStore()
@@ -335,7 +337,6 @@ struct WordDetailView: View {
             //                }
             //            })
             .navigationTitle(wordItem.wordContent ?? "null")
-            .hiddenTabBar()
             .onReceive(timer) { _ in
                 if self.timeRemaining > 0 {
                     self.timeRemaining -= 1
@@ -352,6 +353,29 @@ struct WordDetailView: View {
             .onAppear() {
                 self.stopTimer()
             }
+            .ifIs(Device.deviceType == .iPhone){
+                //iPhone才隐藏状态栏
+                $0.hiddenTabBar()
+            }
+            .ifIs(Device.deviceType == .iPad && (orientation.isPortrait)){
+                //iPad竖屏状态隐藏
+                $0.hiddenTabBar()
+            }
+            .ifIs(Device.deviceType == .iPad && orientation.isLandscape){
+                $0.showTabBar()
+            }
+            //更改方向
+            .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+                if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                    self.orientation = UIDevice.current.orientation
+                }
+            }
+            .onAppear(perform: {
+                if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 0){
+                    orientation = UIDevice.current.orientation
+                }
+                //print(orientation.rawValue)
+            })
             
         }
         

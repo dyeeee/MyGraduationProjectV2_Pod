@@ -61,8 +61,11 @@ struct WidgetWordVIew_Large: View {
             )
             
                 HStack(spacing:0) {
-                    Image(systemName: "speaker.wave.2.circle")
-                        .font(.caption)
+                    Image("EN")
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 14, height: 25, alignment: .trailing)
                     Text("\(dealEN_Widget(widgetWord.phonetic_EN))")
                         .font(.custom("Baskerville", size: 16,relativeTo: .body))
                     Spacer()

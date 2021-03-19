@@ -1,8 +1,8 @@
 //
-//  foriPadTools.swift
+//  DeviceAdaptation.swift
 //  MyGraduationProjectV2
 //
-//  Created by YES on 2021/2/8.
+//  Created by YES on 2021/3/19.
 //
 
 import Foundation
@@ -10,14 +10,14 @@ import UIKit
 import SwiftUI
 
 enum Device {
-    //MARK:当前设备类型 iphone ipad mac
+    //MARK:当前设备类型 iPhone iPad Mac
     enum Devicetype{
-        case iPhone,iPad,mac
+        case iPhone,iPad,Mac
     }
 
     static var deviceType:Devicetype{
-        #if os(macOS)
-        return .mac
+        #if targetEnvironment(macCatalyst)
+            return .Mac
         #else
         if  UIDevice.current.userInterfaceIdiom == .pad {
             return .iPad
@@ -46,3 +46,17 @@ extension View {
         }
     }
 }
+
+//用法
+//VStack{
+//     Text("hello world")
+//}
+//.ifIs(Deivce.deviceType == .iphone){
+//  $0.frame(width:150)
+//}
+//.ifIs(Device.deviceType == .ipad){
+//  $0.frame(width:300)
+//}
+//.ifIs(Device.deviceType == .mac){
+//  $0.frmae(minWidth:200,maxWidth:600)
+//}

@@ -13,6 +13,7 @@ import SwiftUI
 struct MonthView: View {
     @ObservedObject var dayContentVM:DayContentViewModel
     @State var isCurrentMonth:Bool = false
+    @Binding var screenWidth :CGFloat
     
     var month: Month
     
@@ -37,7 +38,7 @@ struct MonthView: View {
             //.padding(.trailing,20)
 
             if isCurrentMonth{
-                WeekdaysView()
+                WeekdaysView(screenWidth: $screenWidth)
             }
             
             VStack {
@@ -46,27 +47,34 @@ struct MonthView: View {
                     row, col in
                     if self.month.monthDays[col+1]![row].dayDate == Date(timeIntervalSince1970: 0)
                     {
-                        Text("").frame(width: 10, height: 10)
+                        Text("")
+                            .frame(width: (screenWidth)/CGFloat((7))-15, height: 22)
+
                     }
                     else if
                         (self.dayContentVM.dateStringList.contains( self.month.monthDays[col+1]![row].dateString))
                     { // 如果这一天是有coredata保存的内容的，显示打卡状态
-                        DayCellView(day: self.month.monthDays[col+1]![row],done:true,animate:true)
+                        DayCellView(day: self.month.monthDays[col+1]![row],done:true, screenWidth: $screenWidth,animate:true)
                     }
                     else {
-                        DayCellView(day: self.month.monthDays[col+1]![row])
+                        DayCellView(day: self.month.monthDays[col+1]![row], screenWidth: $screenWidth)
                         //                            .onTapGesture{
                         //                                print("ok")
                         //                            }
                     }
                     
                 }
+                
             }
         }
         //        .onAppear(perform: {
         //            self.dayContentViewModel.getAllItems()
         //        })
-        
+        .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                self.screenWidth = UIScreen.main.bounds.width
+            }
+        }
         
     }
     
@@ -77,7 +85,7 @@ struct MonthView: View {
 @available(iOS 13.0, *)
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-        MonthView(dayContentVM: DayContentViewModel(),isCurrentMonth: true, month: Month(startDate: Date(), selectableDays: true))
+        MonthView(dayContentVM: DayContentViewModel(),isCurrentMonth: true, screenWidth: .constant(200), month: Month(startDate: Date(), selectableDays: true))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

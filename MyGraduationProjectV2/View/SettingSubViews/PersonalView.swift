@@ -10,7 +10,7 @@ import SwiftUI
 struct PersonalView: View {
     @StateObject var userVM:UserViewModel
     @StateObject var wordVM:WordViewModel
-    @AppStorage("UD_isLogged") var UD_isLogged = true
+    @AppStorage("UD_isLogged") var UD_isLogged = false
 //    @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     
     var body: some View {

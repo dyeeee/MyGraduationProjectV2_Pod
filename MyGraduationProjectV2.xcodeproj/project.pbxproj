@@ -78,7 +78,6 @@
 		D069135625D40CEC008E1725 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069135125D40CEC008E1725 /* CalendarView.swift */; };
 		D069135725D40CEC008E1725 /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069135225D40CEC008E1725 /* WeekdaysView.swift */; };
 		D069135E25D40D2D008E1725 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069135B25D40D2D008E1725 /* GridStack.swift */; };
-		D086244825D11CCF00A49D38 /* foriPadTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244725D11CCF00A49D38 /* foriPadTools.swift */; };
 		D086244F25D11FD400A49D38 /* WordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244B25D11FD400A49D38 /* WordItem+CoreDataClass.swift */; };
 		D086245025D11FD400A49D38 /* WordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244C25D11FD400A49D38 /* WordItem+CoreDataProperties.swift */; };
 		D086245125D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086244D25D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift */; };
@@ -86,6 +85,7 @@
 		D086245B25D1256700A49D38 /* LearnSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086245A25D1256700A49D38 /* LearnSetView.swift */; };
 		D08CA51025F48FFE009ED4AF /* ReviewCardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08CA50F25F48FFE009ED4AF /* ReviewCardView2.swift */; };
 		D098847525D2223A006909CA /* AnimationTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098847425D2223A006909CA /* AnimationTestView.swift */; };
+		D0ADA227260499EA0014E939 /* DeviceAdaptation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADA226260499EA0014E939 /* DeviceAdaptation.swift */; };
 		D0B59E7E25CC2AD400639AE3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E7D25CC2AD400639AE3 /* LoadingView.swift */; };
 		D0B59E8125CC2AF200639AE3 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */; };
 		D0B59E8425CC2AF900639AE3 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B59E8325CC2AF900639AE3 /* LogInView.swift */; };
@@ -220,7 +220,6 @@
 		D069135125D40CEC008E1725 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		D069135225D40CEC008E1725 /* WeekdaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
 		D069135B25D40D2D008E1725 /* GridStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
-		D086244725D11CCF00A49D38 /* foriPadTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foriPadTools.swift; sourceTree = "<group>"; };
 		D086244B25D11FD400A49D38 /* WordItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D086244C25D11FD400A49D38 /* WordItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D086244D25D11FD400A49D38 /* LearningWordItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearningWordItem+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -228,6 +227,7 @@
 		D086245A25D1256700A49D38 /* LearnSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSetView.swift; sourceTree = "<group>"; };
 		D08CA50F25F48FFE009ED4AF /* ReviewCardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCardView2.swift; sourceTree = "<group>"; };
 		D098847425D2223A006909CA /* AnimationTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTestView.swift; sourceTree = "<group>"; };
+		D0ADA226260499EA0014E939 /* DeviceAdaptation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAdaptation.swift; sourceTree = "<group>"; };
 		D0B59E7D25CC2AD400639AE3 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D0B59E8025CC2AF200639AE3 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		D0B59E8325CC2AF900639AE3 /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -568,6 +568,7 @@
 		D0F5B01225C80E55004ACB65 /* UtilityTool */ = {
 			isa = PBXGroup;
 			children = (
+				D0ADA226260499EA0014E939 /* DeviceAdaptation.swift */,
 				D0B59E7D25CC2AD400639AE3 /* LoadingView.swift */,
 				D0D162D925F493A900B70CE3 /* PinCodeView.swift */,
 				D069130E25D3936F008E1725 /* SwiftUICharts */,
@@ -579,7 +580,6 @@
 				D0F5B02125C80FB9004ACB65 /* StringTools.swift */,
 				D0F5B01B25C80F63004ACB65 /* HideKeyboard.swift */,
 				D0F5B01E25C80FB1004ACB65 /* HideTab.swift */,
-				D086244725D11CCF00A49D38 /* foriPadTools.swift */,
 			);
 			path = UtilityTool;
 			sourceTree = "<group>";
@@ -856,7 +856,6 @@
 				D069133025D39370008E1725 /* MagnifierRect.swift in Sources */,
 				D0B59E8725CC2B0A00639AE3 /* UserViewModel.swift in Sources */,
 				D069135325D40CEC008E1725 /* HistoryCalendarView.swift in Sources */,
-				D086244825D11CCF00A49D38 /* foriPadTools.swift in Sources */,
 				D034634525C842360088AB3D /* SettingView.swift in Sources */,
 				D0D162DA25F493A900B70CE3 /* PinCodeView.swift in Sources */,
 				D0F5B00D25C80DB7004ACB65 /* HomeTabView.swift in Sources */,
@@ -875,6 +874,7 @@
 				D069132C25D39370008E1725 /* IndicatorPoint.swift in Sources */,
 				D00FFA1B25CE52EF001B0311 /* WordDetailView.swift in Sources */,
 				D0F5AFF525C80982004ACB65 /* MyGraduationProjectV2App.swift in Sources */,
+				D0ADA227260499EA0014E939 /* DeviceAdaptation.swift in Sources */,
 				D069132925D39370008E1725 /* PieChartHelpers.swift in Sources */,
 				D069133325D39370008E1725 /* Line.swift in Sources */,
 				D098847525D2223A006909CA /* AnimationTestView.swift in Sources */,

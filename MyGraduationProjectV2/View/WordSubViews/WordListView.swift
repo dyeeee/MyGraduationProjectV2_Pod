@@ -33,7 +33,7 @@ struct WordListView: View {
         //        NavigationView{
         List{
             //            if(dataType == .searchResult){
-            Section{
+            Section(header: Text("Search")){
                 HStack {
                     TextField("Search", text: $searchText)
 //                        .onChange(of: searchText, perform: { value in

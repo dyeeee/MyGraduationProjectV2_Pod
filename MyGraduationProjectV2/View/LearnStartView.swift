@@ -212,7 +212,7 @@ struct LearnStartView: View {
                     
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -15,25 +15,34 @@ struct GridStack<Content: View>: View {
     let rows: Int
     let cols: Int
     let content: (Int, Int) -> Content
-
+    
+    //@State var orientation = UIDevice.current.orientation
+    @State var screenWidth = UIScreen.main.bounds.width
+    
     var body: some View {
 
         VStack(spacing:5) {
             ForEach(0..<self.rows) { row in
-                HStack(spacing:0) {
+                HStack(spacing:5) {
                     ForEach(0..<self.cols) { col in
                         //Spacer()
+                        //GeometryReader { geometry in
                         self.content(row, col)
-                            .frame(width: (UIScreen.main.bounds.width-80)/CGFloat((cols)))
-                            //.padding(.top, 5)
-                            //.padding(.bottom, 5)
-                            //.overlay(Rectangle().stroke())
-                        //Spacer()
+                            //.frame(width: geometry.size.width * 0.5)
+//                            .frame(width: (screenWidth-80)/CGFloat((cols)))
+
+//                        .frame(width: (screenWidth-80)/CGFloat((cols)), height: 22)
+                        
+                        //}
                     }
                 }
 
             }
-        }
+        }.onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                self.screenWidth = UIScreen.main.bounds.width
+            }
+          }
     }
 
 
@@ -55,6 +64,11 @@ struct GridStack_Previews: PreviewProvider {
                 Spacer()
                 GridStack(rows: 5, columns: 7) { row, col in
                 Text("1")
+                    .frame(width: (UIScreen.main.bounds.width)/CGFloat((7))-15, height: 22)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5.0)
+                            .stroke())
+
                 }
                 Spacer()
             }

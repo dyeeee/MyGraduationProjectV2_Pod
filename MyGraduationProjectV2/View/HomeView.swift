@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct HomeView: View {
     
@@ -18,6 +19,7 @@ struct HomeView: View {
     @State var showCalendar = true
     
     @State var showAllToDo = false
+    @State var screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         NavigationView {
@@ -60,7 +62,7 @@ struct HomeView: View {
                         VStack{
                             HStack {
                                 Spacer()
-                                MonthView(dayContentVM:self.dayContentVM,isCurrentMonth:true, month: Month(startDate:Date()))
+                                MonthView(dayContentVM:self.dayContentVM,isCurrentMonth:true, screenWidth: $screenWidth, month: Month(startDate:Date()))
                                 Spacer()
                             }
 

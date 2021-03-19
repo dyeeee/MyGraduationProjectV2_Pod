@@ -119,7 +119,8 @@ struct SettingView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("设置")
             .showTabBar()
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

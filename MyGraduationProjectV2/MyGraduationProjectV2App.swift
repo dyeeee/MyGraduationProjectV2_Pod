@@ -7,11 +7,13 @@
 
 import SwiftUI
 import LeanCloud
+import UIKit
 
 @main
 struct MyGraduationProjectV2App: App {
     let persistenceController = PersistenceController.shared
     @AppStorage("UD_isFirstLaunch") var UD_isFirstLaunch = true
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     init() {
         //云服务初始化
@@ -27,7 +29,6 @@ struct MyGraduationProjectV2App: App {
         
         //设置今天是学习的第几天
         setLearnDay()
-        
     }
     
     var body: some Scene {
@@ -64,4 +65,18 @@ func LeanCloudTest() {
     } catch {
         print(error)
     }
+}
+
+
+class AppDelegate:NSObject,UIApplicationDelegate{
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        //iPad支持旋转，别的设备不支持旋转使用
+        return Device.deviceType == .iPad
+              ? UIInterfaceOrientationMask.all
+              : UIInterfaceOrientationMask.portrait
+      }
 }

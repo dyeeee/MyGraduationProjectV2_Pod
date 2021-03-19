@@ -12,6 +12,7 @@ import SwiftUI
 struct DayCellView: View {
     @ObservedObject var day: Day
     @State var done:Bool = false
+    @Binding var screenWidth:CGFloat
     
     var angleList:[Double]{
         var list:[Double] = []
@@ -60,7 +61,8 @@ struct DayCellView: View {
             
 
         }
-        .frame(width: UIScreen.main.bounds.width/7-20, height: 22)
+//        .frame(width: UIScreen.main.bounds.width/7-20, height: 22)
+        .frame(width: (screenWidth)/CGFloat((7))-15, height: 22)
         .overlay(
             RoundedRectangle(cornerRadius: 5.0)
                 .stroke())
@@ -80,6 +82,6 @@ struct DayCellView: View {
 
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
-        DayCellView(day: Day(date: Date()),done: true,animate:true)
+        DayCellView(day: Day(date: Date()),done: true, screenWidth: .constant(1125),animate:true)
     }
 }

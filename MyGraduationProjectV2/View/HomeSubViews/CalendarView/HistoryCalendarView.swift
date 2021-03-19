@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HistoryCalendarView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State var screenWidth_sheet = UIScreen.main.bounds.width
+    @State var orientation = UIDevice.current.orientation
+    
     var startDate: Date {
         let dateFormat = DateFormatter.init()
         dateFormat.dateFormat = "yyyyMMdd"
@@ -46,7 +50,14 @@ struct HistoryCalendarView: View {
                                 Text("DeleteAll")
                             })
                         }
-                        WeekdaysView().padding(.bottom, -10)
+                        
+                        if (Device.deviceType == .iPad && (orientation.isLandscape)){
+                            WeekdaysView(screenWidth: .constant(UIScreen.main.bounds.width*0.6)).padding(.bottom, -10)
+                        }else if (Device.deviceType == .iPad && (orientation.isPortrait)){
+                            WeekdaysView(screenWidth: .constant(UIScreen.main.bounds.width*0.8)).padding(.bottom, -10)
+                        }else{
+                            WeekdaysView(screenWidth: .constant(screenWidth_sheet)).padding(.bottom, -10)
+                        }
                     }
                     
                     ScrollView {
@@ -54,11 +65,22 @@ struct HistoryCalendarView: View {
                             ForEach(0..<self.monthsToDisplay) {
                                 num in
                                 
-                                MonthView(dayContentVM:self.dayContentVM, month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: true))
-                                    .id(Int(num+1))
+//                                MonthView(dayContentVM:self.dayContentVM, screenWidth: $screenWidth_sheet, month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: true))
+//                                    .id(Int(num+1))
+                                
+                                if (Device.deviceType == .iPad && (orientation.isLandscape)){
+                                    MonthView(dayContentVM:self.dayContentVM, screenWidth: .constant(UIScreen.main.bounds.width*0.6), month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: true))
+                                        .id(Int(num+1))
+                                }else if (Device.deviceType == .iPad && (orientation.isPortrait)){
+                                    MonthView(dayContentVM:self.dayContentVM, screenWidth: .constant(UIScreen.main.bounds.width*0.8), month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: true))
+                                        .id(Int(num+1))
+                                }else{
+                                    MonthView(dayContentVM:self.dayContentVM, screenWidth: $screenWidth_sheet, month: Month(startDate: self.nextMonth(currentMonth: self.startDate, add: num), selectableDays: true))
+                                        .id(Int(num+1))
+                                }
                             }
                         }
-
+                        
                     }
                 }.navigationBarTitle("History")
                 .navigationBarTitleDisplayMode(.inline)
@@ -69,15 +91,49 @@ struct HistoryCalendarView: View {
                         reader.scrollTo(self.monthsToDisplay)
                     }
                 })
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName:"xmark.circle")
+                                .font(.title3)
+                        }
+                    }
+                }
             }.background(Color(.systemGray6).ignoresSafeArea())
         }
-        
+        .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
+                //print("旋转") 有执行到
+                self.orientation = UIDevice.current.orientation
+            }
+        }
         .onAppear(perform: {
             //DispatchQueue.main.async {
-                //self.isLoading = false
+            //self.isLoading = false
+            if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 0){
+                orientation = UIDevice.current.orientation
+            }
             dayContentVM.isLoading = false
-                print("完成历史日历页面加载")
-            //}
+            print("完成历史日历页面加载")
+            //            if(Device.deviceType == .iPad && (orientation.isPortrait)){
+            //                print("0.8")
+            //                screenWidth_sheet = screenWidth_sheet * 0.8
+            //            }
+            //            else if (Device.deviceType == .iPad && (orientation.isLandscape)){
+            //                print("0.6")
+            //                screenWidth_sheet = screenWidth_sheet * 0.6
+            //            }else{
+            //                print("else")
+            //                screenWidth_sheet = screenWidth_sheet * 0.6
+            //            }
+            if(Device.deviceType == .iPad){
+                screenWidth_sheet = screenWidth_sheet * 0.6
+            }else if(Device.deviceType == .Mac){
+                screenWidth_sheet = screenWidth_sheet * 0.3
+            }
+            
         })
     }
     
