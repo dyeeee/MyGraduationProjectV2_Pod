@@ -48,9 +48,10 @@ struct NotebookListView: View {
                     TabView(selection: self.$noteTypeIndex){
                         VStack {
                             //定位到对应id的星级按钮
-                            HStack() {
-                                //Image(systemName: "scroll.fill")
-                                
+                            HStack(spacing:5) {
+                                if Device.deviceType == .iPhone{
+                                    Image(systemName: "scroll.fill")
+                                }
                                 Button(action: {
                                     withAnimation{
                                         reader.scrollTo(5)
@@ -142,7 +143,9 @@ struct NotebookListView: View {
                         VStack {
                             //定位到对应id的字母按钮
                             HStack {
-                                //Image(systemName: "scroll.fill")
+                                if Device.deviceType == .iPhone{
+                                    Image(systemName: "scroll.fill")
+                                }
                                 //Spacer()
                                 if (Device.deviceType == .iPad && (orientation.isPortrait)){
                                     HStack(spacing:5){
