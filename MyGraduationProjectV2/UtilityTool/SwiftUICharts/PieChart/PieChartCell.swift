@@ -63,7 +63,7 @@ public struct PieChartCell : View {
                     }
                 }.offset(x: textOffsetX(startDeg,endDeg), y: textOffsetY(startDeg,endDeg))
                 .font(.callout)
-                .foregroundColor(Color(.systemGray5))
+                .foregroundColor(Color(.white))
                 
             }
             

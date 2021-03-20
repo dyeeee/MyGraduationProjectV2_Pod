@@ -11,6 +11,7 @@ struct LearnStartView: View {
     @StateObject var wordVM: WordViewModel = WordViewModel()
     @StateObject var learnWordVM: LearnWordViewModel = LearnWordViewModel()
     @StateObject var dayContentVM: DayContentViewModel
+    @StateObject var appearanceVM:AppearanceViewModel
     
     
     @State var progress = 0.8
@@ -113,7 +114,7 @@ struct LearnStartView: View {
                                             RoundedRectangle(cornerRadius: 5)
                                                 .frame(width: 150, height: 30, alignment: .center)
                                             Text(UD_isLastLearnDone ? "今日学习完成":"开始学习")
-                                                .foregroundColor(Color(.systemGray6))
+                                                .foregroundColor(Color(.white))
                                         }.frame(width: 150, height: 30, alignment: .center)
                                     })
                                     .disabled(UD_isLastLearnDone ? true : false)
@@ -193,6 +194,9 @@ struct LearnStartView: View {
                 })
                 .sheet(isPresented: $showHistoryCalendar, content: {
                     HistoryCalendarView(dayContentVM:self.dayContentVM,isLoading:.constant(false))
+                        .ifIs(Device.deviceType == .iPad && (self.appearanceVM.UD_storedColorScheme != "")){
+                            $0.preferredColorScheme(self.appearanceVM.colorScheme)
+                        }
                 })
                 
                 if dayContentVM.isLoading{
@@ -218,6 +222,6 @@ struct LearnStartView: View {
 
 struct LearnStartView_Previews: PreviewProvider {
     static var previews: some View {
-        LearnStartView(dayContentVM: DayContentViewModel())
+        LearnStartView(dayContentVM: DayContentViewModel(), appearanceVM: AppearanceViewModel())
     }
 }

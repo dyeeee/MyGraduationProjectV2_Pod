@@ -42,7 +42,7 @@ struct NotebookListView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(5)
                         .padding([.top,.bottom],5)
-                        .background(Color(.systemGray6))
+                        .background(Color("systemInsetBG"))
                     
                     
                     TabView(selection: self.$noteTypeIndex){
@@ -95,8 +95,9 @@ struct NotebookListView: View {
                             }
                             .padding(.top,2)
                             .padding(.bottom,-5)
-                             .padding(.leading,10)
+                            .padding(.leading,10)
                             .foregroundColor(Color("WordLevelsColor"))
+                            
                             
                             //Text("test")
                             
@@ -138,6 +139,7 @@ struct NotebookListView: View {
                             //.environment(\.horizontalSizeClass, .regular)
                             //.environment(\.defaultMinListRowHeight, 20)
                         }
+                        .background(Color("systemInsetBG"))
                         .tag(0)
                         
                         VStack {
@@ -202,10 +204,11 @@ struct NotebookListView: View {
                                 //Spacer()
                                 
                             }
+                            .padding(.top,2)
+                            .padding(.bottom,-5)
                             .padding(.leading,10)
                             .foregroundColor(Color("WordLevelsColor"))
-                            .padding(.bottom,-5)
-                            .padding(.top,2)
+                            .background(Color("systemInsetBG"))
                             //Text("test")
                             
                             
@@ -247,7 +250,9 @@ struct NotebookListView: View {
                             //.environment(\.defaultMinListRowHeight, 20)
                             //.environment(\.horizontalSizeClass, .compact)
                             
-                        }.tag(1)
+                        }
+                        .background(Color("systemInsetBG"))
+                        .tag(1)
                         
                         
                         

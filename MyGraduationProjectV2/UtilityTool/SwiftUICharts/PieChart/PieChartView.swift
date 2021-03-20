@@ -45,9 +45,9 @@ public struct PieChartView : View {
     
     public var body: some View {
         ZStack{
-            Rectangle()
-                .fill(self.style.backgroundColor)
-                .cornerRadius(20)
+//            Rectangle()
+//                .fill(Color("systemInsetContent"))
+//                .cornerRadius(5)
                 //.shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 2 : 0)
             
 //            RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -63,7 +63,7 @@ public struct PieChartView : View {
                             VStack {
                                 Text("\(self.title)")
                             }.font(.headline)
-                            .foregroundColor(self.style.textColor)
+                            .foregroundColor(Color("systemBlack"))
                             
                                 
                         }else{
@@ -74,12 +74,12 @@ public struct PieChartView : View {
                                 }
   
                             }.font(.headline)
-                            .foregroundColor(self.style.textColor)
+                            .foregroundColor(Color("systemBlack"))
                         }
                         Spacer()
                         Image(systemName: "chart.pie.fill")
                             .imageScale(.large)
-                            .foregroundColor(self.style.legendTextColor)
+                            .foregroundColor(Color(.systemGray))
                     }
                     
                     VStack {

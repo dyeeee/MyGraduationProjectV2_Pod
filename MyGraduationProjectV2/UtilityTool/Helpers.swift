@@ -176,7 +176,7 @@ public class ChartStyle {
     }
     
     public init(formSize: CGSize){
-        self.backgroundColor = Color.white
+        self.backgroundColor = Color("systemInsetContent")
         self.accentColor = Colors.OrangeStart
         self.gradientColor = GradientColors.orange
         self.legendTextColor = Color.gray

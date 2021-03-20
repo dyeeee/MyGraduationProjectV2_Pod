@@ -26,14 +26,14 @@ struct HomeTabView: View {
     var body: some View {
         TabView(selection: $selectedTab){
 //            HomeView(dayContentViewModel: self.dayContentViewModel)
-            HomeView(dayContentVM: self.dayContentVM, todoVM: self.todoVM, selectedTab: $selectedTab)
+            HomeView(dayContentVM: self.dayContentVM, todoVM: self.todoVM, appearanceVM:self.appearanceVM, selectedTab: $selectedTab)
                 .tabItem {
                     Image(systemName: "cube.fill")
                     Text("摘要")
                 }
                 .tag(TabSelection.page1)
             
-            LearnStartView(dayContentVM:self.dayContentVM)
+            LearnStartView(dayContentVM:self.dayContentVM,appearanceVM:self.appearanceVM)
 //            Text("p2")
                 .navigationTitle(Text("page2"))
                 .tabItem {

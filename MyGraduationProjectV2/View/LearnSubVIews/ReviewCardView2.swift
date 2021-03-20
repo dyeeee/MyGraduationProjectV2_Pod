@@ -24,7 +24,7 @@ struct ReviewCardView2: View {
         //        if showThisCard {
         ZStack(alignment:.center) {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(afterUnknown ? Color(.systemGray6) : Color.white)
+                .fill(afterUnknown ? Color("systemInsetBG") : Color("systemInsetContent"))
             
             
             VStack {
@@ -37,6 +37,7 @@ struct ReviewCardView2: View {
                 
                 if afterUnknown {
                     WordDetailView(wordItem: self.learningWordItem.sourceWord ?? WordItem(), wordVM: self.wordVM)
+                        .hiddenTabBar()
                     //.frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
                 }
                 else{
@@ -55,6 +56,8 @@ struct ReviewCardView2: View {
                                 }.overlay(
                                     TextField("Input", text: $text)
                                         .autocapitalization(.none)
+                                        .font(.subheadline)
+                                        .frame(minWidth: 50)
                                         .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .onChange(of: text, perform: { text in
@@ -148,7 +151,7 @@ struct ReviewCardView2: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
                                         .frame(width: UIScreen.main.bounds.width*0.25, height: 40, alignment: .center)
-                                        .foregroundColor(Color(red: 245/255, green: 245/255, blue: 250/255))
+                                        .foregroundColor(Color(.systemGray6))
                                     HStack {
                                         Image(systemName: "flame.fill")
                                         
@@ -164,7 +167,7 @@ struct ReviewCardView2: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
                                         .frame(width: UIScreen.main.bounds.width*0.25, height: 40, alignment: .center)
-                                        .foregroundColor(Color(red: 245/255, green: 245/255, blue: 250/255))
+                                        .foregroundColor(Color(.systemGray6))
                                     HStack {
                                         Image(systemName: "cloud.fill")
                                         Text("模糊").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .body))
@@ -208,7 +211,7 @@ struct ReviewCardView2: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
                                         .frame(width: UIScreen.main.bounds.width*0.75, height: 40, alignment: .center)
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color(.systemGray6))
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
                                         Text("记住了").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .title))
@@ -223,7 +226,7 @@ struct ReviewCardView2: View {
                 }
                 .padding(10)
                 .padding(.bottom,5)
-                .background(afterUnknown ? Color(.systemGray6) : Color.white)
+                .background(afterUnknown ? Color("systemInsetBG") : Color("systemInsetContent"))
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                 
                 //                    }

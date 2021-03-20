@@ -17,7 +17,7 @@ struct LearnCardView: View {
     var body: some View {
         ZStack(alignment:.center) {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(Color.white)
+                .fill(Color("systemInsetContent"))
                 
             
             VStack {
@@ -110,7 +110,7 @@ struct LearnCardView: View {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 5, style: .continuous)
                                             .frame(width: UIScreen.main.bounds.width*0.75, height: 40, alignment: .center)
-                                            .foregroundColor(Color(red: 245/255, green: 245/255, blue: 250/255))
+                                            .foregroundColor(Color(.systemGray6))
                                         HStack {
                                             Image(systemName: "checkmark.circle.fill")
                                             Text("记住了").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .title))
@@ -123,11 +123,11 @@ struct LearnCardView: View {
                 }
                 .padding(10)
                 .padding(.bottom,5)
-                .background(Color.white)
+                //.background(Color("systemInsetContent"))
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                 
                 //                    }
-            }//.padding(.top,0)
+            }
             
             
         }

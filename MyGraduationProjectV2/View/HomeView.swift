@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @StateObject var dayContentVM:DayContentViewModel
     @StateObject var todoVM:ToDoViewModel
+    @StateObject var appearanceVM:AppearanceViewModel
     
     @Binding var selectedTab:TabSelection
     @AppStorage("UD_isLastLearnDone") var UD_isLastLearnDone = false
@@ -109,7 +110,7 @@ struct HomeView: View {
                             
                             
                             Text("\(item.todoContent ?? "noContent")")
-                                .foregroundColor(item.done ? Color(.systemGray3) : Color(.black))
+                                .foregroundColor(item.done ? Color(.systemGray3) : Color("systemBlack"))
                                 
                                 .strikethrough(item.done ? true:false, color: Color(.systemGray))
                                 .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
@@ -123,6 +124,9 @@ struct HomeView: View {
             .navigationTitle("摘要")
             .sheet(isPresented: $showAllToDo, content: {
                 ToDoListView(todoVM:self.todoVM)
+                    .ifIs(Device.deviceType == .iPad && (self.appearanceVM.UD_storedColorScheme != "")){
+                        $0.preferredColorScheme(self.appearanceVM.colorScheme)
+                    }
             })
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -132,7 +136,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(dayContentVM: DayContentViewModel(), todoVM: ToDoViewModel(), selectedTab: .constant(.page2))
+        HomeView(dayContentVM: DayContentViewModel(), todoVM: ToDoViewModel(), appearanceVM: AppearanceViewModel(), selectedTab: .constant(.page2))
     }
 }
 
