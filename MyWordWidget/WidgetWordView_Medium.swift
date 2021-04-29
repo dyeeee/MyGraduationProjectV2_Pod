@@ -92,7 +92,7 @@ struct WidgetWordView_Medium: View {
             
             HStack {
                 Spacer(minLength: 0)
-                Text("by DYe")
+                Text("E-Word")
             }.font(.custom("", size: 8,relativeTo: .caption2))
             .foregroundColor(Color(.systemGray2))
             //.padding([.trailing],15)

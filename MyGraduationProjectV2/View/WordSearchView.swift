@@ -52,7 +52,7 @@ struct WordSearchView: View {
                 }
             }
             // iPad横屏双列状态的默认显示界面
-            Text("test")
+            //Text("test")
             
         }
         //更改方向

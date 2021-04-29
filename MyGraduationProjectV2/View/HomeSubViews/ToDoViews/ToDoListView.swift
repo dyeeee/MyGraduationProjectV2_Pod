@@ -78,7 +78,6 @@ struct ToDoListView: View {
                                         }.font(.title3)
                                     }).buttonStyle(PlainButtonStyle())
                                     
-                                    
                                     Text("\(item.todoContent ?? "noContent")")
                                         .foregroundColor(item.done ? Color(.systemGray3) : Color("systemBlack"))
                                         
@@ -87,7 +86,7 @@ struct ToDoListView: View {
                                     
                                     Spacer()
                                     
-                                    Text("\(item.createDate?.dateToString(format: "yyyy-MM-dd HH:mm") ?? "noContent")")
+                                    Text("\(item.createDate?.dateToString(format: "yyyy-MM-dd") ?? "noContent")")
                                         .foregroundColor(Color(.systemGray))
                                         
                                         .strikethrough(item.done ? true:false, color: Color(.systemGray))
@@ -130,6 +129,16 @@ struct ToDoListView: View {
                             self.todoVM.deleteAllToDoItem()
                         }) {
                             Label("删除全部", systemImage: "trash.fill")
+                        }
+                        Button(action: {
+                            self.todoVM.uploadToCloud()
+                        }) {
+                            Label("上传本地数据", systemImage: "icloud.and.arrow.up")
+                        }
+                        Button(action: {
+                            self.todoVM.downloadFromCloud()
+                        }) {
+                            Label("下载云端数据", systemImage: "icloud.and.arrow.down")
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")

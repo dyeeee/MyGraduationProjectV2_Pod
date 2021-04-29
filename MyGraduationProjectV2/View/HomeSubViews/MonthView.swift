@@ -49,7 +49,6 @@ struct MonthView: View {
                     {
                         Text("")
                             .frame(width: (screenWidth)/CGFloat((7))-15, height: 22)
-
                     }
                     else if
                         (self.dayContentVM.dateStringList.contains( self.month.monthDays[col+1]![row].dateString))
@@ -58,9 +57,6 @@ struct MonthView: View {
                     }
                     else {
                         DayCellView(day: self.month.monthDays[col+1]![row], screenWidth: $screenWidth)
-                        //                            .onTapGesture{
-                        //                                print("ok")
-                        //                            }
                     }
                     
                 }

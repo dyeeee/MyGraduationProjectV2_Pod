@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DayContentItem" representedClassName="DayContentItem" syncable="YES">
         <attribute name="dateString" optional="YES" attributeType="String"/>
         <attribute name="isLearnDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -50,7 +50,7 @@
         <element name="DayContentItem" positionX="9" positionY="153" width="128" height="74"/>
         <element name="ItemDemo" positionX="0" positionY="0" width="128" height="44"/>
         <element name="LearningWordItem" positionX="9" positionY="144" width="128" height="149"/>
-        <element name="WordItem" positionX="0" positionY="9" width="128" height="314"/>
         <element name="ToDoItem" positionX="9" positionY="153" width="128" height="104"/>
+        <element name="WordItem" positionX="0" positionY="9" width="128" height="314"/>
     </elements>
 </model>

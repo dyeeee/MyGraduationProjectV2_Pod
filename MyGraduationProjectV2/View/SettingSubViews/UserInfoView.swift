@@ -143,7 +143,7 @@ struct UserInfoView: View {
                             Divider()
                             VStack {
                                 Text("待办事件")
-                                Text("8")
+                                Text("0")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {

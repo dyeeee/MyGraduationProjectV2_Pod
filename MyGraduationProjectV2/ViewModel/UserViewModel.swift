@@ -394,7 +394,6 @@ class UserViewModel : ObservableObject{
                 print("Session云端验证成功: \(user)")
                 self.isLocalSessionVertified = true
                 
-            
             case .failure(error: let error):
                 // session token 无效
                 print("Session云端验证失败: \(error)")

@@ -69,7 +69,6 @@ struct WidgetEntryView:View {
         case .systemSmall:
             ZStack {
                 WidgetWordView_Small(widgetWord: entry.word)
-                //Text(entry.date, style: .timer)
             }
         case .systemMedium:
             ZStack {
@@ -78,15 +77,9 @@ struct WidgetEntryView:View {
         default:
             ZStack {
                 WidgetWordVIew_Large(widgetWord: entry.word)
-                    
-
-                //Text(entry.date, style: .timer)
             }
         }
-        
     }
-    
-    
 }
 
 

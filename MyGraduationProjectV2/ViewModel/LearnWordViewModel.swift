@@ -78,7 +78,6 @@ class LearnWordViewModel: ObservableObject{
         }
         
         //程序启动时已经执行了一次，显示的新词、复习的词都是已经算好的
-        
         if  byOnAppear {
             for item in todayNewWordList{
                 item.nextReviewDay = Int16(learnDayCount) //补充把下次复习时间添加为今天,这样加载复习单词的时候就能加载到
@@ -372,16 +371,14 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
-    //从CoreData家在单词
+    //从CoreData加载单词
     func preloadLearningWordFromCoreData(bookName:String = "cet4") {
         deleteAll()
         let container = PersistenceController.shared.container
-        
         //        let csvTool = CSVTools()
         //        var data = csvTool.readDataFromCSV(fileName: "IELTS_Words_wordonly", fileType: "csv")
         //        data = csvTool.cleanRows(file: data ?? "d")
         //        let csvRows = csvTool.csv(data: data ?? "d")
-        
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let pre =  NSPredicate(format: "wordTags contains %@", "\(bookName)")
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -399,8 +396,6 @@ class LearnWordViewModel: ObservableObject{
             } catch {
                 NSLog("Error fetching tasks: \(error)")
             }
-            
-            
             for item in tmpList {
                 let learningWord = LearningWordItem(context: context)
                 learningWord.wordID = item.wordID

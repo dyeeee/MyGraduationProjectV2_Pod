@@ -28,7 +28,7 @@ struct HistoryCalendarView: View {
     
     @StateObject var dayContentVM:DayContentViewModel
     
-    @State var dateString = "20210301"
+    @State var dateString = ""
     @Binding var isLoading:Bool
     
     var body: some View {
@@ -42,13 +42,13 @@ struct HistoryCalendarView: View {
                             Button(action: {
                                 self.dayContentVM.createItem(dateString: dateString)
                             }, label: {
-                                Text("Create Test")
+                                Text("补打卡")
                             })
-                            Button(action: {
-                                self.dayContentVM.deleteAllDayContentItem()
-                            }, label: {
-                                Text("DeleteAll")
-                            })
+//                            Button(action: {
+//                                self.dayContentVM.deleteAllDayContentItem()
+//                            }, label: {
+//                                Text("DeleteAll")
+//                            })
                         }
                         
                         if (Device.deviceType == .iPad && (orientation.isLandscape)){
@@ -92,6 +92,34 @@ struct HistoryCalendarView: View {
                     }
                 })
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu{
+                            Button(action: {
+                                self.dayContentVM.deleteAllDayContentItem()
+                            }) {
+                                Label("删除全部", systemImage: "trash.fill")
+                            }
+                            Button(action: {
+                                self.dayContentVM.createTestItem()
+                            }) {
+                                Label("创建测试数据", systemImage: "plus.rectangle.on.rectangle")
+                            }
+                            Button(action: {
+                                
+                            }) {
+                                Label("上传本地数据", systemImage: "icloud.and.arrow.up")
+                            }
+                            Button(action: {
+                                
+                            }) {
+                                Label("下载云端数据", systemImage: "icloud.and.arrow.down")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.title3)
+                        }
+                    }
+                    
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button(action: {
                             self.presentationMode.wrappedValue.dismiss()

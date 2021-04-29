@@ -18,7 +18,6 @@ class CSVTools {
         return result
     }
     
-    
     func readDataFromCSV(fileName:String, fileType: String)-> String!{
         guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
             else {

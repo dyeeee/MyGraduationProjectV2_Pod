@@ -20,9 +20,11 @@ struct ReviewCardRouterView: View {
     var body: some View {
         ZStack{
             if learningWordItem.todayReviewCount == 0 {
-            ReviewCardView(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
+            ReviewCardView(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM,
+                           wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
         }else if learningWordItem.todayReviewCount == 1{
-            ReviewCardView2(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM, wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
+            ReviewCardView2(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM,
+                            wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
         }}.onAppear(perform: {
             
         })

@@ -14,7 +14,6 @@ enum Device {
     enum Devicetype{
         case iPhone,iPad,Mac
     }
-
     static var deviceType:Devicetype{
         #if targetEnvironment(macCatalyst)
             return .Mac

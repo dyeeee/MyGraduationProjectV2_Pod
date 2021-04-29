@@ -190,7 +190,8 @@
 		D04D0CCB25FB3BA000FC606E /* widget_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_2.jpg; sourceTree = "<group>"; };
 		D04D0CCC25FB3BA000FC606E /* widget_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_3.jpg; sourceTree = "<group>"; };
 		D04D0CCD25FB3BA000FC606E /* widget_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = widget_1.jpg; sourceTree = "<group>"; };
-		D04D0CE825FBA64900FC606E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D05B52F02621E0F600638436 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D05B52F12621E10E00638436 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D069131025D3936F008E1725 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D069131125D3936F008E1725 /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		D069131225D3936F008E1725 /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
@@ -899,7 +900,8 @@
 		D04D0CE925FBA64900FC606E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D04D0CE825FBA64900FC606E /* en */,
+				D05B52F02621E0F600638436 /* zh-Hans */,
+				D05B52F12621E10E00638436 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -916,6 +918,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8JMQ7GKF7;
 				INFOPLIST_FILE = MyWordWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -940,6 +943,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8JMQ7GKF7;
 				INFOPLIST_FILE = MyWordWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

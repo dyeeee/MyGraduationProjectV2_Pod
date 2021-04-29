@@ -125,6 +125,22 @@ class DayContentViewModel: ObservableObject{
         getAllDayContentItems()
     }
     
+    func createTestItem() {
+        dateStringList = ["20210401","20210403","20210404","20210405",
+                          "20210408","20210409","20210410","20210412",
+                          "20210414","20210417","20210418","20210420",
+                          "20210421","20210422","20210423","20210425"]
+        for dateString in dateStringList {
+            let monthString = dateString.prefix(6)
+            let item = DayContentItem(context: PersistenceController.shared.container.viewContext)
+            item.dateString = dateString
+            item.monthString = String(monthString)
+            item.isLearnDone = true
+        }
+        saveDayContentItemToPersistentStore()
+        getAllDayContentItems()
+    }
+    
     //保存
     func saveDayContentItemToPersistentStore() {
         let viewContext = PersistenceController.shared.container.viewContext
