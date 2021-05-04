@@ -19,6 +19,9 @@ class LearnWordViewModel: ObservableObject{
     @Published var todayNewWordList:[LearningWordItem] = []
     @Published var todayReviewWordList:[LearningWordItem] = []
     
+//    随机小测的列表
+    @Published var randomTestWordList:[LearningWordItem] = []
+    
     
     @Published var todayAllCount:Int = 1
     @Published var todayNewCount:Int = 0   //用户设定每日新词数量
@@ -137,6 +140,34 @@ class LearnWordViewModel: ObservableObject{
         } catch {
             NSLog("Error fetching tasks: \(error)")
         }
+    }
+    
+    func getWordTestWordItems(num:Int = 5){
+
+        let viewContext = PersistenceController.shared.container.viewContext
+
+        let count = learningWordList.count
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LearningWordItem")
+        let pre =  NSPredicate(format: "wordStatus == %@", "learning")
+        
+        //fetchRequest.fetchLimit = 50
+        request.predicate = pre
+        request.fetchLimit = num
+        request.fetchOffset = Int(arc4random_uniform(UInt32(count)))
+        do {
+            //获取所有的Item
+            randomTestWordList = try viewContext.fetch(request) as! [LearningWordItem]
+            for item in randomTestWordList {
+                item.todayReviewCount = 0
+            }
+            print("测试的词加载完成")
+            //showItems(list: todayReviewWordList)
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+        }
+
+
+
     }
     
     //显示单词列表
@@ -600,7 +631,21 @@ class LearnWordViewModel: ObservableObject{
         //self.showItems(list:self.todayReviewWordList)
     }
     
-    
+    func nextCard_Test(item:LearningWordItem) {
+        //移除这个单词
+        self.randomTestWordList.remove(at: 0)
+        //todayReviewCount 记录每次学习是否认识
+        if item.todayReviewCount == 2{
+            print("测试完成")
+        }else{
+            // 没有完成两次认识，就继续添加到队列中
+            self.randomTestWordList.append(item)
+            self.showItems(list:self.todayReviewWordList)
+        }
+        saveToPersistentStore()
+        print("\(item.wordContent ?? "noContent")复习")
+        //self.showItems(list:self.todayReviewWordList)
+    }
     
     func showItems(list:[LearningWordItem]) {
         var tmp:[String] = []

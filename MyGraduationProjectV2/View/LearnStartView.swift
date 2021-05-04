@@ -138,6 +138,15 @@ struct LearnStartView: View {
                     
                     Section(header: Text("单词书")){
                         NavigationLink(
+                            destination: WordTestView(wordVM: self.wordVM, learnWordVM: self.learnWordVM),
+                            label: {
+                                HStack(spacing:10) {
+                                    Image(systemName: "pencil.and.outline")
+                                    Text("单词测试")
+                                }
+                            })
+                        
+                        NavigationLink(
                             destination: LearningWordListVIew(learnWordVM: self.learnWordVM, wordVM: self.wordVM),
                             label: {
                                 HStack(spacing:10) {

@@ -29,6 +29,10 @@
 		D01D7F3A25CFD48C005EFE71 /* LearningWordListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D7F3625CFD48C005EFE71 /* LearningWordListVIew.swift */; };
 		D01D7F4325CFE12F005EFE71 /* naviColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D7F4225CFE12F005EFE71 /* naviColorTest.swift */; };
 		D01D7F4625D032CA005EFE71 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D7F4525D032CA005EFE71 /* HomeView.swift */; };
+		D01EF2C92641A2A800D81148 /* WordTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01EF2C82641A2A800D81148 /* WordTestView.swift */; };
+		D01EF2CD2641A99C00D81148 /* TestCardView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01EF2CC2641A99C00D81148 /* TestCardView1.swift */; };
+		D01EF2D32641ABDE00D81148 /* TestCardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01EF2D22641ABDE00D81148 /* TestCardView2.swift */; };
+		D01EF2D72641ABF000D81148 /* TestCardRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01EF2D62641ABF000D81148 /* TestCardRouterView.swift */; };
 		D034634225C82AA30088AB3D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034634125C82AA30088AB3D /* DateExtension.swift */; };
 		D034634525C842360088AB3D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034634425C842360088AB3D /* SettingView.swift */; };
 		D034634A25C845560088AB3D /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034634925C845560088AB3D /* PersonalView.swift */; };
@@ -180,6 +184,10 @@
 		D01D7F3625CFD48C005EFE71 /* LearningWordListVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningWordListVIew.swift; sourceTree = "<group>"; };
 		D01D7F4225CFE12F005EFE71 /* naviColorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = naviColorTest.swift; sourceTree = "<group>"; };
 		D01D7F4525D032CA005EFE71 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D01EF2C82641A2A800D81148 /* WordTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTestView.swift; sourceTree = "<group>"; };
+		D01EF2CC2641A99C00D81148 /* TestCardView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardView1.swift; sourceTree = "<group>"; };
+		D01EF2D22641ABDE00D81148 /* TestCardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardView2.swift; sourceTree = "<group>"; };
+		D01EF2D62641ABF000D81148 /* TestCardRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardRouterView.swift; sourceTree = "<group>"; };
 		D034634125C82AA30088AB3D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D034634425C842360088AB3D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		D034634925C845560088AB3D /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
@@ -334,6 +342,10 @@
 			children = (
 				D01D7F3625CFD48C005EFE71 /* LearningWordListVIew.swift */,
 				D01D7F3325CFD48B005EFE71 /* LearningView.swift */,
+				D01EF2C82641A2A800D81148 /* WordTestView.swift */,
+				D01EF2D62641ABF000D81148 /* TestCardRouterView.swift */,
+				D01EF2CC2641A99C00D81148 /* TestCardView1.swift */,
+				D01EF2D22641ABDE00D81148 /* TestCardView2.swift */,
 				D01D7F3425CFD48B005EFE71 /* LearnCardView.swift */,
 				D0D162DC25F4B40E00B70CE3 /* ReviewCardRouterView.swift */,
 				D01D7F3525CFD48C005EFE71 /* ReviewCardView.swift */,
@@ -843,6 +855,7 @@
 				D069132D25D39370008E1725 /* LineView.swift in Sources */,
 				D069132B25D39370008E1725 /* PieChartView.swift in Sources */,
 				D069132525D39370008E1725 /* LabelView.swift in Sources */,
+				D01EF2D32641ABDE00D81148 /* TestCardView2.swift in Sources */,
 				D00FFA2025CE52EF001B0311 /* WordContentView.swift in Sources */,
 				D0B59E8125CC2AF200639AE3 /* UserInfoView.swift in Sources */,
 				D00FFA2125CE52EF001B0311 /* WordTranslationView.swift in Sources */,
@@ -867,8 +880,10 @@
 				D069135E25D40D2D008E1725 /* GridStack.swift in Sources */,
 				D0F5B01F25C80FB1004ACB65 /* HideTab.swift in Sources */,
 				D034634A25C845560088AB3D /* PersonalView.swift in Sources */,
+				D01EF2CD2641A99C00D81148 /* TestCardView1.swift in Sources */,
 				D00FFA0525CE4890001B0311 /* LearnWordViewModel.swift in Sources */,
 				D00FFA1F25CE52EF001B0311 /* HighlightPartly.swift in Sources */,
+				D01EF2D72641ABF000D81148 /* TestCardRouterView.swift in Sources */,
 				D069134925D40CD0008E1725 /* Month.swift in Sources */,
 				D069135525D40CEC008E1725 /* DayCellView.swift in Sources */,
 				D01D7F3A25CFD48C005EFE71 /* LearningWordListVIew.swift in Sources */,
@@ -876,6 +891,7 @@
 				D00FFA1B25CE52EF001B0311 /* WordDetailView.swift in Sources */,
 				D0F5AFF525C80982004ACB65 /* MyGraduationProjectV2App.swift in Sources */,
 				D0ADA227260499EA0014E939 /* DeviceAdaptation.swift in Sources */,
+				D01EF2C92641A2A800D81148 /* WordTestView.swift in Sources */,
 				D069132925D39370008E1725 /* PieChartHelpers.swift in Sources */,
 				D069133325D39370008E1725 /* Line.swift in Sources */,
 				D098847525D2223A006909CA /* AnimationTestView.swift in Sources */,
