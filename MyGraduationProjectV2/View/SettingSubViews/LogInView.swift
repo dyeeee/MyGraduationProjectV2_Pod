@@ -15,11 +15,14 @@ struct LogInView: View {
     @AppStorage("UD_username") var UD_username = ""
     @AppStorage("UD_userPassword") var UD_userPassword = ""
     @AppStorage("UD_userSession") var UD_userSession = ""
-    @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
+    @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = true
     
     //本地校验
     @AppStorage("UD_isLogged") var UD_isLogged = false
     
+    
+    @State var useremail_input = ""
+    @State var password_input = ""
     
     @State var startAnimate = false
     
@@ -62,7 +65,8 @@ struct LogInView: View {
                             .font(.title2)
                             .foregroundColor(Color(.systemGray))
                             .frame(width: 35)
-                        TextField(isSignUpView ? "未注册的邮箱" :"邮箱", text: $userVM.userEmail)
+                        TextField(isSignUpView ? "未注册的邮箱" :"邮箱", text: $useremail_input)
+//                        TextField(isSignUpView ? "未注册的邮箱" :"邮箱", text: $userVM.userEmail)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                     }
@@ -77,8 +81,8 @@ struct LogInView: View {
                             .font(.title2)
                             .foregroundColor(Color(.systemGray))
                             .frame(width: 35)
-                        
-                        SecureField(isSignUpView ? "登录密码" :"密码", text: $userVM.userPassword)
+                        SecureField(isSignUpView ? "登录密码" :"密码", text: $password_input)
+//                        SecureField(isSignUpView ? "登录密码" :"密码", text: $userVM.userPassword)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                     }
@@ -90,6 +94,7 @@ struct LogInView: View {
                 .alert(isPresented: $userVM.bioUsingAlert, content: {
                     Alert(title: Text("启用生物识别"), message: Text("是否使用TouchID/FaceID来登录"), primaryButton: .cancel(Text("使用"), action: {
                         UD_isUsingBioID = true
+//                        print(UD_isUsingBioID)
                         withAnimation{
                             print("准备进入主页面")
                             self.UD_isLogged = true
@@ -110,6 +115,8 @@ struct LogInView: View {
                     HStack(spacing: 15){
                         Button(action:
                                 {
+                                    userVM.userEmail = useremail_input
+                                    userVM.userPassword = password_input
                                     self.userVM.userLogIn()
                                 }, label: {
                                     Text("登 录")
@@ -120,8 +127,8 @@ struct LogInView: View {
                                         .background(Color("loginColor"))
                                         .clipShape(Capsule())
                                 })
-                            .opacity(userVM.userEmail != "" && userVM.userPassword != "" ? 1 : 0.5)
-                            .disabled(userVM.userEmail != "" && userVM.userPassword != "" ? false : true)
+                            .opacity(useremail_input != "" && password_input != "" ? 1 : 0.5)
+                            .disabled(useremail_input != "" && password_input != "" ? false : true)
                             .alert(isPresented: $userVM.logInAlert, content: {
                                 Alert(title: Text("用户登录错误"), message: Text(userVM.logInAlertMsg), dismissButton: .destructive(Text("重试")))
                             })
@@ -139,6 +146,11 @@ struct LogInView: View {
                         })
                         .opacity(UD_username != "" && UD_userPassword != "" && userVM.getBioMetricStatus() && UD_isUsingBioID ? 1 : 0.5)
                         .disabled(UD_username != "" && UD_userPassword != "" && UD_isUsingBioID ? false : true)
+                        .onAppear(perform: {
+                            print("生物识别状态")
+                            print(UD_isUsingBioID)
+                        })
+                        
                         
                         
                     }

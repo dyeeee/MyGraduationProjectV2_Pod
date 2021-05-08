@@ -11,10 +11,11 @@ import WidgetKit
 struct HomeTabView: View {
     @State var selectedTab: TabSelection = .page1
     @StateObject var wordVM = WordViewModel()
+    @StateObject var learnWordVM = LearnWordViewModel()
 
-    @StateObject var dayContentVM:DayContentViewModel = DayContentViewModel()
+    @StateObject var dayContentVM = DayContentViewModel()
     @StateObject var todoVM = ToDoViewModel()
-    @StateObject var appearanceVM:AppearanceViewModel = AppearanceViewModel()
+    @StateObject var appearanceVM = AppearanceViewModel()
     @StateObject var userVM = UserViewModel()
     
     @State public var orientation = UIDevice.current.orientation
@@ -33,7 +34,7 @@ struct HomeTabView: View {
                 }
                 .tag(TabSelection.page1)
             
-            LearnStartView(dayContentVM:self.dayContentVM,appearanceVM:self.appearanceVM)
+            LearnStartView(learnWordVM:self.learnWordVM,dayContentVM:self.dayContentVM,appearanceVM:self.appearanceVM)
 //            Text("p2")
                 .navigationTitle(Text("page2"))
                 .tabItem {
@@ -59,7 +60,7 @@ struct HomeTabView: View {
                 .tag(TabSelection.page4)
 
             
-            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM)
+            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM, todoVM: self.todoVM)
                 .onAppear(perform: {
                     //勉强解决自动切换的问题
                     self.appearanceVM.colorScheme = getStoredScheme()

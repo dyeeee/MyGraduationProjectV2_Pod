@@ -10,12 +10,14 @@ import CoreData
 import Combine
 import UIKit
 import LeanCloud
+import SwiftUI
 
 class ToDoViewModel: ObservableObject {
     
     // ToDoItem的数组
     @Published var ToDoItemList: [ToDoItem] = []
     @Published var UndoneToDoItemList: [ToDoItem] = []
+    @AppStorage("UD_todoNum") var UD_todoNum = 0
     
     //初始化时就把所有数据显先读到DataStore中
     init() {
@@ -38,7 +40,8 @@ class ToDoViewModel: ObservableObject {
             NSLog("Error fetching tasks: \(error)")
             
         }
-        print(ToDoItemList)
+//        print(ToDoItemList)
+        UD_todoNum = ToDoItemList.count
     }
     
     //读取

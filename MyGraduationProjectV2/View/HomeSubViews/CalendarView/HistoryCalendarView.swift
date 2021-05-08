@@ -15,13 +15,13 @@ struct HistoryCalendarView: View {
     var startDate: Date {
         let dateFormat = DateFormatter.init()
         dateFormat.dateFormat = "yyyyMMdd"
-        let date:Date = dateFormat.date(from: "20210201") ?? Date()
+        let date:Date = dateFormat.date(from: "20210501") ?? Date()
         return date
     }
     var monthsToDisplay: Int {
         let dateFormat = DateFormatter.init()
         dateFormat.dateFormat = "yyyyMMdd"
-        let date:Date = dateFormat.date(from: "20210201") ?? Date()
+        let date:Date = dateFormat.date(from: "20210501") ?? Date()
         let months:Int = date.monthsBetweenDate(toDate: Date())+1
         return months
     }

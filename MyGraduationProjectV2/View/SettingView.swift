@@ -11,6 +11,7 @@ struct SettingView: View {
     @StateObject var appearanceVM:AppearanceViewModel
     @StateObject var userVM:UserViewModel
     @StateObject var wordVM:WordViewModel
+    @StateObject var todoVM:ToDoViewModel
     
     @AppStorage("UD_isLogged") var UD_isLogged = true
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
@@ -27,7 +28,7 @@ struct SettingView: View {
                 Section(header: Text("账号及同步")){
                     
                     NavigationLink(
-                        destination: PersonalView(userVM: self.userVM, wordVM: self.wordVM).hiddenTabBar(),
+                        destination: PersonalView(userVM: self.userVM, wordVM: self.wordVM, todoVM: self.todoVM).hiddenTabBar(),
                         label: {
                             VStack {
                                 if (UD_isLogged && self.userVM.isLocalSessionVertified) {
@@ -126,6 +127,6 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView(appearanceVM: AppearanceViewModel(), userVM: UserViewModel(), wordVM: WordViewModel())
+        SettingView(appearanceVM: AppearanceViewModel(), userVM: UserViewModel(), wordVM: WordViewModel(), todoVM: ToDoViewModel())
     }
 }

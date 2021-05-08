@@ -193,7 +193,11 @@ class UserViewModel : ObservableObject{
         UD_userSession = ""
         userPassword = ""
         //添加一个询问要不要清除faceID记录
-        UD_isUsingBioID = false
+        if UD_isUsingBioID != true{
+            UD_isUsingBioID = false
+            print("已关闭生物识别")
+        }
+        
         withAnimation{
             UD_isLogged = false
         }
@@ -214,7 +218,7 @@ class UserViewModel : ObservableObject{
     //        }
     //    }
     
-    func uploadUserInfo(learningBook:String,wordStatusList:[Int],noteBookNum:Int,todoNum:Int = 6,searchHistoryCount:Int) {
+    func uploadUserInfo(learningBook:String,wordStatusList:[Int],noteBookNum:Int,todoNum:Int,searchHistoryCount:Int) {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
             let query = LCQuery(className: "UserInfo")
@@ -316,6 +320,7 @@ class UserViewModel : ObservableObject{
                         //更新
                         do {
                             print("Sync Test")
+                            self.UD_searchHistoryCount = userInfo.get("searchHistoryCount")?.intValue ?? 0
 
                         }
                         catch {

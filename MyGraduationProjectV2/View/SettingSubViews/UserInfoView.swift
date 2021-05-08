@@ -12,6 +12,8 @@ struct UserInfoView: View {
     
     @StateObject var wordVM:WordViewModel
     
+    @StateObject var todoVM:ToDoViewModel
+    
     
     
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
@@ -23,6 +25,7 @@ struct UserInfoView: View {
     @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量，存在UD里
     
     @AppStorage("UD_noteWordNum") var UD_noteWordNum = 0
+    @AppStorage("UD_todoNum") var UD_todoNum = 0
     @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
     
     @State var uploadAlert = false
@@ -59,9 +62,10 @@ struct UserInfoView: View {
                         
 
                         Button(action: {
-                            self.userVM.downloadFromCloud()
+                            self.userVM.downloadFromCloud() //空
                             
                             self.wordVM.downloadFromCloud()
+                            self.todoVM.downloadFromCloud()
                             
                         }, label: {
                             Text("下载云记录")
@@ -78,7 +82,7 @@ struct UserInfoView: View {
                     Spacer()
                     HStack {
                         Button(action: {
-                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum],noteBookNum: UD_noteWordNum,searchHistoryCount: UD_searchHistoryCount)
+                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum],noteBookNum: UD_noteWordNum, todoNum: UD_todoNum,searchHistoryCount: UD_searchHistoryCount)
                             
                             wordVM.uploadToCloud()
                             
@@ -143,7 +147,7 @@ struct UserInfoView: View {
                             Divider()
                             VStack {
                                 Text("待办事件")
-                                Text("0")
+                                Text("\(UD_todoNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
@@ -235,11 +239,17 @@ struct UserInfoView: View {
             VStack{
                 Toggle("是否启用生物识别登录", isOn: $UD_isUsingBioID)
             }
+            .onChange(of: UD_isUsingBioID, perform: { value in
+                print("生物识别状态")
+                print(UD_isUsingBioID)
+            })
+                
             }
             Section{
                 VStack(alignment:.center) {
                     Button(action: {
                         self.userVM.userLogOut()
+//                        print(UD_isUsingBioID)
                     }, label: {
                         Text("退出当前账号")
                             .fontWeight(.bold)
@@ -260,7 +270,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel())
+            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel(), todoVM: ToDoViewModel())
         }
     }
 }
