@@ -11,6 +11,7 @@ struct UserInfoView: View {
     @StateObject var userVM:UserViewModel
     
     @StateObject var wordVM:WordViewModel
+    @StateObject var learnVM:LearnWordViewModel
     
     @StateObject var todoVM:ToDoViewModel
     
@@ -27,6 +28,8 @@ struct UserInfoView: View {
     @AppStorage("UD_noteWordNum") var UD_noteWordNum = 0
     @AppStorage("UD_todoNum") var UD_todoNum = 0
     @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
+    
+    @AppStorage("UD_autoSync") var UD_autoSync = false
     
     @State var uploadAlert = false
     
@@ -50,11 +53,9 @@ struct UserInfoView: View {
             
             Section(header:Text("云同步")){
                 HStack{
-                    NavigationLink(
-                        destination: Text("Destination"),
-                        label: {
-                            Text("同步模式设置")
-                        })
+                    Image(systemName: "bonjour")
+                        .font(.title2)
+                   Toggle("启用自动同步", isOn: $UD_autoSync)
                 }
                 
                 HStack {
@@ -62,9 +63,10 @@ struct UserInfoView: View {
                         
 
                         Button(action: {
-                            self.userVM.downloadFromCloud() //空
+                            self.userVM.downloadFromCloud()
                             
                             self.wordVM.downloadFromCloud()
+                            self.learnVM.downloadFromCloud()
                             self.todoVM.downloadFromCloud()
                             
                         }, label: {
@@ -85,6 +87,7 @@ struct UserInfoView: View {
                             self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum],noteBookNum: UD_noteWordNum, todoNum: UD_todoNum,searchHistoryCount: UD_searchHistoryCount)
                             
                             wordVM.uploadToCloud()
+                            learnVM.uploadToCloud()
                             
                         }, label: {
                             Text("上传本地记录")
@@ -101,7 +104,17 @@ struct UserInfoView: View {
                     
                     VStack {
                         
-                        Image(systemName: "house.fill")
+                        if Device.deviceType == .iPhone {
+                            Image(systemName: "house.fill")
+                        }else{
+                            HStack {
+                                Spacer()
+                                Image(systemName: "house.fill")
+                                Text("本地数据情况")
+                                Spacer()
+                            }
+                        }
+
                     }
                     Spacer()
                     Divider()
@@ -167,7 +180,17 @@ struct UserInfoView: View {
                     
                     VStack {
                         
-                        Image(systemName: "icloud.fill")
+                        
+                        if Device.deviceType == .iPhone {
+                            Image(systemName: "icloud.fill")
+                        }else{
+                            HStack {
+                                Spacer()
+                                Image(systemName: "icloud.fill")
+                                Text("云端数据情况")
+                                Spacer()
+                            }
+                        }
                     }
                     Spacer()
                     Divider()
@@ -261,6 +284,7 @@ struct UserInfoView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("账号")
         .navigationBarHidden(false)
+        .hiddenTabBar()
         .onAppear(perform: {
             userVM.showCurrentUserInfo()
         })
@@ -270,7 +294,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel(), todoVM: ToDoViewModel())
+            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel())
         }
     }
 }

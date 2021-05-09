@@ -45,9 +45,9 @@ struct DayCellView: View {
                 //                .offset(x: offsetList.randomElement()!, y: offsetList.randomElement()!)
                     .onAppear(perform: {
                         if animate{
-                            withAnimation(Animation.easeIn(duration: 1.5)){
+//                            withAnimation(Animation.easeIn(duration: 1.5)){
                                 doneShow = true
-                            }
+//                            }
                         }else{}
                     })
                     .onDisappear(perform: {

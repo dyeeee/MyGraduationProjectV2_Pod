@@ -76,11 +76,11 @@ class WordViewModel: ObservableObject{
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let starLevelFilter = "0"
         let pre =  NSPredicate(format: "starLevel > %@", starLevelFilter)
-        //let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
         
         fetchRequest.fetchLimit = 50
         fetchRequest.predicate = pre
-        //fetchRequest.sortDescriptors = [sort]
+        fetchRequest.sortDescriptors = [sort]
         let viewContext = PersistenceController.shared.container.viewContext
         
         var list:[WordItem] = []

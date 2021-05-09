@@ -52,7 +52,12 @@ struct WordSearchView: View {
                 }
             }
             // iPad横屏双列状态的默认显示界面
-            //Text("test")
+            VStack{
+            Image(systemName: "a.magnify")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.systemGray))
+            }
+
             
         }
         //更改方向

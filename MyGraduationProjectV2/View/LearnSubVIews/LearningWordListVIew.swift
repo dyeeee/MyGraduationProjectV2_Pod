@@ -14,6 +14,9 @@ struct LearningWordListVIew: View {
     @State var noteTypeIndex = 0
     let alphaList = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
+    var today:Date = Date()
+    
+    
     var body: some View {
         //NavigationView{
         ScrollViewReader { reader in
@@ -77,10 +80,11 @@ struct LearningWordListVIew: View {
                                             HStack {
                                                 Text(word.wordContent ?? "noContent")
                                                     .font(.title3)
-                                                
+                                                Spacer()
                                                 Text("复习次数: \(word.reviewTimes)").font(.caption)
                                                 
-                                                Text("下次出现时间: \(word.nextReviewDay)")
+//                                                Text("下次出现时间: \(word.nextReviewDay)")
+                                                Text("下次复习: \(Date(timeIntervalSinceNow: TimeInterval(86400 * Int(word.nextReviewDay - 1))).dateToString(format:"MM-dd"))")
                                                     .font(.caption)
                                             }
                                             //                                            Text(dealTrans(word.sourceWord?.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
@@ -137,6 +141,7 @@ struct LearningWordListVIew: View {
                                             HStack {
                                                 Button(action:{
                                                     word.wordStatus = "known"
+                                                    word.isSynced = false
                                                     learnWordVM.saveToPersistentStore()
                                                     learnWordVM.getKnownWordItems()
                                                     learnWordVM.getUnlearnedWordItems()
@@ -187,6 +192,7 @@ struct LearningWordListVIew: View {
                                             HStack {
                                                 Button(action:{
                                                     word.wordStatus = "unlearned"
+                                                    word.isSynced = false
                                                     learnWordVM.saveToPersistentStore()
                                                     learnWordVM.getKnownWordItems()
                                                     learnWordVM.getUnlearnedWordItems()
@@ -235,10 +241,10 @@ struct LearningWordListVIew: View {
                                             HStack {
                                                 Text(word.wordContent ?? "noContent")
                                                     .font(.title3)
-                                                Text("复习次数: \(word.reviewTimes)").font(.caption)
-                                                
-                                                Text("下次出现时间: \(word.nextReviewDay)")
-                                                    .font(.caption)
+//                                                Text("复习次数: \(word.reviewTimes)").font(.caption)
+//
+//                                                Text("下次出现时间: \(word.nextReviewDay)")
+//                                                    .font(.caption)
                                             }
                                             //                                            Text(dealTrans(word.sourceWord?.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
                                             //                                                .font(.footnote)
@@ -274,7 +280,7 @@ struct LearningWordListVIew: View {
                             Label("从CSV加载", systemImage: "tablecells.fill")
                         }
                         Button(action: {
-                            self.learnWordVM.preloadLearningWordFromCoreData(bookName:"cet4")
+                            self.learnWordVM.preloadLearningWordFromCoreData(bookName:"gk")
                         }) {
                             Label("从CoreData加载", systemImage: "homepod.fill")
                         }
@@ -287,13 +293,19 @@ struct LearningWordListVIew: View {
                         }
                         Button(action: {
                             self.learnWordVM.uploadToCloud()
+                            
+                            let tmpUSerVM = UserViewModel()
+                            tmpUSerVM.vertifyLocalSession()
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                                tmpUSerVM.uploadUserInfoCheck()
+                            }
                         }) {
-                            Label("上传", systemImage: "icloud.and.arrow.up")
+                            Label("上传本地数据", systemImage: "icloud.and.arrow.up")
                         }
                         Button(action: {
                             self.learnWordVM.downloadFromCloud()
                         }) {
-                            Label("下载", systemImage: "icloud.and.arrow.down")
+                            Label("下载云端数据", systemImage: "icloud.and.arrow.down")
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")

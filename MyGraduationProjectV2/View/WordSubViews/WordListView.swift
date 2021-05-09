@@ -64,6 +64,7 @@ struct WordListView: View {
                             .onAppear(perform: {
                                 item.latestSearchDate = Date()
                                 item.searchCount = item.searchCount + 1
+                                item.isSynced = false
                                 UD_searchHistoryCount = UD_searchHistoryCount + 1
                             })
                     )

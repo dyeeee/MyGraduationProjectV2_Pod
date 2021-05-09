@@ -27,7 +27,7 @@ struct WordDetailView: View {
     @State var showExampleSentences = true
     @State var showNote = true
     @State var showNoteSaveButton = false
-    
+    @AppStorage("UD_autoSync") var UD_autoSync = false
     //延时查询优化性能表现
     @State var timeRemaining = 10
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -346,8 +346,15 @@ struct WordDetailView: View {
                     wordVM.saveToPersistentStoreAndRefresh(.notebook)
                     stopTimer()
                     
-                    //先把自动上传关了
-                    //wordVM.uploadToCloud()
+                    if UD_autoSync{
+                        print("自动同步中")
+                        let tmpUSerVM = UserViewModel()
+                        tmpUSerVM.vertifyLocalSession()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                            wordVM.uploadToCloud()
+                            tmpUSerVM.uploadUserInfoCheck()
+                        }
+                    }
                 }
             }
             .onAppear() {

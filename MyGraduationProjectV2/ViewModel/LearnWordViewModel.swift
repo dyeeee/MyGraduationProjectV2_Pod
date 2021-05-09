@@ -33,6 +33,7 @@ class LearnWordViewModel: ObservableObject{
     @AppStorage("UD_unlearnedWordNum") var UD_unlearnedWordNum = 0 //未学习的总量，存在UD里
     @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量，存在UD里
     @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量，存在UD里
+    @AppStorage("UD_Cloud_learningBook") var UD_Cloud_learningBook = ""
     
     @AppStorage("UD_newWordNum") var UD_newWordNum = 10 //用户设定每日新词数量，存在UD里
     @AppStorage("UD_learnDayCount") var UD_learnDayCount = 1
@@ -64,7 +65,7 @@ class LearnWordViewModel: ObservableObject{
     
     //今天要学习的单词
     func getTodayList(newWordNum:Int,learnDayCount:Int,byOnAppear:Bool = false) {
-        
+        print("学习的第\(UD_learnDayCount)天")
         getTodayNewWordItems(num:newWordNum,learnDayCount:learnDayCount)
         self.todayNewCount = todayNewWordList.count
         
@@ -136,7 +137,7 @@ class LearnWordViewModel: ObservableObject{
                 item.todayReviewCount = 0
             }
             print("复习的词加载完成")
-            //showItems(list: todayReviewWordList)
+            showItems(list: todayReviewWordList)
         } catch {
             NSLog("Error fetching tasks: \(error)")
         }
@@ -370,7 +371,7 @@ class LearnWordViewModel: ObservableObject{
         //从CoreData来的先保存
         saveToPersistentStore()
         
-        //3. 保留的话遍历单词并修改对应的lear单词
+        //3. 保留的话遍历单词并修改对应的learn单词
         if isKeep {
             //都是已掌握的单词
             for id in knownLearningWordIDList {
@@ -384,6 +385,28 @@ class LearnWordViewModel: ObservableObject{
             }
         }else{
             knownLearningWordIDList = []
+            let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
+            let query = LCQuery(className: "LearningWordItem")
+            query.whereKey("user", .equalTo("\(user)"))
+            _ = query.find { result in
+                switch result {
+                case .success(objects: let result_list):
+                    // result_list 是包含满足条件的 Student 对象的数组
+                    // 批量删除
+                    _ = LCObject.delete(result_list, completion: { (result) in
+                        switch result {
+                        case .success:
+                            print("删除所有学习的单词成功")
+                            break
+                        case .failure(error: let error):
+                            print(error)
+                        }
+                    })
+                    break
+                case .failure(error: let error):
+                    print(error)
+                }
+            }
         }
         
         //4.再次完成保存并刷新列表
@@ -591,7 +614,7 @@ class LearnWordViewModel: ObservableObject{
         
         //最后再来加载复习的单词页面，优化性能表现
         //复习的词也可以分批加载处理，后续再优化（先获取完整列表，再分批载入视图中）
-        if todayNewWordList.count == 2 {
+        if todayNewWordList.count == 1 {
             DispatchQueue.main.asyncAfter(deadline:DispatchTime.now() + 0.1) { [self] in
                 self.getTodayReviewWordItems(learnDayCount: self.UD_learnDayCount)
             }
@@ -763,6 +786,12 @@ class LearnWordViewModel: ObservableObject{
     
     func downloadFromCloud() {
         self.isSyncing = true
+        
+        if allWordsToLearnList.count == 0{
+            DispatchQueue.main.async {
+                self.preloadLearningWordFromCoreData(bookName: bookName2Tag(book: self.UD_Cloud_learningBook))
+            }
+        }
         
         let viewContext = PersistenceController.shared.container.viewContext
         let fetchRequest: NSFetchRequest<LearningWordItem> = LearningWordItem.fetchRequest()

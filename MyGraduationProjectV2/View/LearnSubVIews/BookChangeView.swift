@@ -71,7 +71,7 @@ struct BookChangeView: View {
                 }
                 
                 if !firstSelect{
-                    Section(header:Text("设置")){
+                    Section(header:Text("设置"),footer:Text("不保留将会清空云端已有记录")){
                         HStack{
                             //Text("保留已掌握的单词")
                             Toggle("保留已掌握的单词", isOn: $isKeepKnownWords)

@@ -21,6 +21,7 @@ struct LearningView: View {
     @AppStorage("UD_learnDayCount") var UD_learnDayCount = 1
     
     @AppStorage("UD_isLastLearnDone") var UD_isLastLearnDone = false
+    @AppStorage("UD_autoSync") var UD_autoSync = false
     
     @State var todayAllCount:Int = 36
     @State var todayNewCount:Int = 0
@@ -90,11 +91,20 @@ struct LearningView: View {
                         
                         self.presentationMode.wrappedValue.dismiss()
                         
+                        if UD_autoSync{
+                            print("自动同步中")
+                            let tmpUSerVM = UserViewModel()
+                            tmpUSerVM.vertifyLocalSession()
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                                learnWordVM.uploadToCloud()
+                                tmpUSerVM.uploadUserInfoCheck()
+                            }
+                        }
                         
                     }, label: {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                            Text("今日学习完成\n(补充统计数据、完成今日打卡)")
+                            Text("今日学习完成\n已掌握\(UD_knownWordNum)个单词\n学习\(UD_learningWordNum)个单词中")
                         }
                     })
                 }.zIndex(1)
@@ -133,6 +143,7 @@ struct LearningView: View {
         .ignoresSafeArea(edges:.bottom)
         .onAppear(perform: {
             //获取今天的词
+            print("新词数量\(UD_newWordNum)")
             self.learnWordVM.getTodayList(newWordNum: UD_newWordNum, learnDayCount: UD_learnDayCount,byOnAppear: true)
         })
         .onDisappear(perform: {

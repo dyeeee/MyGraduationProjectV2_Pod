@@ -10,6 +10,7 @@ import SwiftUI
 struct PersonalView: View {
     @StateObject var userVM:UserViewModel
     @StateObject var wordVM:WordViewModel
+    @StateObject var learnVM:LearnWordViewModel
     @StateObject var todoVM:ToDoViewModel
     @AppStorage("UD_isLogged") var UD_isLogged = false
 //    @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
@@ -17,7 +18,7 @@ struct PersonalView: View {
     var body: some View {
         //本地UD在已登录状态，本地存的session验证通过则显示用户信息和用户操作
         if (UD_isLogged && self.userVM.isLocalSessionVertified) {
-            UserInfoView(userVM: self.userVM, wordVM: self.wordVM, todoVM: self.todoVM)
+            UserInfoView(userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnVM, todoVM: self.todoVM)
         }else if(UD_isLogged){
             ZStack {
                 LogInView(userVM:self.userVM)//.navigationBarHidden(true)
@@ -33,7 +34,7 @@ struct PersonalView: View {
                             //.offset(x: 0, y: -70)
                             .zIndex(1)
                         
-                        Text("登录中...")
+//                        Text("登录中...")
                     }
                      //这样可以，效果待优化
                 }
@@ -49,6 +50,6 @@ struct PersonalView: View {
 
 struct PersonalView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalView(userVM: UserViewModel(), wordVM: WordViewModel(), todoVM: ToDoViewModel())
+        PersonalView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel())
     }
 }

@@ -14,6 +14,8 @@ import SwiftUI
 
 class ToDoViewModel: ObservableObject {
     
+    @AppStorage("UD_autoSync") var UD_autoSync = false
+    
     // ToDoItem的数组
     @Published var ToDoItemList: [ToDoItem] = []
     @Published var UndoneToDoItemList: [ToDoItem] = []
@@ -109,6 +111,17 @@ class ToDoViewModel: ObservableObject {
         todoItem.createDateString = Date().dateToString(format: "yyyyMMddHHmm")
         todoItem.done = false
         saveToPersistentStore()
+        
+        if UD_autoSync{
+            print("自动同步中")
+            let tmpUSerVM = UserViewModel()
+            tmpUSerVM.vertifyLocalSession()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                self.uploadToCloud()
+                tmpUSerVM.uploadUserInfoCheck()
+            }
+        }
+        
     }
     
     func createTest() {
@@ -238,7 +251,7 @@ class ToDoViewModel: ObservableObject {
                     let tmpDone:Bool = Item_lean.get("done")?.boolValue ?? false
                     todoItem.done = tmpDone
                     todoItem.createDate = createDateString?.stringToDate(format:"yyyyMMddHHmm")
-                    print(todoItem.done)
+//                    print(todoItem.done)
                 }
                 
                 break
@@ -272,6 +285,16 @@ class ToDoViewModel: ObservableObject {
         let viewContext = container.viewContext
         viewContext.delete(ToDoItemInstance)
         saveToPersistentStore()
+        
+        if UD_autoSync{
+            print("自动同步中")
+            let tmpUSerVM = UserViewModel()
+            tmpUSerVM.vertifyLocalSession()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                self.uploadToCloud()
+                tmpUSerVM.uploadUserInfoCheck()
+            }
+        }
     }
     
     //删除，根据索引删除

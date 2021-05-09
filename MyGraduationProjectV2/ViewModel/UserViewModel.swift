@@ -40,11 +40,15 @@ class UserViewModel : ObservableObject{
     @AppStorage("UD_userPassword") var UD_userPassword = ""
     @AppStorage("UD_userSession") var UD_userSession = ""
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
-    
+    @AppStorage("UD_learningBook") var UD_learningBook = ""
     @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
-    
+    @AppStorage("UD_isLastLearnDone") var UD_isLastLearnDone = false
+    @AppStorage("UD_learnDayCount") var UD_learnDayCount = 0
+
+    @AppStorage("UD_Cloud_learningBook") var UD_Cloud_learningBook = ""
     //本地校验
     @AppStorage("UD_isLogged") var UD_isLogged = false
+    @AppStorage("UD_newData") var UD_newData = false
     
     //云端校验
     @Published var isLocalSessionVertified:Bool = false
@@ -241,10 +245,17 @@ class UserViewModel : ObservableObject{
                             //print(learningBook)
                             try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                             try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
+                            try userInfo.set("isLastLearnDone", value: LCBool(self.UD_isLastLearnDone))
+                            try userInfo.set("learnDayCount", value: LCNumber(integerLiteral: Int(self.UD_learnDayCount)))
                             
                             try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
                             try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
                             try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                            
+                            // 数据更新标记
+                            try userInfo.set("newData", value: LCBool(true))
+                            try userInfo.set("newData_iPad", value: LCBool(true))
+                            try userInfo.set("newData_Mac", value: LCBool(true))
                             
                             
                             
@@ -277,10 +288,94 @@ class UserViewModel : ObservableObject{
                 try userInfo.set("learningBook", value: LCString(learningBook))
                 try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                 try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
+                try userInfo.set("isLastLearnDone", value: LCBool(UD_isLastLearnDone))
+                try userInfo.set("learnDayCount", value: LCNumber(integerLiteral: Int(self.UD_learnDayCount)))
                 
                 try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
                 try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
                 try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                
+                // 数据更新标记
+                try userInfo.set("newData", value: LCBool(true))
+                try userInfo.set("newData_iPad", value: LCBool(true))
+                try userInfo.set("newData_Mac", value: LCBool(true))
+                
+                // 将对象保存到云端
+                _ = userInfo.save { result in
+                    switch result {
+                    case .success:
+                        // 成功保存之后，执行其他逻辑
+                        break
+                    case .failure(error: let error):
+                        // 异常处理
+                        print(error)
+                    }
+                }
+            } catch {
+                print(error)
+            }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){ [self] in
+                self.showCurrentUserInfo()}
+        }
+
+    }
+    
+    func uploadUserInfoCheck() {
+        print("尝试更新数据标记位")
+        if isLocalSessionVertified {
+            print("尝试成功")
+            let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
+            let query = LCQuery(className: "UserInfo")
+            query.whereKey("user", .equalTo("\(user)"))
+
+            
+            //查询得到的话则更新，一个用户保留一条数据
+            if  query.count().intValue != 0 {
+                print("尝试更新用户的Leancloud信息")
+                _ = query.getFirst { result in
+                    switch result {
+                    case .success(object: let userInfo):
+                        print("已有该用户数据在云端")
+                        //更新
+                        do {
+                            // 数据更新标记
+                            try userInfo.set("newData", value: LCBool(true))
+                            try userInfo.set("newData_iPad", value: LCBool(true))
+                            try userInfo.set("newData_Mac", value: LCBool(true))
+                            
+                            
+                            userInfo.save() { (result) in
+                                switch result {
+                                case .success:
+                                    break
+                                case .failure(error: let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                        catch {
+                            print(error)
+                        }
+                    case .failure(error: let error):
+                        print("未有该用户的数据在云端: \(error)")
+                    }
+                }
+            }
+            
+            else{
+            do {
+                // 构建对象
+                let userInfo = LCObject(className: "UserInfo")
+
+                // 为属性赋值
+                try userInfo.set("user", value: LCString(user))
+                
+                // 数据更新标记
+                try userInfo.set("newData", value: LCBool(true))
+                try userInfo.set("newData_iPad", value: LCBool(true))
+                try userInfo.set("newData_Mac", value: LCBool(true))
                 
                 // 将对象保存到云端
                 _ = userInfo.save { result in
@@ -319,9 +414,32 @@ class UserViewModel : ObservableObject{
                         print("已有该用户数据在云端")
                         //更新
                         do {
+                            
                             print("Sync Test")
+                            self.UD_learningBook = userInfo.get("learningBook")?.stringValue ?? "无课本"
                             self.UD_searchHistoryCount = userInfo.get("searchHistoryCount")?.intValue ?? 0
+                            let tmpLastLearnDone =  userInfo.get("isLastLearnDone")?.boolValue ?? false
+                            self.UD_isLastLearnDone = tmpLastLearnDone
+                            self.UD_learnDayCount = userInfo.get("learnDayCount")?.intValue ?? 1
+                            
+                            //更新新数据标签
+                            if Device.deviceType == .iPad{
+                                try userInfo.set("newData_iPad", value: LCBool(false))
+                            }else if Device.deviceType == .Mac{
+                                try userInfo.set("newData_Mac", value: LCBool(false))
+                            }else{
+                                try userInfo.set("newData", value: LCBool(false))
+                            }
 
+                            userInfo.save() { (result) in
+                                switch result {
+                                case .success:
+                                    break
+                                case .failure(error: let error):
+                                    print(error)
+                                }
+                            }
+                            self.UD_newData = false
                         }
                         catch {
                             print(error)
@@ -348,6 +466,35 @@ class UserViewModel : ObservableObject{
         }
     }
     
+    func checkNewDataFromCloud(){
+        if isLocalSessionVertified {
+            let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
+            let query = LCQuery(className: "UserInfo")
+            query.whereKey("user", .equalTo("\(user)"))
+            if  query.count().intValue != 0 {
+                _ = query.getFirst { result in
+                    switch result {
+                    case .success(object: let userInfo):
+                        var tmpNewData:Bool = false
+                        //更新新数据标签
+                        if Device.deviceType == .iPad{
+                            tmpNewData = userInfo.get("newData_iPad")?.boolValue ?? false
+                        }else if Device.deviceType == .Mac{
+                            tmpNewData = userInfo.get("newData_Mac")?.boolValue ?? false
+                        }else{
+                            tmpNewData = userInfo.get("newData")?.boolValue ?? false
+                        }
+                        self.UD_newData = tmpNewData
+                        
+                        print("是否有新的云端数据: \(self.UD_newData)")
+                    case .failure(error: let error):
+                        print("未有该用户的数据在云端: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
     //刷新界面显示的云端数据
     func showCurrentUserInfo() {
         if isLocalSessionVertified {
@@ -367,7 +514,7 @@ class UserViewModel : ObservableObject{
                         let Cloud_wordStatusList_LC = userInfo.get("wordStatusList") as? LCArray
                         let Cloud_wordStatusList = Cloud_wordStatusList_LC?.arrayValue
                         //print(Cloud_wordStatusList)
-                        
+                        self.UD_Cloud_learningBook = self.Cloud_learningBook
                         self.Cloud_allWordNum = Int(Cloud_wordStatusList![0] as! Double)
                         self.Cloud_knownWordNum = Int(Cloud_wordStatusList![1] as! Double)
                         self.Cloud_learningWordNum = Int(Cloud_wordStatusList![2] as! Double)

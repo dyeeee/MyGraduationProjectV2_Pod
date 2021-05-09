@@ -27,7 +27,7 @@ struct HomeTabView: View {
     var body: some View {
         TabView(selection: $selectedTab){
 //            HomeView(dayContentViewModel: self.dayContentViewModel)
-            HomeView(dayContentVM: self.dayContentVM, todoVM: self.todoVM, appearanceVM:self.appearanceVM, selectedTab: $selectedTab)
+            HomeView(userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnWordVM,dayContentVM:self.dayContentVM ,todoVM:self.todoVM,appearanceVM:self.appearanceVM, selectedTab: $selectedTab)
                 .tabItem {
                     Image(systemName: "cube.fill")
                     Text("摘要")
@@ -60,7 +60,7 @@ struct HomeTabView: View {
                 .tag(TabSelection.page4)
 
             
-            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM, todoVM: self.todoVM)
+            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnWordVM, todoVM: self.todoVM)
                 .onAppear(perform: {
                     //勉强解决自动切换的问题
                     self.appearanceVM.colorScheme = getStoredScheme()
@@ -81,7 +81,7 @@ struct HomeTabView: View {
         //更改方向
         .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in
             if UIDevice.current.orientation != UIDeviceOrientation(rawValue: 5){
-            self.orientation = UIDevice.current.orientation
+                self.orientation = UIDevice.current.orientation
             }
         }
         //.accentColor(.red)

@@ -60,7 +60,7 @@ struct ReviewCardView: View {
                                 Button(action: {
                                     self.learningWordItem.todayReviewCount = 2
                                     self.learningWordItem.reviewTimes = -1
-                                    
+                                    self.learningWordItem.isSynced = false
                                     self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                                     
                                     if self.learningWordItem.todayReviewCount == 2{

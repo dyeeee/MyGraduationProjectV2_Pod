@@ -271,26 +271,52 @@ struct NotebookListView: View {
                 //                .onAppear() {
                 //                        UITabBar.appearance().barTintColor = .systemGroupedBackground
                 //                    }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarLeading) { // <3>
+//                        Button {
+//                            self.wordVM.downloadFromCloud()
+//                        } label: {
+//                            Image(systemName:"icloud.and.arrow.down")
+//                        }
+//
+//                    }
+//
+//                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
+//                        HStack {
+//                            Image(systemName:!self.wordVM.isSyncing ? "checkmark.icloud" : "exclamationmark.icloud")
+//
+//                        }
+//                        .foregroundColor(Color(.systemGray))
+//                        .font(.title2)
+//
+//                    }
+//                }
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) { // <3>
-                        Button {
-                            self.wordVM.downloadFromCloud()
-                        } label: {
-                            Image(systemName:"icloud.and.arrow.down")
-                        }
-                        
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
-                        HStack {
-                            Image(systemName:!self.wordVM.isSyncing ? "checkmark.icloud" : "exclamationmark.icloud")
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu{
+                            Button {
+                                self.wordVM.downloadFromCloud()
+                            } label: {
+                                Label("下载", systemImage: "icloud.and.arrow.down")
+                            }
+                            Button {
                                 
+                            } label: {
+                                Label("同步状态", systemImage: !self.wordVM.isSyncing ? "checkmark.icloud" : "exclamationmark.icloud")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
                         }
-                        .foregroundColor(Color(.systemGray))
-                        .font(.title2)
-
                     }
                 }
+            }
+            
+            
+            
+            VStack{
+            Image(systemName: "text.book.closed")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.systemGray))
             }
         }        //更改方向
         .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification)) { _ in

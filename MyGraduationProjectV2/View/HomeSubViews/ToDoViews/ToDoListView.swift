@@ -132,6 +132,13 @@ struct ToDoListView: View {
                         }
                         Button(action: {
                             self.todoVM.uploadToCloud()
+                            
+                            let tmpUSerVM = UserViewModel()
+                            tmpUSerVM.vertifyLocalSession()
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                                tmpUSerVM.uploadUserInfoCheck()
+                            }
+                            
                         }) {
                             Label("上传本地数据", systemImage: "icloud.and.arrow.up")
                         }

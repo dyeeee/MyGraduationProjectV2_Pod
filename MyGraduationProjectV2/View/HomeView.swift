@@ -9,7 +9,9 @@ import SwiftUI
 import UIKit
 
 struct HomeView: View {
-    
+    @StateObject var userVM:UserViewModel
+    @StateObject var wordVM:WordViewModel
+    @StateObject var learnVM:LearnWordViewModel
     @StateObject var dayContentVM:DayContentViewModel
     @StateObject var todoVM:ToDoViewModel
     @StateObject var appearanceVM:AppearanceViewModel
@@ -21,6 +23,10 @@ struct HomeView: View {
     
     @State var showAllToDo = false
     @State var screenWidth = UIScreen.main.bounds.width
+    
+    @AppStorage("UD_newData") var UD_newData = false
+    @AppStorage("UD_autoSync") var UD_autoSync = false
+
     
     var body: some View {
         NavigationView {
@@ -82,7 +88,7 @@ struct HomeView: View {
                                 }
                                 Spacer()
                             }.font(.subheadline)
-                            LineView(data: [0,1,2,3,4], title: "Line chart", legend: "Full screen")
+                            LineView(data: [0,0.4,1.5,2.0,3.7], title: "Line chart", legend: "Full screen")
                         }.buttonStyle(PlainButtonStyle())
                     }
                     
@@ -122,6 +128,42 @@ struct HomeView: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("摘要")
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action:{
+                        self.userVM.downloadFromCloud()
+                        self.wordVM.downloadFromCloud()
+                        self.learnVM.downloadFromCloud()
+                        self.todoVM.downloadFromCloud()
+                        self.dayContentVM.createTestItem()
+                    },label:{
+                        Image(systemName:UD_newData ? "bolt.horizontal.icloud" : "checkmark.icloud")
+                    }).opacity(UD_newData ? 1:0)
+                    .disabled(UD_newData ? false:true)
+                }
+            })
+            .onAppear(perform: {
+                userVM.vertifyLocalSession()
+                userVM.checkNewDataFromCloud()
+                
+                if UD_newData && UD_autoSync{
+                    print("自动下载中")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3){
+                        self.userVM.downloadFromCloud()
+                        self.todoVM.downloadFromCloud()
+//                        self.learnVM.downloadFromCloud()
+                        self.wordVM.downloadFromCloud()
+                    }
+                    
+                    UD_newData = false
+                }
+            })
+//            .onChange(of:UD_newData,perform:{
+//                _ in
+//                userVM.vertifyLocalSession()
+//                userVM.checkNewDataFromCloud()
+//            })
             .sheet(isPresented: $showAllToDo, content: {
                 ToDoListView(todoVM:self.todoVM)
                     .ifIs(Device.deviceType == .iPad && (self.appearanceVM.UD_storedColorScheme != "")){
@@ -136,7 +178,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(dayContentVM: DayContentViewModel(), todoVM: ToDoViewModel(), appearanceVM: AppearanceViewModel(), selectedTab: .constant(.page2))
+        HomeView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(),dayContentVM:DayContentViewModel(),todoVM: ToDoViewModel(), appearanceVM: AppearanceViewModel(), selectedTab: .constant(.page2))
     }
 }
 

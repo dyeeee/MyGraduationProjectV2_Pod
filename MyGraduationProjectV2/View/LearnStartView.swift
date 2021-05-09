@@ -141,7 +141,7 @@ struct LearnStartView: View {
                             destination: WordTestView(wordVM: self.wordVM, learnWordVM: self.learnWordVM),
                             label: {
                                 HStack(spacing:10) {
-                                    Image(systemName: "pencil.and.outline")
+                                    Image(systemName: "doc.richtext")
                                     Text("单词测试")
                                 }
                             })

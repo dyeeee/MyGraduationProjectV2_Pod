@@ -60,9 +60,11 @@ public struct PieChartView : View {
                 VStack(alignment:.trailing,spacing:0) {
                     HStack{
                         if(!showValue){
-                            VStack {
+                            HStack {
+                                Image(systemName: "chart.pie.fill")
                                 Text("\(self.title)")
                             }.font(.headline)
+                            .offset(x: -8, y: 0)
                             .foregroundColor(Color("systemBlack"))
                             
                                 
@@ -77,9 +79,9 @@ public struct PieChartView : View {
                             .foregroundColor(Color("systemBlack"))
                         }
                         Spacer()
-                        Image(systemName: "chart.pie.fill")
-                            .imageScale(.large)
-                            .foregroundColor(Color(.systemGray))
+//                        Image(systemName: "chart.pie.fill")
+//                            .imageScale(.large)
+//                            .foregroundColor(Color(.systemGray))
                     }
                     
                     VStack {

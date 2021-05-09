@@ -31,3 +31,26 @@ public func dealTrans(_ rawTrans:String) -> String {
     let result = out2.replacingOccurrences(of: "\\n", with: "\n")
     return result
 }
+
+func bookName2Tag(book:String) -> String{
+    switch book {
+    case "中考英语":
+        return "zk"
+    case "高考英语":
+        return "gk"
+    case "大学英语四级":
+        return "cet4"
+    case "大学英语六级":
+        return "cet6"
+    case "考研英语":
+        return "ky"
+    case "雅思词汇":
+        return "ielts"
+    case "托福词汇":
+        return "toelf"
+    case "GRE词汇":
+        return "gre"
+    default:
+        return "gk"
+    }
+}

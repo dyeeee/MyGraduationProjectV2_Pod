@@ -8,6 +8,7 @@
 import SwiftUI
 import LeanCloud
 import UIKit
+import NotificationCenter
 
 @main
 struct MyGraduationProjectV2App: App {
@@ -22,8 +23,20 @@ struct MyGraduationProjectV2App: App {
         //设置全局bar颜色
         //UINavigationBar.appearance().barTintColor = UIColor.orange
         
+        print(FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask))
+        
+
+        
         if UD_isFirstLaunch {
             // do sth
+            // 获取通知权限
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (status, err) in
+                if !status {
+                        print("用户不同意授权通知权限")
+                    return
+                }
+            }
+            
             UD_isFirstLaunch = false
         }
         
@@ -35,6 +48,15 @@ struct MyGraduationProjectV2App: App {
         WindowGroup {
             HomeTabView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onReceive(NotificationCenter.default.publisher(for: UIScene.willConnectNotification)) { _ in
+                  #if targetEnvironment(macCatalyst)
+                  // prevent window in macOS from being resized down
+                    UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
+                      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 2000, height: 1000)
+//                      windowScene.sizeRestrictions?.maximumSize = CGSize(width: 800, height: 1000)
+                    }
+                  #endif
+                }
                 
         }
     }
@@ -69,7 +91,19 @@ func LeanCloudTest() {
 
 
 class AppDelegate:NSObject,UIApplicationDelegate{
+    
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+//        if Device.deviceType == .Mac {
+//            print("Mac运行中")
+//                UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
+//                    windowScene.sizeRestrictions?.minimumSize = CGSize(width: 800, height: 1100)
+//                    windowScene.sizeRestrictions?.maximumSize = CGSize(width: 800, height: 1100)
+//                }
+//        }
+        
         return true
     }
     

@@ -10,9 +10,34 @@ import SwiftUI
 struct LearnSetView: View {
     @StateObject var wordVM: WordViewModel// = WordViewModel()
     @StateObject var learnWordVM: LearnWordViewModel// = LearnWordViewModel()
+    @AppStorage("UD_learningBook") var UD_learningBook = ""
+    @AppStorage("UD_allWordNum") var UD_allWordNum = 1 //单词总量，存在UD里
+    @AppStorage("UD_unlearnedWordNum") var UD_unlearnedWordNum = 0 //未学习的总量
+    @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量
+    @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量
+    
+    @State var notiTime:String = ""
+    
+    func createNotification(time:Int) -> UNNotificationRequest{
+        let content = UNMutableNotificationContent()
+        content.title = "开始今天的学习！"
+        //content.subtitle = "子标题"
+        content.body = "正在学习《\(UD_learningBook)》，已掌握\(UD_knownWordNum)个单词。\n还有\(UD_unlearnedWordNum)个单词未学习。"
+        content.badge = 0
+
+        let dateComponents = DateComponents(hour: 19) // 1
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true) // 2
+        let request = UNNotificationRequest(identifier: "Notification", content: content, trigger: trigger)
+        
+        //用即时通知测试
+        let trigger_test = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let request_test = UNNotificationRequest(identifier: "Notification", content: content, trigger: trigger_test)
+
+        return request_test
+    }
     
     var newWordNumSelection:[Int] {
-        var list:[Int] = [5]
+        var list:[Int] = [2,5]
         for i in stride(from: 10, to: 110, by: 10) {
             list.append(i)
         }
@@ -95,6 +120,45 @@ struct LearnSetView: View {
                             }}
                         .pickerStyle(WheelPickerStyle())
                 }.offset(x: -5, y: 0)
+            }
+            
+            Section{
+                HStack {
+                    Text("开启学习通知")
+                    Spacer()
+                    Button(action: {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (status, err) in
+                            if !status {
+                                    print("用户不同意授权通知权限")
+                                return
+                            }
+                        }
+                        
+                        let request = self.createNotification(time: 11)
+                        UNUserNotificationCenter.current().add(request) { err in
+                            err != nil ? print("添加本地通知错误", err!.localizedDescription) : print("添加本地通知成功")
+                        }
+                    }, label: {
+                        Text("保存")
+                            .foregroundColor(Color(.systemBlue))
+                    }).buttonStyle(PlainButtonStyle())
+
+                }
+                HStack {
+//                    Picker("单词测试数量", selection: $UD_selectedtestWordNumIndex){
+//                            ForEach(0..<testWordNumSelection.count){
+//                                i in
+//                                HStack {
+//                                    Text("\(self.testWordNumSelection[i])")
+//                                        .padding([.leading],20)
+//
+//                                }
+//                            }}
+//                        .pickerStyle(WheelPickerStyle())
+                    Text("每日通知时间")
+                    TextField("输入每日通知时间（HH）", text: $notiTime)
+                        .keyboardType(.numberPad)
+                }
             }
             
         }.listStyle(InsetGroupedListStyle())

@@ -11,6 +11,7 @@ struct SettingView: View {
     @StateObject var appearanceVM:AppearanceViewModel
     @StateObject var userVM:UserViewModel
     @StateObject var wordVM:WordViewModel
+    @StateObject var learnVM:LearnWordViewModel
     @StateObject var todoVM:ToDoViewModel
     
     @AppStorage("UD_isLogged") var UD_isLogged = true
@@ -28,7 +29,7 @@ struct SettingView: View {
                 Section(header: Text("账号及同步")){
                     
                     NavigationLink(
-                        destination: PersonalView(userVM: self.userVM, wordVM: self.wordVM, todoVM: self.todoVM).hiddenTabBar(),
+                        destination: PersonalView(userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnVM, todoVM: self.todoVM).hiddenTabBar(),
                         label: {
                             VStack {
                                 if (UD_isLogged && self.userVM.isLocalSessionVertified) {
@@ -84,19 +85,6 @@ struct SettingView: View {
                 }
                 
                 Section(header: Text("本地记录设置")){
-                    Button(action: {
-                        self.deleteNoteAlert = true
-                    }, label: {
-                        HStack {
-                            Image(systemName: "trash")
-                            Text("删除生词本内容")
-                        }
-                    }).foregroundColor(Color(.systemRed))
-                    .alert(isPresented: $deleteNoteAlert, content: {
-                        Alert(title: Text("确定要删除本地生词本内容吗？"), message: Text("已保存到云端的内容不受影响"), primaryButton: .default(Text("确定"), action: {
-                            self.wordVM.deleteAllNotebook()
-                        }), secondaryButton: .destructive(Text("取消"), action: {self.deleteNoteAlert = false}))
-                    })
                     
                     Button(action: {
                         self.deleteHistoryAlert = true
@@ -112,6 +100,35 @@ struct SettingView: View {
                             self.wordVM.deleteAllHistory()
                         }), secondaryButton: .destructive(Text("取消"), action: {self.deleteHistoryAlert = false}))
                     })
+                    
+                    Button(action: {
+                        self.deleteNoteAlert = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("删除生词本内容")
+                        }
+                    }).foregroundColor(Color(.systemRed))
+                    .alert(isPresented: $deleteNoteAlert, content: {
+                        Alert(title: Text("确定要删除本地生词本内容吗？"), message: Text("已保存到云端的内容不受影响"), primaryButton: .default(Text("确定"), action: {
+                            self.wordVM.deleteAllNotebook()
+                        }), secondaryButton: .destructive(Text("取消"), action: {self.deleteNoteAlert = false}))
+                    })
+                    
+                    Button(action: {
+                        self.deleteNoteAlert = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("删除单词学习内容")
+                        }
+                    }).foregroundColor(Color(.systemRed))
+                    .alert(isPresented: $deleteNoteAlert, content: {
+                        Alert(title: Text("确定要删除单词学习内容吗？"), message: Text("已保存到云端的内容不受影响"), primaryButton: .default(Text("确定"), action: {
+                            self.learnVM.deleteAll()
+                        }), secondaryButton: .destructive(Text("取消"), action: {self.deleteNoteAlert = false}))
+                    })
+                    
                 }
                 
                 
@@ -127,6 +144,6 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView(appearanceVM: AppearanceViewModel(), userVM: UserViewModel(), wordVM: WordViewModel(), todoVM: ToDoViewModel())
+        SettingView(appearanceVM: AppearanceViewModel(), userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel())
     }
 }
