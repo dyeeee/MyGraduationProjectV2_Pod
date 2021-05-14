@@ -20,6 +20,8 @@ struct HomeTabView: View {
     
     @State public var orientation = UIDevice.current.orientation
     
+    @AppStorage("UD_isEN") var UD_isEN = false
+    
     init() {
         UITabBar.appearance().barTintColor = UIColor.systemGroupedBackground
     }
@@ -84,6 +86,8 @@ struct HomeTabView: View {
                 self.orientation = UIDevice.current.orientation
             }
         }
+        
+        .environment(\.locale, .init(identifier: UD_isEN ? "en":"zh"))
         //.accentColor(.red)
         //.navigationBarColor(.systemGroupedBackground)
     }

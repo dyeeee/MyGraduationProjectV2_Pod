@@ -22,7 +22,7 @@ struct LearnSetView: View {
         let content = UNMutableNotificationContent()
         content.title = "开始今天的学习！"
         //content.subtitle = "子标题"
-        content.body = "正在学习《\(UD_learningBook)》，已掌握\(UD_knownWordNum)个单词。\n还有\(UD_unlearnedWordNum)个单词未学习。"
+        content.body = "正在学习《\(NSLocalizedString("\(UD_learningBook)", comment:""))》，已掌握\(UD_knownWordNum)个单词。\n还有\(UD_unlearnedWordNum)个单词未学习。"
         content.badge = 0
 
         let dateComponents = DateComponents(hour: 19) // 1

@@ -24,6 +24,7 @@ struct WordExchangesView: View {
         
         exString =  exString.replacingOccurrences(of: "s:", with: "复数:")
         
+        
         let exList = exString.components(separatedBy: "/")
         var exListList:[[String]] = []//[exList[0].components(separatedBy: ":")]
         for ex in exList[0...exList.count-1] {
@@ -38,14 +39,14 @@ struct WordExchangesView: View {
                     exList in
                     HStack {
                         HStack {
-                            Text(exList[0])
+                            Text(NSLocalizedString("\(exList[0])",comment: ""))
                                 .font(.caption2)
                                 .padding(1)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 2.0)
                                     .stroke())
                         }.foregroundColor(Color("WordExchangesColor"))
-                        Text(exList[1])
+                        Text(NSLocalizedString("\(exList[1])",comment: ""))
                             .font(.callout)
                             .contextMenu {
                                 Button(action: {

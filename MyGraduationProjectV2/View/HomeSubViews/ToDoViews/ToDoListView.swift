@@ -26,7 +26,7 @@ struct ToDoListView: View {
                     Section(header:ToDoSearchHeader(toggle:$showCreate)){
                         VStack {
                             HStack {
-                                TextField(showCreate ? "待办事项" : "查询", text: ($text))
+                                TextField(showCreate ? "创建事项" : "查询", text: ($text))
                                     .onChange(of: text, perform: { text in
                                         if text == "" {
                                             todoVM.getAllToDoItems()

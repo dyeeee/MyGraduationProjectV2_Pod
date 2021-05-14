@@ -62,7 +62,8 @@ public struct PieChartView : View {
                         if(!showValue){
                             HStack {
                                 Image(systemName: "chart.pie.fill")
-                                Text("\(self.title)")
+                                Text("\(NSLocalizedString("\(self.title)", comment: ""))")
+                               
                             }.font(.headline)
                             .offset(x: -8, y: 0)
                             .foregroundColor(Color("systemBlack"))
@@ -72,6 +73,8 @@ public struct PieChartView : View {
                             VStack(alignment:.trailing) {
                                 HStack {
                                     Text(getLegend(currentValue: self.currentValue))
+                                    
+                                    
                                     Text("\(self.currentValue, specifier: self.valueSpecifier)")
                                 }
   
@@ -84,7 +87,7 @@ public struct PieChartView : View {
 //                            .foregroundColor(Color(.systemGray))
                     }
                     
-                    VStack {
+                    VStack(alignment:.trailing) {
                         HStack(spacing:2){
                             Image(systemName: "hexagon.fill")
                                 .foregroundColor(Color("loginColor"))
@@ -130,7 +133,11 @@ public struct PieChartView : View {
     
     func getLegend(currentValue:Double) -> String {
         let index = self.data.firstIndex(of: currentValue) ?? 0
-        return legendList[index]
+        
+        let str = NSLocalizedString("\(legendList[index])", comment: "")
+        
+        return str
+        
     }
 }
 

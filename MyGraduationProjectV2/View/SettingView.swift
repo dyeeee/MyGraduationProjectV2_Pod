@@ -18,6 +18,7 @@ struct SettingView: View {
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     @AppStorage("UD_searchHistoryCount") var UD_searchHistoryCount = 0
     
+    @AppStorage("UD_isEN") var UD_isEN = false
     @State var ECOn = false
     
     @State var deleteNoteAlert = false
@@ -57,11 +58,11 @@ struct SettingView: View {
                     self.userVM.vertifyLocalSession()
                 })
                 
-                Section(header:Text("词典设置")){
+                Section(header:Text("通用")){
                     HStack {
                         Image(systemName: "c.square")
                             .font(.title2)
-                       Toggle("启动汉英查询", isOn: $ECOn)
+                       Toggle("使用英语系统语言", isOn: $UD_isEN)
                     }
                     NavigationLink(
                         destination: Text("test"),

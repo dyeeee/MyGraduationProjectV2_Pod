@@ -408,7 +408,7 @@ struct ListHeader: View {
                 //Text("show")
                 HStack(spacing:5) {
                     Image(systemName: img)
-                    Text(text)
+                    Text(NSLocalizedString("\(text)",comment: ""))
                     Image(systemName: self.showContent ? "minus.rectangle" :"plus.square")
                 }.font(.subheadline)
                 .animation(.default)

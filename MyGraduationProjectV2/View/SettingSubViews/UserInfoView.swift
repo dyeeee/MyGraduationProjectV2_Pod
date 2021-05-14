@@ -53,7 +53,7 @@ struct UserInfoView: View {
             
             Section(header:Text("云同步")){
                 HStack{
-                    Image(systemName: "bonjour")
+                    Image(systemName: "link.icloud")
                         .font(.title2)
                    Toggle("启用自动同步", isOn: $UD_autoSync)
                 }
@@ -70,7 +70,7 @@ struct UserInfoView: View {
                             self.todoVM.downloadFromCloud()
                             
                         }, label: {
-                            Text("下载云记录")
+                            Text("下载云端数据")
                                 .font(.headline)
                             Image(systemName: "icloud.and.arrow.down")
                             
@@ -90,7 +90,7 @@ struct UserInfoView: View {
                             learnVM.uploadToCloud()
                             
                         }, label: {
-                            Text("上传本地记录")
+                            Text("上传本地数据")
                                 .font(.headline)
                             Image(systemName: "icloud.and.arrow.up")
                             
@@ -124,7 +124,7 @@ struct UserInfoView: View {
                             VStack {
                                 Text("课本")
     //                            Text("《\(UD_learningBook)》")
-                                Text("\(UD_learningBook)")
+                                Text("\(NSLocalizedString("\(UD_learningBook)", comment: ""))")
                             }.frame(width: UIScreen.main.bounds.width*0.32)
                             Divider()
                             VStack {
@@ -201,7 +201,7 @@ struct UserInfoView: View {
                             VStack {
                                 Text("课本")
     //                            Text("《\(UD_learningBook)》")
-                                Text("\(userVM.Cloud_learningBook)")
+                                Text("\(NSLocalizedString("\(userVM.Cloud_learningBook)", comment: ""))")
                             }.frame(width: UIScreen.main.bounds.width*0.32)
                             Divider()
                             VStack {
@@ -236,7 +236,7 @@ struct UserInfoView: View {
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
-                                Text("待办事件")
+                                Text("待办事项")
                                 Text("\(userVM.Cloud_todoNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()

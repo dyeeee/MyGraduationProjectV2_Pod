@@ -42,7 +42,7 @@ struct LearnStartView: View {
                         
                         VStack(alignment: .leading,spacing:10){
                             HStack {
-                                Text("\(UD_learningBook)").font(.headline)
+                                Text("\(NSLocalizedString("\(UD_learningBook)", comment: ""))").font(.headline)
                                 Spacer()
                                 Text("Day \(UD_learnDayCount)")
                                     .font(.headline)
@@ -65,13 +65,21 @@ struct LearnStartView: View {
                             }
                             VStack(alignment:.leading) {
                                 HStack{
-                                    Text("学习中 \(UD_learningWordNum)")
-                                    Text("已掌握 \(UD_knownWordNum)")
+                                    Text("学习中")
+                                    Text("\(UD_learningWordNum)")
+                                    Text("｜")
+                                    Text("已掌握")
+                                    Text("\(UD_knownWordNum)")
                                 }.font(.caption)
                                 HStack{
-                                    Text("剩余新词 \(UD_unlearnedWordNum)")
-                                    Text("词汇量 \(UD_allWordNum)")
-                                    Text("学习进度 \((Double(UD_knownWordNum)/(Double(UD_allWordNum) + 0.1))*100,specifier: "%.1f")%")
+                                    Text("剩余新词")
+                                    Text("\(UD_unlearnedWordNum)")
+                                    Text("｜")
+                                    Text("词汇量")
+                                    Text("\(UD_allWordNum)")
+                                    Text("｜")
+                                    Text("学习进度")
+                                    Text("\((Double(UD_knownWordNum)/(Double(UD_allWordNum) + 0.1))*100,specifier: "%.1f")%")
                                 }.font(.caption)
                             }
                             
@@ -91,6 +99,7 @@ struct LearnStartView: View {
                                     Text("\(self.UD_newWordNum)")
                                         .font(.custom("hyg5gjm", size: 18))
                                 }
+                                Text("｜")
                                 VStack{
                                     Text("今日复习")
                                         .font(.footnote)

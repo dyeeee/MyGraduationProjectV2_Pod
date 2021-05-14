@@ -125,7 +125,7 @@ struct BookChangeView: View {
             Text("使用该课本")
         })
         .alert(isPresented: $changeAlert, content: {
-            Alert(title: Text("单词书选择确认"), message: Text("从《\(UD_learningBook)》变更为《\(UD_learningBook_tmp)》\n已掌握的单词: \(isKeepKnownWords_Tag)"), primaryButton: .destructive(Text("取消")), secondaryButton: .cancel(Text("确认"), action:{
+            Alert(title: Text("单词书选择确认"), message: Text("从《\(NSLocalizedString("\(UD_learningBook)", comment: ""))》变更为《\(UD_learningBook_tmp)》\n已掌握的单词: \(isKeepKnownWords_Tag)"), primaryButton: .destructive(Text("取消")), secondaryButton: .cancel(Text("确认"), action:{
                 UD_learningBook = UD_learningBook_tmp
                 learnWordVM.selectLearnBook(bookName: selectedBookTag, isKeep: isKeepKnownWords)
             }))

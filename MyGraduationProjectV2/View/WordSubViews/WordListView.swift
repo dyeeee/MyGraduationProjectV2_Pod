@@ -33,9 +33,9 @@ struct WordListView: View {
         //        NavigationView{
         List{
             //            if(dataType == .searchResult){
-            Section(header: Text("Search")){
+            Section(header: Text("查询")){
                 HStack {
-                    TextField("Search", text: $searchText)
+                    TextField("", text: $searchText)
 //                        .onChange(of: searchText, perform: { value in
 //                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
 //                                self.wordVM.searchItems(begins: self.searchText)
@@ -83,7 +83,7 @@ struct WordListView: View {
             }
             }
             
-            Section(header: Text("History")) {
+            Section(header: Text("查询历史")) {
                 ForEach(self.wordVM.getItems(.history),id:\.self){
                     item in
                     NavigationLink(

@@ -1,30 +1,146 @@
-///*
-//  Localizable.strings
-//  MyGraduationProjectV2
+/*
+  Localizable.strings
+  MyGraduationProjectV2
+
+  Created by YES on 2021/3/12.
+
+*/
+
+"摘要" = "Info";
+"学习" = "Learn";
+"生词本" = "Notebook";
+"词典" = "Dictionary";
+"设置" = "Setting";
+
+
+// HomeView
+"今日学习" = "Today's progress";
+"今日学习未完成" = "Uncompleted";
+"前往学习" = "Start Learning";
+"近期学习状况" = "Recently Record";
+"切换至进度" = "Switch to Progress";
+"切换至日历" = "Switch to Calendar";
+
+
+// ToDoList
+"待办事项" = "Todo List";
+"显示所有待办" = "Show all todos";
+"创建事项" = "New todo";
+"查询" = "Search";
+"删除已完成" = "Delete Done Things";
+"删除全部" = "Delete all";
+"上传本地数据" = "Upload Local Data";
+"下载云端数据" = "Download Cloud Data";
+"新建待办事项" = "Create new todo";
+"查询待办事项" = "Search todo";
+"切换至查询" = "Switch to Search";
+"切换至新建" = "Switch to create";
+"显示已完成" = "Show done";
+"隐藏已完成" = "Hide done";
+"待办事项列表" = "Todo List";
+
+//Learn
+"单词学习" = "Learning";
+"学习中的单词书: " = "Learning Book: ";
+"高考英语" = "GK";
+"测试" = "test";
+"进度统计" = "Preogress";
+"学习中" = "Learning";
+"已掌握" = "Known";
+"未学习" = "Unlearn";
+"剩余新词" = "NewToLearn";
+"词汇量" = "Total";
+"学习进度" = "Progress";
+"今日新词" = "New";
+"今日复习" = "Review";
+"开始学习" = "Start Learning";
+"单词测试" = "Word Test";
+"单词列表" = "Words List";
+"单词分布" = "Stat";
+"变更单词书" = "Change Book";
+"学习设置" = "Learn Set";
+"全部单词" = "All";
+"每日新词数量" = "How many New Words per Day";
+"每次单词测试数量" = "How many Words per Test";
+"预计完成学习时间:" = "Finished Date";
+"保存" = "Save";
+"开启学习通知" = "Enable Notification";
+"每日通知时间" = "Notification Time";
+"输入每日通知时间（HH）" = "Input Time (HH)";
+
+"刷新" = "Reload";
+"单词书" = "Learning Book";
+
+
+//Note
+"星级" = "Star";
+"字母" = "Alphabet";
+"笔记" = "Note";
+"生词本" = "NoteBook";
+"同步状态" = "Sync State";
+
+//Search
+"查询单词" = "Dictionary";
+"查询" = "Search";
+"查询历史" = "History";
+
+//Set
+"账号及同步" = "Account and CloudSync";
+"登录账号" = "Log In";
+"通用" = "General";
+"自动展开内容" = "Auto Content";
+"外观设置" = "Appearance";
+"深色模式设置" = "Dark Mode";
+"本地记录设置" = "loacl Data";
+"删除本地查询记录" = "Delete Search History";
+"删除生词本内容" = "Delete Note Book";
+"删除单词学习内容" = "Delete Learning Content";
+
+"使用英语系统语言" = "Enable English System";
+
+"启用自动同步" = "Enable Auto Sync";
+"云同步" = "Cloud Sync";
+"课本" = "Book";
+"单词数量" = "Words Num";
+"是否启用生物识别" = "Face ID";
+"退出当前账号" = "Log out";
+
+"账号" = "Account";
+
+"浅色模式" = "Light Mode";
+"深色模式" = "Dark Mode";
+"保持浅色模式" = "Keep Light Mode";
+"保持深色模式" = "Keep Dark Mode";
+"跟随系统自动切换" = "Follow System";
+"当前手机系统外观:" = "System Apperance";
+
+
+
+// Word Detail
+"释义" = "Definition";
+"词形变化" = "Tense";
+"例句" = "Example Sentences";
+"笔记" = "Note";
+"输入笔记" = "Input Content";
+"英汉释义" = "Translation";
+"英英释义" = "Definition";
+
+"复数" = "-s";
+"过去式(did)" = "did";
+"过去分词(done)" = "done";
+"现在分词(doing)" = "doing";
+"第三人称单数(does)" = "does";
+"形容词比较级(-er)" = "-er";
+"形容词最高级(-est)" = "-est";
+"词缀(lemma)" = "lemma";
+"词缀的复数形式(lemma)" = "lemma-s";
+
+"四" = "4";
+"六" = "6";
+"高" = "GK";
+"研" = "KY";
+"中" = "ZK";
+"英汉释义" = "Translation";
+"英英释义" = "Definition";
+
 //
-//  Created by YES on 2021/3/12.
-//
-//*/
-//
-//"摘要" = "Info";
-//"学习" = "Learn";
-//"生词本" = "Notebook";
-//"词典" = "Dictionary";
-//"设置" = "Setting";
-//
-//
-//// HomeView
-//"今日学习" = "Today's progress";
-//"今日学习未完成" = "Not completed today";
-//"前往学习" = "Start Learning";
-//"近期学习状况" = "Recently Record";
-//"切换至进度" = "Switch to Progress";
-//"切换至日历" = "Switch to Calendar";
-//"待办事项" = "ToDo List";
-//"显示所有待办" = "Show all todos";
-//"学习中的单词书: " = "Learning Book: ";
-////"学习中的单词书: 测试" = "Learning Book: testbook";
-//"测试" = "test";
-//
-//
-////

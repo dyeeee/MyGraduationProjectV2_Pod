@@ -297,7 +297,7 @@ struct NotebookListView: View {
                             Button {
                                 self.wordVM.downloadFromCloud()
                             } label: {
-                                Label("下载", systemImage: "icloud.and.arrow.down")
+                                Label("下载云端数据", systemImage: "icloud.and.arrow.down")
                             }
                             Button {
                                 

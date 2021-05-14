@@ -77,7 +77,7 @@ struct WordTagsView: View {
                         ForEach(self.getTagsList(str: wordTags), id:\.self){
                             tag in
                             VStack {
-                                Text(tag)
+                                Text(NSLocalizedString("\(tag)",comment: ""))
                                     .font(.caption2)
                                     .fontWeight(.semibold)
                                     .padding(1)

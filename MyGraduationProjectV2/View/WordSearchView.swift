@@ -39,7 +39,7 @@ struct WordSearchView: View {
                         Button(action: {
                             self.wordVM.preloadFromBigCSV()
                         }) {
-                            Label("Preload Big", systemImage: "homepod.2.fill")
+                            Label("Preload Full", systemImage: "homepod.2.fill")
                         }
                         Button {
                             self.wordVM.deleteAll()
