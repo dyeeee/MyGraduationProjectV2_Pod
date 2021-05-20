@@ -46,6 +46,15 @@ class UserViewModel : ObservableObject{
     @AppStorage("UD_learnDayCount") var UD_learnDayCount = 0
 
     @AppStorage("UD_Cloud_learningBook") var UD_Cloud_learningBook = ""
+    
+    @AppStorage("UD_noteWordNum") var UD_noteWordNum = 0
+    @AppStorage("UD_todoNum") var UD_todoNum = 0
+    
+    @AppStorage("UD_allWordNum") var UD_allWordNum = 0 //单词总量，存在UD里
+    @AppStorage("UD_unlearnedWordNum") var UD_unlearnedWordNum = 0 //未学习的总量，存在UD里
+    @AppStorage("UD_learningWordNum") var UD_learningWordNum = 0 //学习中的总量，存在UD里
+    @AppStorage("UD_knownWordNum") var UD_knownWordNum = 0 //已掌握的总量，存在UD里
+    
     //本地校验
     @AppStorage("UD_isLogged") var UD_isLogged = false
     @AppStorage("UD_newData") var UD_newData = false
@@ -222,7 +231,8 @@ class UserViewModel : ObservableObject{
     //        }
     //    }
     
-    func uploadUserInfo(learningBook:String,wordStatusList:[Int],noteBookNum:Int,todoNum:Int,searchHistoryCount:Int) {
+//    func uploadUserInfo(learningBook:String,wordStatusList:[Int],noteBookNum:Int,todoNum:Int,searchHistoryCount:Int) {
+    func uploadUserInfo() {
         if isLocalSessionVertified {
             let user = LCApplication.default.currentUser?.username?.stringValue ?? "Anonymous"
             let query = LCQuery(className: "UserInfo")
@@ -232,7 +242,7 @@ class UserViewModel : ObservableObject{
             //查询得到的话则更新，一个用户保留一条数据
             if  query.count().intValue != 0 {
                 print("尝试更新用户的Leancloud信息")
-                _ = query.getFirst { result in
+                _ = query.getFirst { [self] result in
                     switch result {
                     case .success(object: let userInfo):
                         print("已有该用户数据在云端")
@@ -241,21 +251,33 @@ class UserViewModel : ObservableObject{
 //                            let updateItem = LCObject(className: "UserInfo", objectId: "\(userInfo.objectId?.value ?? "0")")
                             
                             // 为属性赋值
-                            try userInfo.set("learningBook", value: LCString(learningBook))
+                            try userInfo.set("learningBook", value: LCString(self.UD_learningBook))
                             //print(learningBook)
+                            let wordStatusList = [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum]
                             try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                             try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
                             try userInfo.set("isLastLearnDone", value: LCBool(self.UD_isLastLearnDone))
                             try userInfo.set("learnDayCount", value: LCNumber(integerLiteral: Int(self.UD_learnDayCount)))
                             
-                            try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
-                            try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
-                            try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                            try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(self.UD_searchHistoryCount)) )
+                            try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(self.UD_noteWordNum)) )
+                            try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(self.UD_todoNum)) )
                             
                             // 数据更新标记
-                            try userInfo.set("newData", value: LCBool(true))
-                            try userInfo.set("newData_iPad", value: LCBool(true))
-                            try userInfo.set("newData_Mac", value: LCBool(true))
+                            if Device.deviceType == .Mac{
+                                try userInfo.set("newData", value: LCBool(true))
+                                try userInfo.set("newData_iPad", value: LCBool(true))
+                            }
+                            if Device.deviceType == .iPad {
+                                try userInfo.set("newData", value: LCBool(true))
+                                try userInfo.set("newData_Mac", value: LCBool(true))
+                            }
+                            if Device.deviceType == .iPhone {
+                                try userInfo.set("newData_iPad", value: LCBool(true))
+                                try userInfo.set("newData_Mac", value: LCBool(true))
+                            }
+                            
+                            
                             
                             
                             
@@ -285,15 +307,16 @@ class UserViewModel : ObservableObject{
 
                 // 为属性赋值
                 try userInfo.set("user", value: LCString(user))
-                try userInfo.set("learningBook", value: LCString(learningBook))
+                try userInfo.set("learningBook", value: LCString(self.UD_learningBook))
+                let wordStatusList = [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum]
                 try userInfo.set("wordStatusList", value: LCArray(wordStatusList))
                 try userInfo.set("learnStats_7days", value: LCArray([0.5,1.8,1.9,2.6,3.0,3.6,3.7]))
                 try userInfo.set("isLastLearnDone", value: LCBool(UD_isLastLearnDone))
                 try userInfo.set("learnDayCount", value: LCNumber(integerLiteral: Int(self.UD_learnDayCount)))
                 
-                try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(searchHistoryCount)) )
-                try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(noteBookNum)) )
-                try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(todoNum)) )
+                try userInfo.set("searchHistoryCount", value: LCNumber(integerLiteral: Int(self.UD_searchHistoryCount)) )
+                try userInfo.set("noteBookNum", value: LCNumber(integerLiteral: Int(self.UD_noteWordNum)) )
+                try userInfo.set("todoNum", value: LCNumber(integerLiteral: Int(self.UD_todoNum)) )
                 
                 // 数据更新标记
                 try userInfo.set("newData", value: LCBool(true))

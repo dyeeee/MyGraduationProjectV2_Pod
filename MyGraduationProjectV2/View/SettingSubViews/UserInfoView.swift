@@ -84,8 +84,9 @@ struct UserInfoView: View {
                     Spacer()
                     HStack {
                         Button(action: {
-                            self.userVM.uploadUserInfo(learningBook: UD_learningBook, wordStatusList: [UD_allWordNum,UD_knownWordNum,UD_learningWordNum,UD_unlearnedWordNum],noteBookNum: UD_noteWordNum, todoNum: UD_todoNum,searchHistoryCount: UD_searchHistoryCount)
+                            userVM.uploadUserInfo()
                             
+                            todoVM.uploadToCloud()
                             wordVM.uploadToCloud()
                             learnVM.uploadToCloud()
                             
@@ -159,7 +160,7 @@ struct UserInfoView: View {
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
                             VStack {
-                                Text("待办事件")
+                                Text("待办事项")
                                 Text("\(UD_todoNum)")
                             }.frame(width: UIScreen.main.bounds.width*0.2)
                             Divider()
@@ -263,8 +264,7 @@ struct UserInfoView: View {
                 Toggle("是否启用生物识别登录", isOn: $UD_isUsingBioID)
             }
             .onChange(of: UD_isUsingBioID, perform: { value in
-                print("生物识别状态")
-                print(UD_isUsingBioID)
+                print("生物识别状态: \(UD_isUsingBioID)")
             })
                 
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct LearningWordListVIew: View {
     @StateObject var learnWordVM: LearnWordViewModel
     @StateObject var wordVM: WordViewModel
+    @AppStorage("UD_learnDayCount") var UD_learnDayCount = 1
     
     @State var noteTypeIndex = 0
     let alphaList = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -64,7 +65,12 @@ struct LearningWordListVIew: View {
                         
                         
                         List {
-                            Section(header: Text("单词数量：\(self.learnWordVM.learningWordList.count)"), footer: Text("每日学习后更新")){
+                            Section(header:
+                                        HStack{
+                                            Text("单词数量:")
+                                        Text("\(self.learnWordVM.learningWordList.count)")
+                                        }
+                                    , footer: Text("每日学习后更新")){
                                 
                                 ForEach(self.learnWordVM.learningWordList,id:\.self){
                                     word in
@@ -81,10 +87,12 @@ struct LearningWordListVIew: View {
                                                 Text(word.wordContent ?? "noContent")
                                                     .font(.title3)
                                                 Spacer()
-                                                Text("复习次数: \(word.reviewTimes)").font(.caption)
+                                                Text("复习次数:")
+                                                Text(" \(word.reviewTimes)").font(.caption)
                                                 
 //                                                Text("下次出现时间: \(word.nextReviewDay)")
-                                                Text("下次复习: \(Date(timeIntervalSinceNow: TimeInterval(86400 * Int(word.nextReviewDay - 1))).dateToString(format:"MM-dd"))")
+                                                Text("下次复习:")
+                                                Text(" \(Date(timeIntervalSinceNow: TimeInterval(86400 * (Int(word.nextReviewDay) - UD_learnDayCount))).dateToString(format:"MM-dd"))")
                                                     .font(.caption)
                                             }
                                             //                                            Text(dealTrans(word.sourceWord?.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
@@ -126,7 +134,12 @@ struct LearningWordListVIew: View {
                         
                         
                         List {
-                            Section(header: Text("单词数量：\(self.learnWordVM.unlearnedWordList.count)"), footer: Text("每日学习后更新")){
+                            Section(header:
+                                        HStack{
+                                            Text("单词数量:")
+                                        Text("\(self.learnWordVM.unlearnedWordList.count)")
+                                        }
+                                    , footer: Text("每日学习后更新")){
                                 ForEach(self.learnWordVM.unlearnedWordList,id:\.self){
                                     word in
                                     NavigationLink(
@@ -177,7 +190,12 @@ struct LearningWordListVIew: View {
                     VStack {
                         
                         List {
-                            Section(header: Text("单词数量：\(self.learnWordVM.knownWordList.count)"), footer: Text("每日学习后更新")){
+                            Section(header:
+                                        HStack{
+                                            Text("单词数量:")
+                                        Text("\(self.learnWordVM.knownWordList.count)")
+                                        }
+                                    , footer: Text("每日学习后更新")){
                                 ForEach(self.learnWordVM.knownWordList,id:\.self){
                                     word in
                                     NavigationLink(
@@ -226,7 +244,12 @@ struct LearningWordListVIew: View {
                     VStack {
                         
                         List {
-                            Section(header: Text("单词数量：\(self.learnWordVM.allWordsToLearnList.count)")){
+                            Section(header:
+                                        HStack{
+                                            Text("单词数量:")
+                                        Text("\(self.learnWordVM.allWordsToLearnList.count)")
+                                        }
+                                    , footer: Text("每日学习后更新")){
                                 ForEach(self.learnWordVM.allWordsToLearnList,id:\.self){
                                     word in
                                     NavigationLink(

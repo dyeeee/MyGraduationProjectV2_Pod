@@ -35,7 +35,7 @@ struct WordListView: View {
             //            if(dataType == .searchResult){
             Section(header: Text("查询")){
                 HStack {
-                    TextField("", text: $searchText)
+                    TextField("输入单词", text: $searchText)
 //                        .onChange(of: searchText, perform: { value in
 //                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
 //                                self.wordVM.searchItems(begins: self.searchText)

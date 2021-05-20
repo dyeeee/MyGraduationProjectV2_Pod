@@ -114,12 +114,12 @@ class ToDoViewModel: ObservableObject {
         
         if UD_autoSync{
             print("自动同步中")
-            let tmpUSerVM = UserViewModel()
-            tmpUSerVM.vertifyLocalSession()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                self.uploadToCloud()
-                tmpUSerVM.uploadUserInfoCheck()
-            }
+//            let tmpUSerVM = UserViewModel()
+//            tmpUSerVM.vertifyLocalSession()
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+//                self.uploadToCloud()
+//                tmpUSerVM.uploadUserInfoCheck()
+//            }
         }
         
     }
@@ -287,13 +287,13 @@ class ToDoViewModel: ObservableObject {
         saveToPersistentStore()
         
         if UD_autoSync{
-            print("自动同步中")
-            let tmpUSerVM = UserViewModel()
-            tmpUSerVM.vertifyLocalSession()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                self.uploadToCloud()
-                tmpUSerVM.uploadUserInfoCheck()
-            }
+//            print("自动同步中")
+//            let tmpUSerVM = UserViewModel()
+//            tmpUSerVM.vertifyLocalSession()
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+//                self.uploadToCloud()
+//                tmpUSerVM.uploadUserInfoCheck()
+//            }
         }
     }
     

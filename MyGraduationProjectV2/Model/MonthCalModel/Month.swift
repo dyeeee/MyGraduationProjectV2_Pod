@@ -38,7 +38,7 @@ struct Month {
     private func monthHeader() -> String {
         let components = calendar.dateComponents([.year, .month], from: startDate)
         let currentMonth = calendar.date(from: components)!
-        return currentMonth.dateToString(format: "yyyy LLLL")
+        return currentMonth.dateToString(format: "yyyy-MM")
     }
 
     private func dateToString(date: Date, format: String) -> String {

@@ -250,14 +250,42 @@ struct NotebookListView: View {
                             //.environment(\.defaultMinListRowHeight, 20)
                             //.environment(\.horizontalSizeClass, .compact)
                             
+                            
+                            
                         }
                         .background(Color("systemInsetBG"))
                         .tag(1)
                         
                         
-                        
-                        Text("Test Page")
-                            .tag(2)
+                        VStack{
+                            List{
+                            ForEach(self.wordVM.noteWordsList,id:\.self){
+                                item in
+                                NavigationLink(
+                                    destination: WordDetailView(wordItem:item,wordVM:wordVM,wordNote: item.wordNote ?? "nullTag")
+                                        .onAppear(perform: {
+                                            item.latestSearchDate = Date()
+                                            item.searchCount = item.searchCount + 1
+                                            item.isSynced = false
+                                        })
+                                )
+                                {
+                                    VStack(alignment:.leading){
+                                        Text(item.wordContent ?? "noContent")
+                                            .font(.title3)
+                                        
+                                        Text(dealTrans(item.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
+                                            .font(.footnote)
+                                            .foregroundColor(Color(.systemGray))
+                                            .lineLimit(1)
+                                    }
+                                }
+                            }
+                            }
+                            .listStyle(InsetGroupedListStyle())
+                        }
+                        .background(Color("systemInsetBG"))
+                        .tag(2)
                     }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     
                 }

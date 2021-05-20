@@ -128,6 +128,8 @@ struct BookChangeView: View {
             Alert(title: Text("单词书选择确认"), message: Text("从《\(NSLocalizedString("\(UD_learningBook)", comment: ""))》变更为《\(UD_learningBook_tmp)》\n已掌握的单词: \(isKeepKnownWords_Tag)"), primaryButton: .destructive(Text("取消")), secondaryButton: .cancel(Text("确认"), action:{
                 UD_learningBook = UD_learningBook_tmp
                 learnWordVM.selectLearnBook(bookName: selectedBookTag, isKeep: isKeepKnownWords)
+                UD_learningBook = UD_learningBook_tmp
+                print("更改课本为: \(UD_learningBook)")
             }))
         })
         .foregroundColor(UD_learningBook_tmp != UD_learningBook ? Color(.systemBlue) : Color(.systemGray2))

@@ -22,9 +22,11 @@ struct ReviewCardRouterView: View {
             if learningWordItem.todayReviewCount == 0 {
             ReviewCardView(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM,
                            wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
+                .hiddenTabBar()
         }else if learningWordItem.todayReviewCount == 1{
             ReviewCardView2(learningWordItem: learningWordItem, learnWordVM: self.learnWordVM,
                             wordVM: self.wordVM, todayReviewCount: self.$todayReviewCount)
+                .hiddenTabBar()
         }}.onAppear(perform: {
             
         })

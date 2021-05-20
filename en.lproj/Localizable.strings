@@ -71,6 +71,18 @@
 "刷新" = "Reload";
 "单词书" = "Learning Book";
 
+"新单词" = "New";
+"记住了" = "Get";
+"认识" = "Know";
+"模糊" = "Fuzzy";
+"不认识" = "Unknow";
+"剩余: " = "Remain: ";
+"复习次数:" = "Review";
+"下次复习:" = "Next";
+"重新学习" = "Relearn";
+"每日学习后更新" = "Upload After Learning";
+"学习中的单词列表" = "Learning List";
+"单词数量:" = "Words Num";
 
 //Note
 "星级" = "Star";
@@ -102,7 +114,7 @@
 "云同步" = "Cloud Sync";
 "课本" = "Book";
 "单词数量" = "Words Num";
-"是否启用生物识别" = "Face ID";
+"是否启用生物识别登录" = "Face ID";
 "退出当前账号" = "Log out";
 
 "账号" = "Account";
@@ -142,5 +154,9 @@
 "中" = "ZK";
 "英汉释义" = "Translation";
 "英英释义" = "Definition";
+
+"单词测试" = "Word Test";
+
+
 
 //

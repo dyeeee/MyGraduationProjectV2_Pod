@@ -485,7 +485,7 @@ class LearnWordViewModel: ObservableObject{
         }
     }
     
-    //从CSV家在单词（弃用）
+    //从CSV加载单词（弃用）
     func preloadLearningWordFromCSV() {
         let container = PersistenceController.shared.container
         let csvTool = CSVTools()
@@ -569,6 +569,7 @@ class LearnWordViewModel: ObservableObject{
             try viewContext.save()
             print("删除全部数据并保存")
             UD_learnDayCount = 1
+            UD_learningBook = "未选择课本"
             saveToPersistentStoreThenRefresh()
         }
         catch { print(error) }
@@ -729,7 +730,7 @@ class LearnWordViewModel: ObservableObject{
                             print(wordItem_lean.objectId?.value ?? "0")
                             let updateItem = LCObject(className: "LearningWordItem", objectId: "\(wordItem_lean.objectId?.value ?? "0")")
                             try updateItem.set("reviewTimes", value: LCNumber(integerLiteral: Int(wordItem.reviewTimes)))
-                            try updateItem.set("nextReviewDay", value: LCNumber(integerLiteral: Int(wordItem.reviewTimes)))
+                            try updateItem.set("nextReviewDay", value: LCNumber(integerLiteral: Int(wordItem.nextReviewDay)))
                             try updateItem.set("wordStatus", value: LCString(wordItem.wordStatus ?? "unlearned"))
                             try updateItem.set("isDownloaded", value: LCBool(false))
                             objects.append(updateItem)  //需要更新的对象传入数组

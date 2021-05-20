@@ -64,8 +64,10 @@ struct LearningView: View {
                             RoundedRectangle(cornerRadius: 5.0, style: .continuous)
                                 .stroke()
                                 .frame(width: progressWidth, height: 25, alignment: .center)
-                            Text("剩余: \(self.learnWordVM.todayAllCount - todayReviewCount - todayNewCount)")
-                                
+                            HStack{
+                            Text("剩余: ")
+                            Text("\(self.learnWordVM.todayAllCount - todayReviewCount - todayNewCount)")
+                            }
                                 .padding(.trailing,4)
                         }
                     }.clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
@@ -104,7 +106,7 @@ struct LearningView: View {
                     }, label: {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                            Text("今日学习完成\n已掌握\(UD_knownWordNum)个单词\n学习\(UD_learningWordNum)个单词中")
+                            Text("今日学习完成\n已掌握\(UD_knownWordNum)个单词")
                         }
                     })
                 }.zIndex(1)

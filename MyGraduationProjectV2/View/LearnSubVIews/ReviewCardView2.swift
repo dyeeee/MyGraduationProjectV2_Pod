@@ -66,9 +66,13 @@ struct ReviewCardView2: View {
                                             }else{
                                                 correctWord = false
                                             }
+                                            Tool.hiddenTabBar()
                                         })
                                 )
                                 .padding([.top],10)
+                                .onTapGesture {
+                                    Tool.hiddenTabBar()
+                                }
                                 
                                 Spacer()
                                 Button(action: {
@@ -147,6 +151,7 @@ struct ReviewCardView2: View {
                         HStack{
                             Button(action: {
                                 self.afterUnknown = true
+                                Tool.hiddenTabBar()
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -206,12 +211,13 @@ struct ReviewCardView2: View {
                             Button(action: {
                                 self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                                 self.afterUnknown = false
+                
                                 
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
                                         .frame(width: UIScreen.main.bounds.width*0.75, height: 40, alignment: .center)
-                                        .foregroundColor(Color(.systemGray6))
+                                        .foregroundColor(Color(.systemGray5))
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
                                         Text("记住了").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .title))

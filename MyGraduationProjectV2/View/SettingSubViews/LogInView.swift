@@ -147,8 +147,7 @@ struct LogInView: View {
                         .opacity(UD_username != "" && UD_userPassword != "" && userVM.getBioMetricStatus() && UD_isUsingBioID ? 1 : 0.5)
                         .disabled(UD_username != "" && UD_userPassword != "" && UD_isUsingBioID ? false : true)
                         .onAppear(perform: {
-                            print("生物识别状态")
-                            print(UD_isUsingBioID)
+                            print("生物识别状态: \(UD_isUsingBioID)")
                         })
                         
                         
@@ -159,7 +158,10 @@ struct LogInView: View {
                 else{
                     HStack(spacing: 15){
                         Button(action:
-                                {self.userVM.userSignUp()}, label: {
+                                {
+                                    userVM.userEmail = useremail_input
+                                    userVM.userPassword = password_input
+                                    self.userVM.userSignUp()}, label: {
                                     Text("注 册")
                                         .fontWeight(.heavy)
                                         .foregroundColor(.white)
@@ -168,8 +170,8 @@ struct LogInView: View {
                                         .background(Color("loginColor"))
                                         .clipShape(Capsule())
                                 })
-                            .opacity(userVM.userEmail != "" && userVM.userPassword != "" ? 1 : 0.5)
-                            .disabled(userVM.userEmail != "" && userVM.userPassword != "" ? false : true)
+                            .opacity(useremail_input != "" && password_input != "" ? 1 : 0.5)
+                            .disabled(useremail_input != "" && password_input != "" ? false : true)
                             .alert(isPresented: $userVM.signUpAlert, content: {
                                 Alert(title: Text("用户注册错误"), message: Text(userVM.signUpAlertMsg), dismissButton: .destructive(Text("关闭")))
                             })

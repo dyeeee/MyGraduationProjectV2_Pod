@@ -15,6 +15,7 @@ struct WordTestView: View {
     @State var todayReviewCount:Int = 0
     
     @AppStorage("UD_testWordNum") var UD_testWordNum = 5
+//    @AppStorage("UD_testWordNum") var UD_testWordNum = 1
     
     var body: some View {
         VStack {
@@ -60,6 +61,7 @@ struct WordTestView: View {
                         .frame(width: UIScreen.main.bounds.width)
                         .edgesIgnoringSafeArea(.all))
         .hiddenTabBar()
+        .navigationTitle(Text("单词测试"))
         .ignoresSafeArea(edges:.bottom)
         .onAppear(perform: {
             //获取词

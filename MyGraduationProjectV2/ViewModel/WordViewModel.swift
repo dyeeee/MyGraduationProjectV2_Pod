@@ -17,8 +17,10 @@ class WordViewModel: ObservableObject{
     
     @Published var searchHistoryList:[WordItem] = []
     
+    
     @Published var groupedStarLevelList:[[WordItem]] = []
     @Published var groupedABCList:[[WordItem]] = []
+    @Published var noteWordsList:[WordItem] = []
     
     @Published var isSyncing = false
     
@@ -35,6 +37,7 @@ class WordViewModel: ObservableObject{
         getAllItems()
         getHistoryItems()
         getGroupedItems()
+        getNoteItems()
     }
     
     
@@ -107,6 +110,24 @@ class WordViewModel: ObservableObject{
         self.groupedABCList = groupedByABC
     }
     
+    //获取有笔记的单词
+    func getNoteItems() {
+        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
+        let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        let pre =  NSPredicate(format: "wordNote != %@", "")
+        
+        fetchRequest.predicate = pre
+        fetchRequest.sortDescriptors = [sort]
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        do {
+            //获取所有的Item
+            noteWordsList = try viewContext.fetch(fetchRequest)
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+        }
+    }
+    
     //获取历史记录的单词
     func getHistoryItems() {
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
@@ -169,6 +190,7 @@ class WordViewModel: ObservableObject{
         for item in tmpList {
             item.starLevel = 0
             item.wordNote = ""
+            item.isSynced = true
         }
         UD_noteWordNum = 0
         saveToPersistentStoreAndRefresh(.notebook)
@@ -339,6 +361,9 @@ class WordViewModel: ObservableObject{
             try viewContext.execute(delAllRequest)
             print("删除全部数据")
             saveToPersistentStore()
+            saveToPersistentStoreAndRefresh(.item)
+            saveToPersistentStoreAndRefresh(.notebook)
+            saveToPersistentStoreAndRefresh(.searchResult)
         }
         catch { print(error) }
     }
@@ -373,6 +398,7 @@ class WordViewModel: ObservableObject{
                 // 延迟保存优化性能，添加timer优化后可以考虑删掉
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.getGroupedItems()
+                    self.getNoteItems() 
                     
                 }
             }else{
@@ -483,7 +509,7 @@ class WordViewModel: ObservableObject{
         })}
 //        UIDevice.current.identifierForVendor?.uuidString
         //保存CoreData
-        saveToPersistentStore()
+        saveToPersistentStoreAndRefresh(.notebook)
         
     }
     

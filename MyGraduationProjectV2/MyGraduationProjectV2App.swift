@@ -52,8 +52,8 @@ struct MyGraduationProjectV2App: App {
                   #if targetEnvironment(macCatalyst)
                   // prevent window in macOS from being resized down
                     UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
-                      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 2000, height: 1000)
-//                      windowScene.sizeRestrictions?.maximumSize = CGSize(width: 800, height: 1000)
+                      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1900, height: 1200)
+                      //windowScene.sizeRestrictions?.maximumSize = CGSize(width: 1900, height: 1200)
                     }
                   #endif
                 }

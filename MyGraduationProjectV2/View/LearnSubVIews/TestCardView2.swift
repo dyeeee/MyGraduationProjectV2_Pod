@@ -61,6 +61,7 @@ struct TestCardView2: View {
                                         .foregroundColor(correctWord ? Color(.systemBlue) : Color(.systemRed))
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .onChange(of: text, perform: { text in
+//                                            Tool.hiddenTabBar()
                                             if text == self.learningWordItem.wordContent{
                                                 correctWord = true
                                             }else{
@@ -69,6 +70,9 @@ struct TestCardView2: View {
                                         })
                                 )
                                 .padding([.top],10)
+                                .onTapGesture {
+                                    Tool.hiddenTabBar()
+                                }
                                 
                                 Spacer()
                             }
@@ -114,6 +118,9 @@ struct TestCardView2: View {
                         Text("输入正确的单词")
                             .font(.callout)
                             .foregroundColor(Color("WordSentencesColor"))
+                            .onTapGesture {
+                                Tool.hiddenTabBar()
+                            }
                     }.padding([.leading,.trailing],30)
                 }
                 
@@ -126,6 +133,7 @@ struct TestCardView2: View {
                         HStack{
                             Button(action: {
                                 self.afterUnknown = true
+                                Tool.hiddenTabBar()
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -190,7 +198,7 @@ struct TestCardView2: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
                                         .frame(width: UIScreen.main.bounds.width*0.75, height: 40, alignment: .center)
-                                        .foregroundColor(Color(.systemGray6))
+                                        .foregroundColor(Color(.systemGray5))
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
                                         Text("记住了").font(.custom("FZDIHT_JW--GB1-0", size: 18,relativeTo: .title))
@@ -214,6 +222,7 @@ struct TestCardView2: View {
             
         }
         .frame(width: UIScreen.main.bounds.width - 20, alignment: .center)
+        .hiddenTabBar()
         //.padding(.bottom, 15)
         
         

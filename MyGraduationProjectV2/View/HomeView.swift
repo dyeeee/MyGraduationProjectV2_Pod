@@ -24,6 +24,7 @@ struct HomeView: View {
     @State var showAllToDo = false
     @State var screenWidth = UIScreen.main.bounds.width
     
+    @AppStorage("UD_isLogged") var UD_isLogged = false
     @AppStorage("UD_newData") var UD_newData = false
     @AppStorage("UD_autoSync") var UD_autoSync = false
 
@@ -138,8 +139,8 @@ struct HomeView: View {
                         self.dayContentVM.createTestItem()
                     },label:{
                         Image(systemName:UD_newData ? "bolt.horizontal.icloud" : "checkmark.icloud")
-                    }).opacity(UD_newData ? 1:0)
-                    .disabled(UD_newData ? false:true)
+                    }).opacity(UD_newData && UD_isLogged ? 1:0)
+                    .disabled(UD_newData && UD_isLogged ? false:true)
                 }
             })
             .onAppear(perform: {

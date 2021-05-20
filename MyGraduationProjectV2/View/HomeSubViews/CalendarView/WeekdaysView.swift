@@ -13,6 +13,8 @@ import SwiftUI
 struct WeekdaysView: View {
     
     @Binding var screenWidth:CGFloat
+    @AppStorage("UD_isEN") var UD_isEN = false
+    
     
     let weekdays = ["日", "一", "二", "三", "四", "五", "六"]
     let weekdays2 = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"]
@@ -20,7 +22,7 @@ struct WeekdaysView: View {
     var body: some View {
         HStack {
             GridStack(rows: 1, columns: 7) { row, col in
-                Text(self.weekdays[col])
+                Text(UD_isEN ? self.weekdays2[col] : self.weekdays[col])
                     .frame(minWidth: 20, idealWidth: (screenWidth)/CGFloat((7))-15, maxWidth: (screenWidth)/CGFloat((7))-15, minHeight: 22, idealHeight: 22, maxHeight: 22, alignment: .center)
                     //.frame(width: (screenWidth)/CGFloat((7))-15, height: 22)
                     .font(.caption)
