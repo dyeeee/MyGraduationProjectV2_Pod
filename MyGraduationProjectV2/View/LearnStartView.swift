@@ -12,7 +12,7 @@ struct LearnStartView: View {
     @StateObject var learnWordVM: LearnWordViewModel = LearnWordViewModel()
     @StateObject var dayContentVM: DayContentViewModel
     @StateObject var appearanceVM:AppearanceViewModel
-    
+
     
     @State var progress = 0.8
     
@@ -130,7 +130,7 @@ struct LearnStartView: View {
                                     .foregroundColor(UD_isLastLearnDone ? Color(.systemGray2):Color(.systemBlue))
                                     .background(
                                         NavigationLink(
-                                            destination: LearningView(wordVM: self.wordVM, learnWordVM: self.learnWordVM),
+                                            destination: LearningView(dayContentVM:self.dayContentVM, wordVM: self.wordVM, learnWordVM: self.learnWordVM),
                                             tag: "LearningView",
                                             selection: $selectedTag,
                                             label: { EmptyView() }

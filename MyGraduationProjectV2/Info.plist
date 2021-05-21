@@ -35,10 +35,13 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIToolbar</key>
+		<dict>
+			<key>UIImageName</key>
+			<string></string>
+		</dict>
 		<key>UIColorName</key>
 		<string>launchColor</string>
-		<key>UIImageName</key>
-		<string>launchBG</string>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

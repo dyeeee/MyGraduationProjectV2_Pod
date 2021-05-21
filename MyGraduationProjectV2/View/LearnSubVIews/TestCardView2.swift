@@ -193,6 +193,7 @@ struct TestCardView2: View {
                             Button(action: {
                                 self.learnWordVM.nextCard_Test(item: self.learningWordItem)
                                 self.afterUnknown = false
+                                Tool.hiddenTabBar()
                                 
                             }, label: {
                                 ZStack {

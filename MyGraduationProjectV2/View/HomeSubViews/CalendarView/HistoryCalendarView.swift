@@ -105,6 +105,12 @@ struct HistoryCalendarView: View {
                                 Label("创建测试数据", systemImage: "plus.rectangle.on.rectangle")
                             }
                             Button(action: {
+                                let tmpString = Date().dateToString(format:"yyyyMMdd")
+                                self.dayContentVM.createItem(dateString: tmpString)
+                            }) {
+                                Label("创建当日数据", systemImage: "plus.viewfinder")
+                            }
+                            Button(action: {
                                 
                             }) {
                                 Label("上传本地数据", systemImage: "icloud.and.arrow.up")

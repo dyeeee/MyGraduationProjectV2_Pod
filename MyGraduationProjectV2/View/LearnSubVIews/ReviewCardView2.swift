@@ -211,7 +211,7 @@ struct ReviewCardView2: View {
                             Button(action: {
                                 self.learnWordVM.nextCard_Review(item: self.learningWordItem)
                                 self.afterUnknown = false
-                
+                                Tool.hiddenTabBar()
                                 
                             }, label: {
                                 ZStack {

@@ -14,7 +14,8 @@ struct UserInfoView: View {
     @StateObject var learnVM:LearnWordViewModel
     
     @StateObject var todoVM:ToDoViewModel
-    
+    @StateObject var dayContentVM:DayContentViewModel
+    @AppStorage("UD_isLastLearnDone") var UD_isLastLearnDone = false
     
     
     @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
@@ -68,6 +69,11 @@ struct UserInfoView: View {
                             self.wordVM.downloadFromCloud()
                             self.learnVM.downloadFromCloud()
                             self.todoVM.downloadFromCloud()
+                            
+                            if UD_isLastLearnDone == true{
+                            let tmpString = Date().dateToString(format: "yyyyMMdd")
+                            self.dayContentVM.createItem(dateString: tmpString)
+                            }
                             
                         }, label: {
                             Text("下载云端数据")
@@ -294,7 +300,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel())
+            UserInfoView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel(), dayContentVM: DayContentViewModel())
         }
     }
 }

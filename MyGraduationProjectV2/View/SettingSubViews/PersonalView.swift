@@ -12,13 +12,15 @@ struct PersonalView: View {
     @StateObject var wordVM:WordViewModel
     @StateObject var learnVM:LearnWordViewModel
     @StateObject var todoVM:ToDoViewModel
+    @StateObject var dayContentVM:DayContentViewModel
+    
     @AppStorage("UD_isLogged") var UD_isLogged = false
 //    @AppStorage("UD_isUsingBioID") var UD_isUsingBioID = false
     
     var body: some View {
         //本地UD在已登录状态，本地存的session验证通过则显示用户信息和用户操作
         if (UD_isLogged && self.userVM.isLocalSessionVertified) {
-            UserInfoView(userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnVM, todoVM: self.todoVM)
+            UserInfoView(userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnVM, todoVM: self.todoVM, dayContentVM: self.dayContentVM)
         }else if(UD_isLogged){
             ZStack {
                 LogInView(userVM:self.userVM)//.navigationBarHidden(true)
@@ -50,6 +52,6 @@ struct PersonalView: View {
 
 struct PersonalView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel())
+        PersonalView(userVM: UserViewModel(), wordVM: WordViewModel(), learnVM: LearnWordViewModel(), todoVM: ToDoViewModel(), dayContentVM: DayContentViewModel())
     }
 }

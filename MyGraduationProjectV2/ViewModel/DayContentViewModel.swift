@@ -127,7 +127,9 @@ class DayContentViewModel: ObservableObject{
     
     func createTestItem() {
         dateStringList = ["20210501","20210502","20210503",
-                          "20210504","20210506","20210507",]
+                          "20210504","20210506","20210507",
+                          "20210520","20210521"]
+        
         for dateString in dateStringList {
             let monthString = dateString.prefix(6)
             let item = DayContentItem(context: PersistenceController.shared.container.viewContext)

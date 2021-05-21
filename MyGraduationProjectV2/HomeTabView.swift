@@ -62,7 +62,7 @@ struct HomeTabView: View {
                 .tag(TabSelection.page4)
 
             
-            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnWordVM, todoVM: self.todoVM)
+            SettingView(appearanceVM: self.appearanceVM, userVM: self.userVM, wordVM: self.wordVM, learnVM: self.learnWordVM, todoVM: self.todoVM, dayContentVM: self.dayContentVM)
                 .onAppear(perform: {
                     //勉强解决自动切换的问题
                     self.appearanceVM.colorScheme = getStoredScheme()

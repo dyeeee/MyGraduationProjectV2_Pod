@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LearningView: View {
+    @StateObject var dayContentVM:DayContentViewModel
     @StateObject var wordVM: WordViewModel
     @StateObject var learnWordVM: LearnWordViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -93,6 +94,9 @@ struct LearningView: View {
                         
                         self.presentationMode.wrappedValue.dismiss()
                         
+                        let tmpString = Date().dateToString(format: "yyyyMMdd")
+                        self.dayContentVM.createItem(dateString: tmpString)
+                        
                         if UD_autoSync{
                             print("自动同步中")
                             let tmpUSerVM = UserViewModel()
@@ -159,6 +163,6 @@ struct LearningView: View {
 
 struct LearningView_Previews: PreviewProvider {
     static var previews: some View {
-        LearningView(wordVM: WordViewModel(), learnWordVM: LearnWordViewModel())
+        LearningView(dayContentVM: DayContentViewModel(), wordVM: WordViewModel(), learnWordVM: LearnWordViewModel())
     }
 }
