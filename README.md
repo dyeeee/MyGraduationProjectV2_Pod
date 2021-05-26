@@ -12,17 +12,38 @@
 
 ## Screenshot
 
-### Widget
+### Dictionary & Notebook
 <div align=center>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_3.jpg" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_2.jpg" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget_1.jpg" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
 </div>
 
-### Main
+### Word Learning
 <div align=center>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/home_light.jpg" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/learn-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/learn-2.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/learn-3.JPEG" width="240"/>
 </div>
+
+### User
+<div align=center>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/user-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/user-2.JPEG" width="240"/>
+</div>
+
+### iPad & Mac
+<div align=center>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/iPad-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/Mac-1.JPEG" width="240"/>
+</div>
+
+### Widget
+<div align=center>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget-2.JPEG" width="240"/>
+</div>
+
 
 ##  Programming Language Used
 1. Swift & SwiftUI Framework
