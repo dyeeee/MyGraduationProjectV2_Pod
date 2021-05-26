@@ -34,8 +34,8 @@
 
 ### iPad & Mac
 <div align=center>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/iPad-1.JPEG" width="320"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/Mac-1.jpg" width="320"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/iPad-1.JPEG" width="300"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/Mac-1.jpg" width="480"/>
 </div>
 
 ### Widget
