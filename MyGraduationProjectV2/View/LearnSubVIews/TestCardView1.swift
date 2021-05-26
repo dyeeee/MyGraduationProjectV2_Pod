@@ -91,6 +91,7 @@ struct TestCardView1: View {
                         HStack{
                             Button(action: {
                                 self.afterUnknown = true
+                                Tool.hiddenTabBar()
                             }, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)

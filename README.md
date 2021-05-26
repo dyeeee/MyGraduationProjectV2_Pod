@@ -29,5 +29,14 @@
 2. CoreData Framework
 3. Leancloud Data Storage
 
+## 运行说明
+* macOS 10.15 + 
+* 安装CocoPods
+* 运行项目时运行.xcworkspace文件而不是.xcodeproj文件。
+* 项目云服务基于LeanCloud云服务，相关SDK已集成在Pod中。SDK的初始化设置于UserViewModel.swift文件的LeanCloudSet()函数中，建议填入个人项目中的id和keys。云服务相关代码文档见链接：https://leancloud.cn/docs/leanstorage_guide-swift.html#hash765832
+* 建议连接真机到Mac上运行。
+* 支持macOS，运行时选择My Mac即可直接运行。
+
+
 ## Compability
 * iOS/iPadOS 14.0+

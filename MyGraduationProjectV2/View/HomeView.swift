@@ -27,6 +27,9 @@ struct HomeView: View {
     @AppStorage("UD_isLogged") var UD_isLogged = false
     @AppStorage("UD_newData") var UD_newData = false
     @AppStorage("UD_autoSync") var UD_autoSync = false
+    
+    //如果是首次启动项目，加载本地词典
+    @AppStorage("UD_isFirstLaunch") var UD_isFirstLaunch = true
 
     
     var body: some View {
@@ -158,6 +161,10 @@ struct HomeView: View {
                     }
                     
                     UD_newData = false
+                }
+                
+                if UD_isFirstLaunch{
+                    wordVM.preloadFromBigCSV()
                 }
             })
 //            .onChange(of:UD_newData,perform:{
