@@ -15,8 +15,8 @@
 ### Dictionary & Notebook
 <div align=center>
 <img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-2.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/dict-3.JPEG" width="240"/>
 </div>
 
 ### Word Learning
@@ -34,14 +34,14 @@
 
 ### iPad & Mac
 <div align=center>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/iPad-1.JPEG" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/Mac-1.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/iPad-1.JPEG" width="320"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/Mac-1.jpg" width="320"/>
 </div>
 
 ### Widget
 <div align=center>
 <img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget-1.JPEG" width="240"/>
-<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget-2.JPEG" width="240"/>
+<img src="https://github.com/dyeeee/MyGraduationProjectV2_Pod/blob/main/Images/widget-2.JPEG" width="480"/>
 </div>
 
 
